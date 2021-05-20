@@ -1,0 +1,28 @@
+AULAS 01 & 02 - ASSÍNCRONA 
+
+Google Drive com todo o material (Livros, vídeos-aulas e atividades): https://drive.google.com/drive/folders/17G1fsnei0Bg4KBhRtNo63rkSeEDR1SER?usp=sharing
+
+PASSO 1:
+
+ - Leitura do Capítulo 1 do livro "Sistemas distribuídos: conceitos e projetos."  Seções 1.1 e 1.5
+
+PASSO 2:
+
+- Asssitir as Vídeo-Aulas
+
+ AULA 01  (PARTE 1) - Definição, Objetivos & Tipos de SD
+ AULA 01 (PARTE 2) - Desafios de SD
+ AULA 02 (PARTE 1) - Estilo Arquitetônico
+ AULA 02 (PARTE 2) - Arquitetura de Sistemas Distribuídos 
+
+Link do Quizizz: https://quizizz.com/join?gc=48816666
+PRAZO: 23-05-2021 às 23:45 DA NOITE
+ 
+PASSO 3:
+ 
+ Resolver Atividade 01: Comando consta na pasta ATIVIDADES do google drive. 
+
+PRAZO: 23-05-2021 às 23:45 DA NOITE. 
+
+ Enviar para e-mail: wmvj@unifesspa.edu.br com o TÍTULO: Sistemas Distribuídos EC2018 - ATIVIDADE 01. Conteúdo do e-mail deve ter o nome completo e numero de matrícula do aluno. (editado)
+
