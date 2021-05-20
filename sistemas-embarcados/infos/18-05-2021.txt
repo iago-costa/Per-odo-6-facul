@@ -1,0 +1,34 @@
+Bom dia! Pessoal!
+
+Vamos começar as aulas na semana que vem. Hoje irei reunir com o nosso monitor para ajustar a ferramenta que vamos utilizar, pois a que estava instalada na minha máquina deu "bug" e ainda outros detalhe da disciplina.
+
+Amanhã terá a paralisação nacional devido as questões de deterioração do ensino público. 
+
+
+Compensação:
+
+As nossas aulas síncronas terão geralmente a duração de 1h, mas isso não impede de ultrapassá-la.  Então está 2h (aula de hoje e amanhã) serão acrescidas nas aulas seguintes. 
+
+Dinâmica das aulas: 
+
+Serão síncronas e assíncrona, onde no início teremos aulas teóricas na introdução e na sequência aulas teórico-práticas.
+
+Como ferramenta de projeto iremos utilizar o programa quartus II para desenvolvimento dos projetos (Assim que eu ajustar a ferramenta eu passo a versão que iremos utilizar para padronização).
+
+Plano de trabalho:
+
+Resumidamente:
+
+1 - Hardware 
+
+2- Linguagem de programação 
+
+3 - Atividades práticas (projetos)
+
+
+Avaliação (Vamos conversar na aula)
+
+
+No mais agradeço a compreensão de todos e vamos explorar da melhor maneira nossas aulas e contribuirmos para o crescimento de todos bidirecionalmente (Aluno <-> Professor e Monitor)
+
+José Carlos
