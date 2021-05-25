@@ -1,0 +1,8 @@
+#var1 = 10
+#f = sin(t)
+#plot(f,"b")
+#stem(f,"r")
+#hold on
+#plot(f,"b")
+#f_t = sin(t).*exp(t)
+#f3_t = sin(2*pi*3).*exp()
