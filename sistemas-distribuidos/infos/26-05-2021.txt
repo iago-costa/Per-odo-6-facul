@@ -1,0 +1,39 @@
+AULAS 03 & 04 - Comunicação entre Processos (27/05/2021 - 27/05/2021)
+
+AULA ASSÍNCRONA 03 & 04:
+
+PASSO 1:
+
+Leitura do Capítulo 3 do livro "Sistemas Distribuídos: Princípios e Paradigmas"
+
+    Seções 3.1.2 e 3.2.1
+
+Leitura do Capítulo 4 do livro "Sistemas Distribuídos: Conceitos e Projetos"
+
+    Seções 4.2.3 e 4.2.4
+
+PASSO 2:
+
+Assistir as Vídeo-Aulas
+
+    AULA 03 - Processos Distribuídos
+    AULA 04 - Comunicação entre processos & Sockets
+    AULA 04 - Comunicação UDP
+    AULA 04 - Comunicação TCP
+    AULA 04 - Comunicação Multicast
+
+Link do Quizizz: https://quizizz.com/join?gc=25958490
+
+PRAZO: 30-05-2021 às 23:45 da noite
+
+PASSO 3:
+
+    Praticar sockets UDP, TCP e Multicast cujo comando consta nos 3 últimos slides da AULA 04.
+
+PASSO 4:
+
+Resolver Atividade 02: Comando consta na tarefa correspondente a AULA 04.
+
+
+    ATIVIDADE 02 - UNIDADE I   
+Inicia em 26/05/2021 às 13h 0 e finaliza em 30/05/2021 às 23h 59
