@@ -29,12 +29,13 @@ def segundos():
     e = e*1000000
     x.append(e)    
     # if  tipo == "ano":
-    f = 60*60*24*30*365
+    f = 60*60*24*30*12
     f = e*1000000
     x.append(f)    
     # if  tipo == "seculo":
-    g = 60*60*24*30*365*100
+    g = 60*60*24*30*12*100
     g = g*1000000
+    
     x.append(g)        
     return x
 
