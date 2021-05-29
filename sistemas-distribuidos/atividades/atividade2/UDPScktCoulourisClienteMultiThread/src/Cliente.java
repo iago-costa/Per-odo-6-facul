@@ -14,12 +14,12 @@ class ThreadCliente implements Runnable {
     protected String servidor="localhost";
     protected String msg="mensagem default";
     protected int porta=6789;
-    ThreadCliente(String args[]) {
-        if (args.length > 0) servidor = args[0];
-        if (args.length > 1) porta = Integer.parseInt(args[1]);
-        if (args.length > 2) msg = args[2];
+    ThreadCliente(String arg1, String arg2, String arg3) {
+        if (arg1.length() > 0) servidor = arg1;
+        if (arg2.length() > 1) porta = Integer.parseInt(arg2);
+        if (arg3.length() > 2) msg = arg3;
     }
-    public void run() { // a interface Runnable exige a implementação do método run
+    public void run() { // a interface Runnable exige a implementaï¿½ï¿½o do mï¿½todo run
         Thread thread = Thread.currentThread();
         DatagramSocket s = null;
         try {
@@ -39,7 +39,7 @@ class ThreadCliente implements Runnable {
             System.out.println("* " + thread.getName() + " * Resposta do servidor:" + new String(resp.getData()));
             
         } catch (SocketException e) {
-            // timeout, erro na criação
+            // timeout, erro na criaï¿½ï¿½o
             System.out.println("* " + thread.getName() + " * Erro socket: " + e.getMessage());
         } catch (IOException e) {
             System.out.println("* " + thread.getName() + " * Erro envio/recepcao do pacote: " + e.getMessage());
@@ -50,8 +50,8 @@ class ThreadCliente implements Runnable {
 }
 public class Cliente {
      public static void main(String args[]) {
-        Thread cliente1 = new Thread(new ThreadCliente(args), "CLIENTE 1");
-        Thread cliente2 = new Thread(new ThreadCliente(args), "CLIENTE 2");
+        Thread cliente1 = new Thread(new ThreadCliente(args[0],args[1], args[2]), "CLIENTE 1");
+        Thread cliente2 = new Thread(new ThreadCliente(args[0],args[1], args[2]), "CLIENTE 2");
         cliente1.start();
         cliente2.start();
     
