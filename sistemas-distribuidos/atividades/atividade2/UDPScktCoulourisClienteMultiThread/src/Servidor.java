@@ -3,7 +3,7 @@
  *
  * Created on 17 de Maio de 2006, 11:27
  *
- * Servidor ECHO: fica em aguardo de solicitação de algum cliente. Quando recebe
+ * Servidor ECHO: fica em aguardo de solicitaï¿½ï¿½o de algum cliente. Quando recebe
  * simplesmente devolve a mensagem.
  */
 
@@ -18,7 +18,7 @@ public class Servidor {
             byte[] buffer = new byte[1000];
             while (true) {
                  System.out.println("*** Servidor aguardando request");
-                // cria datagrama para recepcionar solicitação do cliente
+                // cria datagrama para recepcionar solicitaï¿½ï¿½o do cliente
                 DatagramPacket req = new DatagramPacket(buffer, buffer.length);
                 s.receive(req);
                 System.out.println("*** Request recebido de: " + req.getSocketAddress());
