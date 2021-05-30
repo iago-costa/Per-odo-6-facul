@@ -1,7 +1,7 @@
 # https://wiki.python.org.br/TransferirArquivosViaSockets
 from socket import *
 
-serverPort = 9005
+serverPort = 9006
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind(('', serverPort))
 serverSocket.listen(5)
