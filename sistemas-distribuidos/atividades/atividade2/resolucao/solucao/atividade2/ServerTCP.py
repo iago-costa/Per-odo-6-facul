@@ -10,9 +10,9 @@ print('o servidor esta pronto')
 
 while 1:
     connectionSocket, addr = serverSocket.accept()
-    sentence = connectionSocket.recv(1024)
+    nomeArquivo = connectionSocket.recv(1024)
     try:
-        arq = open(sentence.decode()+'.txt', 'r')
+        arq = open(nomeArquivo.decode()+'.txt', 'r')
         for i in arq.readlines():
             connectionSocket.send(i.encode())
         arq.close()
