@@ -1,0 +1,21 @@
+AULA 05 - Sockets & Criptografia (03/06/2021 - 03/06/2021)
+
+AULA ASSÍNCRONA 05:
+
+PASSO 1:
+
+  Leitura do Capítulos 2 & 11 do livro "Sistemas distribuídos: conceitos e projetos."
+
+     Seções 2.4.3, 11.2.1 e 11.2.2
+
+PASSO 2:
+
+  Asssitir a Vídeo-Aula
+
+    AULA 05 - Segurança 
+
+NÃO TEREMOS QUIZIZZ
+ 
+PASSO 3:
+ 
+Execução da prática nos 3 últimos slides da AULA 05 cujo projeto EncryptedChat.zip está dentro da pasta de vídeo-aulas da AULA 05 
