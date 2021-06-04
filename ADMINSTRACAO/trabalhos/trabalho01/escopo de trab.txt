@@ -1,0 +1,36 @@
+Estudo de caso - Segurança da informação
+
+Projeto
+
+Sistema 
+
+Processo
+
+Fazer Organograma
+
+Salas( Servidor, recepção, desenvolvimento, suprimentos)
+ 
+integrantes( 
+	2 recepcionistas
+	4 desenvolvedores - programadores 
+	2 assintência/suporte
+)
+
+Equipamentos(
+	8 computadores
+	2 telefones
+	2 servidores
+	
+
+)
+
+
+Pessoas(Recursos Humanos) - Iago
+
+Finanças e Contabilidade - Warley
+
+Diretores (CEOs) - Kayro
+
+Desenvolvimento - Marketing,... - Yure
+
+
