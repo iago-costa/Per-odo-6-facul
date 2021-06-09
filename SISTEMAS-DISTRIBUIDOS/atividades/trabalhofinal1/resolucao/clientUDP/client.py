@@ -13,3 +13,6 @@ while 1:
     clientSocket.send(sentence.encode())
     modifiedSentence = clientSocket.recv(1024)
     print("Vindo do servidor", modifiedSentence.decode())
+
+
+# https://wiki.python.org.br/PyCryptoChavePublica
