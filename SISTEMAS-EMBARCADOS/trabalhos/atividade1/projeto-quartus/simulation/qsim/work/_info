@@ -1,0 +1,81 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\SISTEMAS-EMBARCADOS\trabalhos\atividade1\projeto-quartus\simulation\qsim
+vport_and
+Z1 !s100 i4mQ]]zZ3h?dkTY2bf]i41
+Z2 Ie`0MMzn<X;4<fX?39EGgT1
+Z3 V@=^iHRP0OeWFe:4?<^mO41
+Z4 dC:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\SISTEMAS-EMBARCADOS\trabalhos\atividade1\projeto-quartus\simulation\qsim
+Z5 w1623260636
+Z6 8port_and.vo
+Z7 Fport_and.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|port_and.vo|
+Z10 o-work work -O0
+!i10b 1
+!s85 0
+Z11 !s108 1623260638.182000
+Z12 !s107 port_and.vo|
+!s101 -O0
+vport_and_vlg_check_tst
+!i10b 1
+Z13 !s100 DA?BzLW17NYlVnN7]A<Bb1
+Z14 IZ4?JEmj>NfzYEbgdcLQ`W2
+Z15 VN4VAeAYOb9ERGkVz6438d3
+R4
+Z16 w1623260634
+Z17 8Waveform.vwf.vt
+Z18 FWaveform.vwf.vt
+L0 59
+R8
+r1
+!s85 0
+31
+Z19 !s108 1623260638.366000
+Z20 !s107 Waveform.vwf.vt|
+Z21 !s90 -work|work|Waveform.vwf.vt|
+!s101 -O0
+R10
+vport_and_vlg_sample_tst
+!i10b 1
+Z22 !s100 nGJ>d96TLa3KckhcJKj`>1
+Z23 IzFUN7L2PLiPV^ed:YEfa82
+Z24 Vhd3JFRf0[cA<WOW^4mcCU2
+R4
+R16
+R17
+R18
+L0 29
+R8
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R10
+vport_and_vlg_vec_tst
+!i10b 1
+Z25 !s100 hdgn0SoDZk:JNzh1O`BYH3
+Z26 I53^10S8mO]RIJ_DT]`[Zf2
+Z27 V;E6cMVDcmbZFK@CZcUCF00
+R4
+R16
+R17
+R18
+Z28 L0 154
+R8
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R10
