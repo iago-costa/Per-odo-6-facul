@@ -1,7 +1,11 @@
  
 import sys, struct, socket
-# from socket import *
-# local = "0.0.0.0"
+from Crypto.PublicKey import RSA
+
+from datetime import datetime
+data_e_hora_atuais = datetime.now()
+data_e_hora_em_texto = data_e_hora_atuais.strftime('%d/%m/%Y %H:%M')
+
 serverName = '225.0.0.1'
 serverPort = 9000
 
@@ -18,11 +22,11 @@ mreq = struct.pack('4sl', socket.inet_aton(serverName), socket.INADDR_ANY)
 serverSocket.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
 
 
-print("running server: "+serverName+":"+str(serverPort))
+print("running server: "+serverName+":"+str(serverPort)+" - "+data_e_hora_em_texto)
 
 # try:
 #     while 1:
-#         data, addr = serverSocket.recvfrom(1024)
+#         data, addr = serverSocket.recvfrom(4096)
 #         # print(str(len(data))+" bytes from: "+str(data)+" "+addr)
 #         print(data, addr)
 #         serverSocket.sendto(data, ('',addr[1]))
@@ -34,19 +38,46 @@ print("running server: "+serverName+":"+str(serverPort))
 try:
     while 1:
         
-        data, addr = serverSocket.recvfrom(1024)
+        data, addr = serverSocket.recvfrom(4096)
+        # print(data.decode()+" - "+data_e_hora_em_texto)
+        if(data.decode() == "pub_key"):
+            client, addr = serverSocket.recvfrom(4096)
+            # print(client.decode()+" - "+data_e_hora_em_texto)
+            
+            try:
+                arq = open(client.decode()+'.key', 'w')
+
+                data, addr = serverSocket.recvfrom(4096)
+                print(data.decode()+" - "+data_e_hora_em_texto)
+                pub_key = RSA.construct(data.decode())
+                teste = "linha do tempo"
+                print(pub_key.encrypt(teste))
+                print(pub_key.decrypt(teste))
+                arq.write(pub_key)
+                arq.close()
+                print("recebido pub_key - "+client.decode()+" - "+data_e_hora_em_texto)
+
+            except Exception as e:
+                print(e)
+                # serverSocket.sendto("Arquivo inexistente from 225.0.0.1".encode(),('',addr[1]))
+                arq.close()
+
         if(data.decode() == "ping"):
-            print("ping recebido")
+            print("ping recebido - "+data_e_hora_em_texto)
 
             serverSocket.sendto("pong from 225.0.0.1".encode(),('',addr[1]))
             
-        else:
+        if(data.decode() == "file"):
             try:
+                data, addr = serverSocket.recvfrom(4096)
+                
                 arq = open(data.decode()+'.txt', 'r')
                 serverSocket.sendto("file disponivel from 225.0.0.1".encode(),('',addr[1]))
-                data, addr = serverSocket.recvfrom(1024)
+                
+                data, addr = serverSocket.recvfrom(4096)
 
                 if(data.decode() == "225.0.0.1"):                    
+                    print("arquivo enviado - "+data_e_hora_em_texto)
                     for i in arq.readlines():
                         serverSocket.sendto(i.encode(),('',addr[1]))
                     arq.close()
@@ -60,4 +91,4 @@ try:
 except KeyboardInterrupt:
     print('done')
     sys.exit(0)
-    
+
