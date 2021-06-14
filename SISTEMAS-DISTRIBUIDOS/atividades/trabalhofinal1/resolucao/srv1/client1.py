@@ -115,11 +115,11 @@ while 1:
                 print("linha " + str(l) + ": " + plaintext.decode('utf-8'))
                 arq.write(plaintext.decode('utf-8'))
             except Exception as e:
-                print(e)
-                if isinstance(e, TimeoutError):
+                if str(e) == 'timed out':
                     print("------------ connection closed file received - " +
                     data_e_hora_em_texto)
-                else:    
+                else:
+                    print(e)
                     print("------------ connection closed file not received - " +
                         data_e_hora_em_texto)
 
