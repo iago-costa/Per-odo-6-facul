@@ -6,6 +6,10 @@ from datetime import datetime
 data_e_hora_atuais = datetime.now()
 data_e_hora_em_texto = data_e_hora_atuais.strftime('%d/%m/%Y %H:%M')
 
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives import hashes
+
 serverName = '225.0.0.2'
 serverPort = 9000
 
@@ -34,6 +38,7 @@ print("running server: "+serverName+":"+str(serverPort)+" - "+data_e_hora_em_tex
 # except KeyboardInterrupt:
 #     print('done')
 #     sys.exit(0)
+nomeArquivoKeyPublic = ""
 
 try:
     while 1:
@@ -41,14 +46,25 @@ try:
         data, addr = serverSocket.recvfrom(4096)
         if(data.decode() == "pub_key"):
             client, addr = serverSocket.recvfrom(4096)
+            nomeArquivoKeyPublic = client.decode()
             try:
-                arq = open(client.decode()+'.key', 'w')
-                # while 
+                arq = open(nomeArquivoKeyPublic+'.pem', 'wb')
                 data, addr = serverSocket.recvfrom(4096)
-                pub_key = RSA.construct(data.decode())
-                arq.write(pub_key)
+                print(data.decode()+" - "+data_e_hora_em_texto)
+                arq.write(data)
                 arq.close()
-                print("recebido pub_key - "+client.decode()+" - "+data_e_hora_em_texto)
+                print("recebido pub_key - "+nomeArquivoKeyPublic+" - "+data_e_hora_em_texto)
+
+                with open(nomeArquivoKeyPublic+'.pem', 'rb') as key_file:
+                    public_key = serialization.load_pem_public_key(key_file.read())
+                messsage = b"linha do tempo"
+
+                cipher_text = public_key.encrypt(messsage, padding.OAEP( mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
+                print(cipher_text)
+
+                messageDecrypt = public_key.decrypt(cipher_text, padding.OAEP( mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
+                print(messageDecrypt)
+                print("------------------------------ fim do try das chaves")
 
             except Exception as e:
                 print(e)
