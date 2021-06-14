@@ -112,7 +112,7 @@ while 1:
                     )
                 )
                 l += 1
-                print("linha " + str(l) + ": " + str(plaintext))
+                print("linha " + str(l) + ": " + plaintext.decode('utf-8'))
                 arq.write(plaintext.decode('utf-8'))
             except Exception as e:
                 print(e)

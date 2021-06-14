@@ -1,0 +1,1 @@
+{'escolhido': 0, 'falhas': 0, 'sucesso': 0}

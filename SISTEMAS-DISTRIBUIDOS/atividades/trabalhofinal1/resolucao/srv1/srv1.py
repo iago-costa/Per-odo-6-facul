@@ -1,6 +1,6 @@
  
 import sys, struct, socket
-from Crypto.PublicKey import RSA
+
 
 from datetime import datetime
 data_e_hora_atuais = datetime.now()
@@ -41,6 +41,12 @@ print("running server: "+serverName+":"+str(serverPort)+" - "+data_e_hora_em_tex
 
 nomeArquivoKeyPublic = ""
 
+cont = {
+    "escolhido": 0,
+    "falhas": 0,
+    "sucesso": 0
+}
+
 try:
     while 1:
         
@@ -80,31 +86,44 @@ try:
             try:
                 data, addr = serverSocket.recvfrom(4096)
                 
+                with open('rel1.txt', 'r') as key_file:
+                    result = key_file.read()
+                conctResult = "file disponivel from 225.0.0.1 id=1 "+result
                 arq = open(data.decode()+'.txt', 'r')
-                serverSocket.sendto("file disponivel from 225.0.0.1 id=1".encode(),('',addr[1]))
+                serverSocket.sendto(conctResult.encode(),('',addr[1]))
                 
                 data, addr = serverSocket.recvfrom(4096)
                 r = data.decode().split()
                 if(r[0] == "1"):                    
                     
-                    with open('par'+r[1]+'_pub_key.pem', 'rb') as key_file:
-                        public_key = serialization.load_pem_public_key(key_file.read())
-                    
+                    cont['escolhido'] += 1                    
+                    try:
+                        with open('par'+r[1]+'_pub_key.pem', 'rb') as key_file:
+                            public_key = serialization.load_pem_public_key(key_file.read())
+                        
+                        for i in arq.readlines():
+                            cipher_text = public_key.encrypt(bytes(i, encoding = "utf-8"), padding.OAEP( mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
+                            serverSocket.sendto(cipher_text,('',addr[1]))
 
-                    for i in arq.readlines():
-                        cipher_text = public_key.encrypt(bytes(i, encoding = "utf-8"), padding.OAEP( mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
-                        serverSocket.sendto(cipher_text,('',addr[1]))
-
-
-                    arq.close()
-                    print("arquivo enviado - "+data_e_hora_em_texto)
+                        arq.close()
+                        print("file sent - "+data_e_hora_em_texto)
+                        cont['sucesso'] += 1
+                        
+                    except Exception as a:
+                        print("file not sent - "+data_e_hora_em_texto)
+                        cont['falhas'] += 1
 
                 arq.close()
 
             except Exception as e:
                 print(e)
-                serverSocket.sendto("Arquivo inexistente from 225.0.0.1".encode(),('',addr[1]))
+                serverSocket.sendto("Arquivo inexistente from 225.0.0.1 ou Falha na conexao".encode(),('',addr[1]))
                 arq.close()
+
+
+        with open('rel1.txt', 'w') as key_file:
+            key_file.write(str(cont))
+
 
 except KeyboardInterrupt:
     print('done')
