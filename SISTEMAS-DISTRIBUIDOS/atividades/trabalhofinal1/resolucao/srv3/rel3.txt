@@ -1,1 +1,1 @@
-{'escolhido': 4, 'falhas': 0, 'sucesso': 4}
+{'escolhido': 14, 'falhas': 3, 'sucesso': 11}

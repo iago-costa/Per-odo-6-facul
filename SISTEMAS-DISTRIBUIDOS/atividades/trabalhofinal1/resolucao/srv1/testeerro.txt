@@ -1,0 +1,26 @@
+Avaliação (valor 4,0)Arquitetura de Processos Pares e Segurança.
+Siga as instruções abaixo para desenvolver e testar um sistema que permita 
+o compartilhamento de arquivos entre um grupo pequeno deusuários:
+1.Considere  um  conjunto  mínimo  inicial  de  três  processos  que  desejam 
+compartilhar uma lista de arquivos em uma arquitetura peer to peer (isto é,   
+diferente   do   tradicional   modelo   cliente-servidor,   ocorrerá   
+uma comunicação direta entre os pares, sendo que cada nó pode fornecer ou obterarquivos).
+2.Utilize  a  comunicação  em  grupo  (multicast)  para  que  os  processos  se conheçam,  
+troquem  suas  chaves  públicas  e  procurem  os  arquivos  que desejam.  
+O  sistema  deve  permitir  a  entrada  e  saída  de  pares  da  rede durante  
+o funcionamento  da  aplicação.  Quando  um  novo  par  entrar  na rede ele deverá se 
+anunciar (multicast) e fornecer sua chave pública aos demais.
+3.Utilize a comunicação unicast no retorno da busca por arquivos.
+4.Depois de localizado um par que possua o arquivo desejado, o arquivo deve  ser  obtido  a  partir  
+da  interação  direta  entre  os  pares.  Toda comunicação deve ser unicast. 
+Se existir mais de um par que possua o arquivo  desejado  utilize  como  critério  de  escolha,  
+o  par  com  melhor reputação. Para o cálculo de reputação, armazene o número de vezes em que um 
+par foi escolhido e o arquivo não foi baixado deste com sucesso por  diversas  razões,  tais  como:  
+o  par  desconectou  ou  o  arquivo  não contém os dados corretos. 
+Obs.: simule esses erros da forma que achar mais conveniente.
+5.Empreguechaveassimétricas (chave pública e privada) para assegurar a cada par que o par escolhido 
+é o processo que está enviando o arquivo em questão. Todo envio de arquivo deve ser criptografado 
+com a chave privada do par que está enviando o arquivo em questão.
+Obs: Utilizar sockets. 
+Qualquer linguagem de programação. 
+É obrigatório documentar todo o código e a equipe é de dois programadores
