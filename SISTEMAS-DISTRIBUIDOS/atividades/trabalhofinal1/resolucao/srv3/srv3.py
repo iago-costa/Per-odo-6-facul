@@ -1,6 +1,6 @@
  
 import sys, struct, socket
-from Crypto.PublicKey import RSA
+import json
 
 from datetime import datetime
 data_e_hora_atuais = datetime.now()
@@ -48,6 +48,13 @@ cont = {
 }
 
 try:
+    with open('rel3.txt', 'r') as key_file:
+        result = key_file.read()
+except:
+    with open('rel3.txt', 'w') as key_file:
+        key_file.write(str(cont))
+
+try:
     while 1:
         
         data, addr = serverSocket.recvfrom(4096)
@@ -84,8 +91,9 @@ try:
                 data, addr = serverSocket.recvfrom(4096)
                 r = data.decode().split()
                 if(r[0] == "3"):
-
-                    cont['escolhido'] += 1                    
+                    result = result.replace("'", '"')
+                    cont = json.loads(result)
+                    cont["escolhido"] += 1                    
                     try:
                         with open('par'+r[1]+'_pub_key.pem', 'rb') as key_file:
                             public_key = serialization.load_pem_public_key(key_file.read())
@@ -96,21 +104,25 @@ try:
 
                         arq.close()
                         print("file sent - "+data_e_hora_em_texto)
-                        cont['sucesso'] += 1
+                        cont["sucesso"] += 1
+                        print(cont)
+                        with open('rel3.txt', 'w') as key_file:
+                            key_file.write(str(cont))                        
 
                     except Exception as a:
                         print("file not sent - "+data_e_hora_em_texto)
-                        cont['falhas'] += 1
-
+                        cont["falhas"] += 1
+                        print(cont)
+                        with open('rel3.txt', 'w') as key_file:
+                            key_file.write(str(cont))
                 arq.close()
 
             except Exception as e:
                 print(e)
                 serverSocket.sendto("Arquivo inexistente from 225.0.0.3 ou Falha na conexao".encode(),('',addr[1]))
                 arq.close()
+        
 
-        with open('rel3.txt', 'w') as key_file:
-            key_file.write(str(cont))
 
 except KeyboardInterrupt:
     print('done')

@@ -116,7 +116,7 @@ while 1:
                 arq.write(plaintext.decode('utf-8'))
             except Exception as e:
                 print(e)
-                if(e == 'timed out'):
+                if isinstance(e, TimeoutError):
                     print("------------ connection closed file received - " +
                     data_e_hora_em_texto)
                 else:    
@@ -125,10 +125,5 @@ while 1:
 
                 arq.close()
                 break
-            if not dados:
-                print("------------ connection closed file received - " +
-                    data_e_hora_em_texto)
 
-                arq.close()
-                break
 
