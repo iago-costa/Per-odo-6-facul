@@ -129,7 +129,7 @@ try:
             password = b'3322' # senha para ler a chave privada
 
             #lendo a chave privada
-            with open("par1_pri_key.pem", "rb") as key_file:
+            with open("par2_pri_key.pem", "rb") as key_file:
                 private_key = serialization.load_pem_private_key(
                     key_file.read(),
                     password=password,
@@ -141,6 +141,8 @@ try:
                     dados, addr = clientSocket.recvfrom(2048) #recebimento dos dados
                     cipher_linha = dados # trocando de variável a linha criptografada
                     
+                    # print("linha " + str(l) + ": " + str(cipher_linha))
+
                     # descriptografando a linha recebida com a chave privada do par
                     plaintext = private_key.decrypt(
                         cipher_linha,

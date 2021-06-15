@@ -116,7 +116,7 @@ try:
                 data, addr = serverSocket.recvfrom(4096)
                 
                 # separa em list a resposta
-                r = data.decode().split()
+                r = data.decode().split(" ")
 
                 # se o primeiro termo da lista for 2 ele continuar a execução para enviar o arquivo linha-a-linha
                 if (r[0] == "2"):

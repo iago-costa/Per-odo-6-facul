@@ -28,6 +28,8 @@ from cryptography.hazmat.primitives import hashes
 # setando 2 segundos de espera para o socket
 clientSocket.settimeout(2)
 
+# clientSocket.connect((serverName, serverPort))
+
 # Gerando a chave privada para esse par específico
 private_key = rsa.generate_private_key(
     public_exponent=65537,
@@ -140,7 +142,7 @@ try:
                     dados, addr = clientSocket.recvfrom(2048) #recebimento dos dados
                     cipher_linha = dados # trocando de variável a linha criptografada
                     
-
+                    # print("linha " + str(l) + ": " + str(cipher_linha))
 
                     # descriptografando a linha recebida com a chave privada do par
                     plaintext = private_key.decrypt(
@@ -180,6 +182,7 @@ try:
 
 except KeyboardInterrupt:
     # caso clique control + c ele interrompe a execução do bind e finaliza o script
+    # clientSocket.shutdown(1)
     print('done')
     sys.exit(0)
 
