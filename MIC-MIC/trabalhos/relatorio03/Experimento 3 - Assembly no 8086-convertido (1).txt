@@ -1,0 +1,163 @@
+() UNIFESSPA
+
+Faculdade de Computação e Engenharia Elétrica
+Microprocessadores e Microcontroladores — Prof. Dr. Elton Alves
+Experimento 3 — Programação Assembly no 8086/8088
+
+e Objetivo:
+- Utilizar as instruções ADD, SUB, DIV e MUL no Emu8086.
+
+e Rodar código 9 no Emu8086
+
+ode e e de ode e ode e e ode e e e ode fe ode e ode e ode ode e ode e ole he
+>
+
+:* Programa: MENSAGEMA. ASM *
+
+ode e e de ode e ode e e ode e e e ode fe ode e ode e ode ode e ode e ole he
+>
+
+org 100h : 64Kbytes
+
+DATA : ODh, OAh e 24h mudanca de linha de cursor apos escrita da
+mensagem
+
+mensageml DB 'Mensagem 1', ODh, OAh, 24h; ODh tecla <ENTER>
+
+mensagem? DB 'Mensagem 2', ODh, OAh, 24h; OAh mudanca de linha
+
+mensagem3 DB 'Mensagem 3', ODh, OAh, 24h ; 24h identifica o final de uma sequencia
+de caracter ($)
+
+.CODE
+
+JMP salto3 : salta para a linha 27
+saltol:
+
+LEA DX, mensageml
+CALL escreva
+
+JMP saida
+
+salto2:
+
+LEA DX, mensagem?
+CALL escreva
+
+JMP saltol
+
+salto3:
+
+LEA DX, mensagem3 : envio da mensagem 3
+CALL escreva ;chama do procedimento escreva pelo CALL linha 35
+JMP salto?
+
+saida:
+INT 20h
+
+escreva PROC NEAR : procedimento escreva
+
+MOV AH, 09h: apresentacao do caracter 09h
+
+INT 21h; interrupcao 21h
+
+RET : retorno do procedimento para a 1 linha apos sua chamada (30)
+escreva ENDP
+e Rodar o código 10 no Emu8086
+
+“Comparar o conteudo dos registradores AL e conteudo de BL sao iguais
+
+: Se iguais somar 1 ao registrador AL
+
+“Apos a execucao da decisao sobre a condicao ser F ou V, conteudo de BL deve ser
+diminuído em 1
+
+:O programa deve apresentar os valores dos registradores
+
+ode e e de ode e ode e e ode e e e ode fe ode e ode e ode ode e ode e ole he
+>
+
+:* Programa: CONDICI.ASM *
+
+dd ed ed e da e aa
+-MODEL small
+
+.STACK 512d
+
+DATA
+
+a DB 6d :6 decimal
+
+b DB 6d
+
+.CODE
+MOV AX, (ODATA
+MOV DS. AX
+
+MOV AL, a
+MOV BL,b
+
+CMP AL, BL : SE (AL=BL) ENTAO
+JE entao : salto (=)
+JMP fimse ; se V desvia para linha 26
+
+entao:
+
+INC AL ; incremento do valor Olha AL
+
+CALL apoio : chamada do procedimento apoio
+
+MOV DL, AL : transferencia do valor AL para DL (07h)
+CALL escreva ; chamada do procedimento escreva
+
+fimse::fechamento
+
+DEC BL :decremento 01h sobre BL (05h)
+
+CALL apoio : chama o procedimento apoio
+
+MOV DL, BL : movimentacao do valor
+
+CALL escreva ; chamada do procedimento escreva
+
+INT 20h
+
+escreva PROC NEAR
+ADD DL, 30h
+
+CMP DL, 39h
+
+JLE valor
+
+ADD DL, 07h
+
+valor:
+
+INT2lh
+
+RET
+escreva ENDP
+
+apoio PROC NEAR : prepara o ambiente para apresentacao de um caracter por vez
+MOV AH, 02h
+
+MOV CL, 04h
+
+SHR DL, CL
+
+RET
+
+apoio ENDP
+
+e Atividade Avaliativa
+
+1. Desenvolva um código utilizando JMP para salto incondicional de seu nome.
+
+2. No experimento 10, experimente trocar os valores das variáveis a e b e executar o
+programa para verificar a forma de funcionamento com valores diferentes.
+
+e Data da entrega: 23/06/2021
+
+e Formato de relatório com os códigos e exibição dos resultados das atividades
+avaliativas.
+
