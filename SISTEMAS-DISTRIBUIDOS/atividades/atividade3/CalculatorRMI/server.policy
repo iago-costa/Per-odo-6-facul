@@ -1,0 +1,3 @@
+grant codeBase "file:/c:/Users/nsr/Dropbox/rmi/bin/examples/" {
+permission java.security.AllPermission;
+};
