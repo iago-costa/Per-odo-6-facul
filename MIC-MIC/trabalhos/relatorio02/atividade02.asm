@@ -13,14 +13,14 @@ MOV DS, AX
 MOV AX, v1 ; movendo do valor da variavel v1 para AX 
 ADD AX, v2 ; efetuado a adicao
 
-MOV BL, v3 ; movendo v3 para a variavel 
+MOV BL, v3 ; movendo v3 para BL 
 MUL BL     ; multiplicando v3 com a soma (v1+v2)
 
 MOV v4, AX ; movimenta o valor somado e multiplicado (v4=(v1+v2)*v3)
 ADD v4, 30h ; encontra-se o valor da equacao do valor 30h a v4
 MOV DX, OFFSET v4 ; armazena o valor de v4 em memoria
 
-MOV AH, 09h ; exibicao dos resultados da soma de x
+MOV AH, 09h ; exibicao dos resultados da equacao
 INT 21h
 
 MOV AH, 4Ch ; encerramento do programa
