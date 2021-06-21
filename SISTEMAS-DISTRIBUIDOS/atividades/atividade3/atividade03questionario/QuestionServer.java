@@ -9,19 +9,20 @@ public class QuestionServer implements Question {
     // main()
     public static void main(String[] args) {
         try{
-            // Instancia o objeto servidor e a sua stub
+//            Instancia o objeto servidor e a sua stub
             QuestionServer server = new QuestionServer();
             Question stub = (Question) UnicastRemoteObject.exportObject(server, 0);
-            // Registra a stub no RMI Registry para que ela seja obtida pelos clientes
+//            Registra a stub no RMI Registry para que ela seja obtida pelos clientes
             Registry registry = LocateRegistry.getRegistry();
             registry.bind("Question", stub);
+
             System.out.println("Servidor pronto");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    // hello()
+    // question()
     public String question(String questionario) throws RemoteException {
         System.out.println("Executando question()");
         String[] vetor_questionario;
@@ -32,9 +33,8 @@ public class QuestionServer implements Question {
 
 //        for (int i = 0; i < vetor_questionario.length; i++) {
 //            System.out.println(i+" "+vetor_questionario[i]);
-//
-//
 //        }
+
         for (int i=0; i < vetor_questionario[2].length(); i++) {
             char c = vetor_questionario[2].charAt(i);
             if (c == 'V') {
