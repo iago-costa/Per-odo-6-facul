@@ -1,0 +1,15 @@
+
+Professor: Dr. Warley Jr.
+
+Alunos:
+Juliana Batista - 201740601024 
+Iago Costa - 201840601017
+
+Disciplina: 
+Sistemas Distribuídos
+
+Data: 
+20/06/2021
+
+Turma: 
+Engenharia da Computação 2018
