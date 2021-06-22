@@ -1,26 +1,9 @@
-; Comparar o conteudo dos registradores AL e conteudo de BL sao iguais
-
-; Se iguais somar 1 ao registrador AL
-
-; Apos a execucao da decisao sobre a condicao ser F ou V, conteudo de BL deve ser
-; diminuído em 1
-
-;:O programa deve apresentar os valores dos registradores
-
-
-
-;* Programa: CONDICI.ASM *
-
-
 .MODEL small
-
 .STACK 512d
-
 .DATA
 
-a DB 6d ;6 decimal
-
-b DB 6d
+a DB 8d ;8 decimal
+b DB 3d
 
 .CODE   
 

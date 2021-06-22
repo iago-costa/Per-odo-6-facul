@@ -1,37 +1,44 @@
-;* Programa: MENSAGEMA. ASM *
-
 org 100h ; 64Kbytes
 
 .DATA ; 0Dh, 0Ah e 24h mudanca de linha de cursor apos escrita da mensagem
 
-mensageml DB 'Mensagem 1', 0Dh, 0Ah, 24h ; 0Dh tecla <ENTER>
-mensagem2 DB 'Mensagem 2', 0Dh, 0Ah, 24h ; 0Ah mudanca de linha
-mensagem3 DB 'Mensagem 3', 0Dh, 0Ah, 24h ; 24h identifica o final de uma sequencia de caracter ($)
+nome1 DB 'Iago ', 0Dh, 0Ah, 24h ; 0Dh tecla <ENTER>     
+
+nome2 DB 'Costa ', 0Dh, 0Ah, 24h ; 
+
+nome3 DB 'das ', 0Dh, 0Ah, 24h ;
+
+nome4 DB 'Flores ', 0Dh, 0Ah, 24h ;
 
 
 .CODE
 
-JMP salto3 ; salta para a linha 27
+JMP salto4 ; salta para a linha 33
 
 saltol:
-LEA DX, mensageml
-CALL escreva
-JMP saida
+LEA DX, nome4 ; envio nome4
+CALL escreva  ; chama do procedimento escreva pelo CALL
+JMP saida ;salta para a linha 38
 
 salto2:
-LEA DX, mensagem2
-CALL escreva
-JMP saltol
+LEA DX, nome3 ; envio nome3
+CALL escreva  ; chama do procedimento escreva pelo CALL
+JMP saltol ; salta para a linha 18
 
 salto3:
-LEA DX, mensagem3 ; envio da mensagem 3
-CALL escreva ;chama do procedimento escreva pelo CALL
-JMP salto2
-
+LEA DX, nome2 ; envio nome2
+CALL escreva ; chama do procedimento escreva pelo CALL
+JMP salto2 ; salta para a linha 23
+          
+salto4:
+LEA DX, nome1 ; envio nome1
+CALL escreva ; chama do procedimento escreva pelo CALL
+JMP salto3 ; salta para a linha 28          
+          
 saida:
-INT 20h
+INT 20h ; Finaliza o programa
 
-escreva PROC NEAR ;procedimento escreva
+escreva PROC NEAR ; procedimento escreva
 MOV AH, 09h ;apresentacao do caracter 09h
 INT 21h; interrupcao 21h
 RET ; retorno do procedimento para a 1 linha apos sua chamada (30)
