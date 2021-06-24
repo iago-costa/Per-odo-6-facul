@@ -14,7 +14,7 @@ JMP entrada2
 JMP imprimir
         
 entrada1:
-LEA DX, msg2
+LEA DX, msg1
 CALL escreva ; chamando procedimento escreva para imprimir mensagem no terminal
 MOV AH, 01h ; entrada do caracter pelo teclado
 INT 21h ; controle da acao
@@ -45,7 +45,7 @@ MOV AH, 02h ; preparando interrupcao para imprimir caractere em dl
 MOV DL, BL  ; movendo soma de BL para DL
 ADD DL, 30h ; asicionando 30h para mostrar o caractere em ASCII
 CALL resultado ; chamando procedimento para imprimir resultado da soma
-JMP saida ; chamando rotina de finalizacao
+JMP saida ; chamando rotina de finalizacao                                                                  
 
 erro:
 LEA DX, msg4 ; mensagem armazenada na variavel msg4
