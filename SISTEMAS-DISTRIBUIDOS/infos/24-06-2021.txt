@@ -1,0 +1,25 @@
+AULA 09 - MOM (Middleware Oriented Message) + JMS (Java Messaging Service) (24/06/2021 - 24/06/2021)
+
+AULA ASSÍNCRONA 09:
+
+PASSO 1:
+
+Leitura do Capítulo 6 do livro "Sistemas distribuídos: conceitos e projetos."
+
+     Seções 6.3 (Aplicações de sistemas publicar-assinar), 6.3.1 (O modelo de programação), 6.4 (Filas de mensagem), 6.4.1 (O modelo de programação).
+
+PASSO 2:
+
+  Asssitir as Vídeo-Aulas
+
+    AULA 09 - MOM (PARTE 1)
+    AULA 09 - MOM (PARTE 2) 
+
+Link do Quizizz: https://quizizz.com/join?gc=58663930
+PRAZO: 27-06-2021 às 23:45 DA NOITE
+ 
+PASSO 3:
+ 
+Resolver Atividade 04: Comando consta na tarefa correspondente a AULA 09.
+    ATIVIDADE 04 - UNIDADE II   
+Inicia em 23/06/2021 às 0h 15 e finaliza em 27/06/2021 às 23h 59
