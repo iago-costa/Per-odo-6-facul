@@ -1,50 +1,86 @@
-TITLE ADICAO DE VALORES
+TITLE SUBTRACAO DE VALORES
 
 #MAKE_EXE#
 
 DADOS SEGMENT 'DATA'
 ;a DB 0h, '$'
 ;b DB 0h, '$'
-result DB 0h, '$'
-mensagem1 DB 76h, 61h, 6Ch, 6Fh, 72h, 20h, 31h, 24h
-mensagem2 DB 76h, 61h, 6Ch, 6Fh, 72h, 20h, 32h, 24h
-;mensagem3 DB 73h, 6Fh, 6Dh, 61h, 24h
+;result DB 0h, '$'
+m1 DB 'Valor 1 ', 24h
+m2 DB 0Dh, 0Ah, 'Valor 2 ', 24h
+m3 DB 0Dh, 0Ah, 'Soma ', 24h 
+m3 DB 0Dh, 0Ah, 'Caractere invalido ', 24h
 DADOS ENDS
 
 PILHA SEGMENT STACK 'STACK'
 DW 0100h DUP(?)
 PILHA ENDS
 
-
 CODIGO SEGMENT 'CODE'
-MOV AX, DADOS
-MOV DS, AX
+ASSUME CS:CODIGO, DS:DADOS, SS:PILHA
 
-MOV DX, OFFSET mensagem1
+fim MACRO
+MOV AH, 4ch ;encerramento do programa
+INT 21h ;Controle do SO     
+ENDM       
+
+msg MACRO           
 MOV AH, 09h
-INT 21h ; apresentacao da mensagem1
-MOV AH, 01h ; entrada do caracter pelo teclado
-INT 21h
-MOV BL, AL
+INT 21h ; apresentacao da mensagem
+ENDM
+
+INICIO PROC FAR 
+MOV AX, DADOS
+MOV DS, AX 
+MOV ES, AX
            
-MOV AH, 09h
-MOV DX, OFFSET mensagem2
-INT 21h ; apresentacao da mensagem2
-MOV AH, 01h ;entrada do caracter pelo teclado
-INT 21h ;apresentacao da mensagem2
-ADD AL, BL 
- 
-SUB AL, 30h             
-MOV result, AL 
+           
+MOV DX, OFFSET m1
+MSG
+CALL input
+;MOV BL, AL
+           
+MOV DX, OFFSET m2
+MSG
+CALL input 
+
+;SUB BL, AL 
+;SUB BL, 30h
+;MOV AL, BL             
+;MOV result, BL 
    
 
-;MOV DX, OFFSET mensagem3
-;MOV AH, 09h
-;INT 21h ; apresentacao da mensagem3                     
+MOV DX, OFFSET m3
+MSG
+       
+       
+;LEA DX, BL ;armazena o valor da soma na variavel result
+;MSG
+         
+         
+FIM
 
-MOV DX, OFFSET result ;armazena o valor da soma na variavel result
-MOV AH, 09h ; exibicao do resultado da soma
-INT 21h
-MOV AH, 4ch ;encerramento do programa
-INT 21h ;Controle do SO
+                    
+INICIO ENDP
 CODIGO ENDS
+                                        
+input PROC NEAR ; inicio procedimento input
+MOV AH, 01h ; entrada do caracter pelo teclado
+INT 21h
+CMP AL, 30h ; compara o valor recebido ao o decimal em ascII
+JL erro ; salta se caracteres recebido menor que zero --> 30h
+CMP AL, 40h ; compara valor recebido ao decimal em ascII
+JGE erro ; salta se caractere recebido maior ou igual a 40h
+JMP fim_validacao ; salta para rotina fim_validacao
+
+erro: ; rotina erro
+LEA DX, m4 ; obtem endereco da variavel msg4
+MSG ; chama macro para imprimir mensagem
+FIM ; finaliza programa com macro
+
+fim_validacao: ; rotina fiM_validacao
+SUB AL, 30h ; subtrai o valor zero decimal do caractere
+RET ; retorna da rotina
+input ENDP ; fim do procedimento input   
+           
+;END INICIO
