@@ -1,0 +1,22 @@
+< THE SYMBOL TABLE >  atividade01.exe  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DADOS                    	00000     	-5        	SEGMENT   	(ITSELF)  
+M1                       	00000     	1         	VAR       	DADOS     
+M2                       	00009     	1         	VAR       	DADOS     
+M3                       	00014     	1         	VAR       	DADOS     
+MSG4                     	0001E     	1         	VAR       	DADOS     
+PILHA                    	00003     	-5        	SEGMENT   	(ITSELF)  
+CODIGO                   	00023     	-5        	SEGMENT   	(ITSELF)  
+INICIO                   	00000     	-1        	FAR       	CODIGO    
+VALOR_POSITIVO           	0002C     	-1        	LABEL     	CODIGO    
+VALOR_NEGATIVO           	0002F     	-1        	LABEL     	CODIGO    
+RESULTADO                	0003A     	-1        	LABEL     	CODIGO    
+INPUT                    	0004D     	-1        	NEAR      	          
+ERRO                     	0005B     	-1        	LABEL     	          
+FIM_VALIDACAO            	00066     	-1        	LABEL     	          
+===================================================================================================
+[ 6/28/2021  --  10:55:52 PM ] 
+< END >
+ 

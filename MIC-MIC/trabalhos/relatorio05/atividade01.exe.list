@@ -1,0 +1,203 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+atividade01.exe -- emu8086 assembler version: 4.08  
+ 
+[ 6/28/2021  --  10:55:52 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       TITLE SUBTRACAO DE VALORES
+[   2]        :                                       
+[   3]        :                                       #MAKE_EXE# ; tipo de arquivo para ser gerado
+[   4]        :                                       
+[   5]        :                                       DADOS SEGMENT 'DATA' ; define segmento de dados
+[   6]    0000: 56 61 6C 6F 72 20 31 20 24            m1 DB 'Valor 1 ', 24h
+[   7]    0009: 0D 0A 56 61 6C 6F 72 20 32 20 24      m2 DB 0Dh, 0Ah, 'Valor 2 ', 24h
+[   8]    0014: 0D 0A 52 65 73 75 6C 74 20 24         m3 DB 0Dh, 0Ah, 'Result ', 24h
+[   9]    001E: 0D 0A 56 61 6C 6F 72 20 69 6E 76 61   msg4 DB 0Dh, 0Ah, 'Valor invalido', 24h
+                6C 69 64 6F 24                      
+[  10]        :                                       
+[  11]        :                                       DADOS ENDS
+[  12]        :                                       
+[  13]        :                                       PILHA SEGMENT STACK 'STACK' ; define segmento de pilha
+[  14]    0030: 00 00 00 00 00 00 00 00 00 00 00 00   DW 0100h DUP(?) ; define tamanho da pilha
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00             
+[  15]        :                                       PILHA ENDS
+[  16]        :                                       
+[  17]        :                                       CODIGO SEGMENT 'CODE' ; define segmento de codigo
+[  18]        :                                       ASSUME CS:CODIGO, DS:DADOS, SS:PILHA ; declara cada segmento aos
+[  19]        :                                       ;registradores
+[  20]        :                                       
+[  21]        :                                       fim MACRO ; define macro de finalizacao
+[  22]        :                                       MOV AH, 4ch ;encerramento do programa
+[  23]        :                                       INT 21h ;Controle do SO
+[  24]        :                                       ENDM ; finaliza macro fim
+[  25]        :                                       
+[  26]        :                                       msg MACRO ; define macro para imprimir mensagem na tela
+[  27]        :                                       MOV AH, 09h
+[  28]        :                                       INT 21h ; apresentacao da mensagem
+[  29]        :                                       ENDM ; finaliza macro msg
+[  30]        :                                       
+[  31]    0230:                                       INICIO PROC FAR ; inicia procedimento INICIO do tipo FAR
+[  32]    0230: B8 00 00                              MOV AX, DADOS ; acesso do segmento de codigo ao segmento de dados
+[  33]    0233: 8E D8                                 MOV DS, AX ; movendo acesso para ds
+[  34]    0235: 8E C0                                 MOV ES, AX ;
+[  35]        :                                       
+[  36]        :                                       
+[  37]        :                                       
+[  38]    0237: BA 00 00                              MOV DX, OFFSET m1
+[  39]    023A: B4 09 CD 21                           MSG ; chama macro que imprime caractere na tela
+[  40]    023E: E8 3C 00                              CALL input ; chama rotina input para receber caractere
+[  41]    0241: 8A F8                                 MOV BH, AL
+[  42]        :                                       
+[  43]    0243: BA 09 00                              MOV DX, OFFSET m2
+[  44]    0246: B4 09 CD 21                           MSG ; chama macro que imprime caractere na tela
+[  45]    024A: E8 30 00                              CALL input ; chama rotina input para receber caractere
+[  46]    024D: 8A D8                                 MOV BL, AL
+[  47]        :                                       
+[  48]    024F: BA 14 00                              MOV DX, OFFSET m3
+[  49]    0252: B4 09 CD 21                           MSG ; chama macro que imprime caractere na tela
+[  50]        :                                       
+[  51]    0256: 2A FB                                 SUB BH, BL ; subtrai BH-BL para BH
+[  52]    0258: 7D 02                                 JGE valor_positivo ; se BH>=BL pula para rotina valor_positivo
+[  53]    025A: 7C 03                                 JL valor_negativo  ; se BH<BL pula para rotina valor_negativo
+[  54]        :                                       
+[  55]        :                                       
+[  56]        :                                       
+[  57]    025C:                                       valor_positivo: ; rotina valor positivo
+[  58]    025C: E8 0B 00                              CALL resultado
+[  59]        :                                       
+[  60]    025F:                                       valor_negativo:
+[  61]    025F: F6 DF                                 NEG BH ; transforma o valor negativo (complemento de dois) em seu equivalente positivo
+[  62]    0261: B0 2D                                 MOV AL, 2Dh ; movimenta o valor 2Dh para o AL (ASCII 2Dh = -)
+[  63]    0263: B4 0E                                 MOV AH, 0Eh
+[  64]    0265: CD 10                                 INT 10h
+[  65]    0267: E8 00 00                              CALL resultado
+[  66]        :                                       
+[  67]    026A:                                       resultado:
+[  68]        :                                       
+[  69]    026A: 8A C7                                 MOV AL, BH
+[  70]    026C: 8A D0                                 MOV DL, AL
+[  71]    026E: 04 30                                 ADD AL, 30h
+[  72]    0270: B4 0E                                 MOV AH, 0Eh
+[  73]    0272: CD 10                                 INT 10h
+[  74]    0274: B4 4C CD 21                           FIM
+[  75]    0278: CB                                    RET
+[  76]        :                                       
+[  77]    0279: B4 4C CD 21                           FIM
+[  78]        :                                       
+[  79]        :                                       INICIO ENDP
+[  80]        :                                       
+[  81]        :                                       CODIGO ENDS
+[  82]        :                                       
+[  83]    027D:                                       input PROC NEAR ; inicio procedimento input
+[  84]    027D: B4 01                                 MOV AH, 01h ; entrada do caracter pelo teclado
+[  85]    027F: CD 21                                 INT 21h
+[  86]    0281: 3C 30                                 CMP AL, 30h ; compara o valor recebido ao o decimal em ascII
+[  87]    0283: 7C 06                                 JL erro ; salta se caracteres recebido menor que zero --> 30h
+[  88]    0285: 3C 40                                 CMP AL, 40h ; compara valor recebido ao decimal em ascII
+[  89]    0287: 7D 02                                 JGE erro ; salta se caractere recebido maior ou igual a 40h
+[  90]    0289: EB 0B                                 JMP fim_validacao ; salta para rotina fim_validacao
+[  91]        :                                       
+[  92]    028B:                                       erro: ; rotina erro
+[  93]    028B: BA 1E 00                              MOV DX, OFFSET msg4 ; obtem endereco da variavel msg4
+[  94]    028E: B4 09 CD 21                           MSG ; chama macro para imprimir mensagem
+[  95]    0292: B4 4C CD 21                           FIM ; finaliza programa com macro
+[  96]        :                                       
+[  97]    0296:                                       fim_validacao: ; rotina fiM_validacao
+[  98]    0296: 2C 30                                 SUB AL, 30h ; subtrai o valor zero decimal do caractere
+[  99]    0298: C3                                    RET ; retorna da rotina
+[ 100]        :                                       input ENDP ; fim do procedimento input
+[ 101]        :                                       
+[ 102]        :                                       
+[ 103]        :                                       
+[ 104]        :                                       END INICIO
+[ 105]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 99      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 03      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 03      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 02      -   SP - stack pointer (h.byte)
+0012: AD      -   check sum (l.byte)
+0013: 2C      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 23      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 23      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================
