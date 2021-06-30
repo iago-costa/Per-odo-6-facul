@@ -1,0 +1,35 @@
+|dff_logic_mix
+clk_reset => q_reset[0]~reg0.CLK
+clk_reset => q_reset[1]~reg0.CLK
+clk_reset => q_reset[2]~reg0.CLK
+clk_reset => q_reset[3]~reg0.CLK
+clk_preset => q_preset[0]~reg0.CLK
+clk_preset => q_preset[1]~reg0.CLK
+clk_preset => q_preset[2]~reg0.CLK
+clk_preset => q_preset[3]~reg0.CLK
+preset => q_preset[0]~reg0.PRESET
+preset => q_preset[1]~reg0.PRESET
+preset => q_preset[2]~reg0.PRESET
+preset => q_preset[3]~reg0.PRESET
+reset => q_reset[0]~reg0.ACLR
+reset => q_reset[1]~reg0.ACLR
+reset => q_reset[2]~reg0.ACLR
+reset => q_reset[3]~reg0.ACLR
+d_preset[0] => q_preset[0]~reg0.DATAIN
+d_preset[1] => q_preset[1]~reg0.DATAIN
+d_preset[2] => q_preset[2]~reg0.DATAIN
+d_preset[3] => q_preset[3]~reg0.DATAIN
+q_preset[0] << q_preset[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q_preset[1] << q_preset[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q_preset[2] << q_preset[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q_preset[3] << q_preset[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+d_reset[0] => q_reset[0]~reg0.DATAIN
+d_reset[1] => q_reset[1]~reg0.DATAIN
+d_reset[2] => q_reset[2]~reg0.DATAIN
+d_reset[3] => q_reset[3]~reg0.DATAIN
+q_reset[0] << q_reset[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q_reset[1] << q_reset[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q_reset[2] << q_reset[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q_reset[3] << q_reset[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

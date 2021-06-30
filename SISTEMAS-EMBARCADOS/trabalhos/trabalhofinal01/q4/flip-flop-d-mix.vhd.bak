@@ -1,0 +1,29 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY dff_logic_mix IS
+PORT (clk_reset, clk_preset, preset, reset : IN std_logic;
+		d_preset : IN std_logic_vector(7 downto 0);
+		q_preset : OUT std_logic_vector(7 downto 0);
+		d_reset : IN std_logic_vector(7 downto 0);
+		q_reset : OUT std_logic_vector(7 downto 0)
+		);
+END dff_logic_mix;
+
+
+ARCHITECTURE behavior_mix OF dff_logic_mix IS
+BEGIN
+	PROCESS(clk_mix, preset, reset)
+	BEGIN
+		IF preset = '1' THEN
+			q_preset <= (others => '1');	
+		ELSIF RISING_EDGE(clk_preset) THEN
+			q_preset <= d_preset
+		
+		IF reset = '1' THEN
+			q_reset <= (others => '0');	
+		ELSIF RISING_EDGE(clk_reset) THEN
+			q_reset <= d_reset
+		END IF;
+	END PROCESS;
+END behavior_mix;

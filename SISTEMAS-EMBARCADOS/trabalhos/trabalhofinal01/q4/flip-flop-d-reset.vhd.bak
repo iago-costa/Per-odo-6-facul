@@ -1,0 +1,21 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY dff_logic IS
+PORT (d, clk : IN BIT;
+		q : OUT BIT;
+		);
+END dff_logic
+
+ARCHITECTURE behavior OF dff_logic IS
+BEGIN
+	PROCESS(clk, reset)
+	BEGIN
+		IF reset = '1' THEN
+			q <= (others => '0');
+		ELSIF RISING_EDGE(clk) THEN
+			q <= d;
+		END IF;
+	END PROCESS;
+END behavior;	
+		

@@ -1,0 +1,483 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "06/30/2021 14:42:38"
+                                                                        
+// Verilog Self-Checking Test Bench (with test vectors) for design :    dff_logic_mix
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module dff_logic_mix_vlg_sample_tst(
+	clk_preset,
+	clk_reset,
+	d_preset,
+	d_reset,
+	preset,
+	reset,
+	sampler_tx
+);
+input  clk_preset;
+input  clk_reset;
+input [3:0] d_preset;
+input [3:0] d_reset;
+input  preset;
+input  reset;
+output sampler_tx;
+
+reg sample;
+time current_time;
+always @(clk_preset or clk_reset or d_preset or d_reset or preset or reset)
+                                                                                
+begin                                                 
+ if ($realtime > 0)                                   
+ begin                                                
+	if ($realtime == 0 || $realtime != current_time)  
+	begin									          
+		if (sample === 1'bx)                          
+			sample = 0;                               
+		else                                          
+			sample = ~sample;                         
+	end										          
+	current_time = $realtime;					      
+ end                                                  
+end                                                   
+
+assign sampler_tx = sample;
+endmodule
+
+module dff_logic_mix_vlg_check_tst (
+	q_preset,
+	q_reset,
+	sampler_rx
+);
+input [3:0] q_preset;
+input [3:0] q_reset;
+input sampler_rx;
+
+reg [3:0] q_preset_expected;
+reg [3:0] q_reset_expected;
+
+reg [3:0] q_preset_prev;
+reg [3:0] q_reset_prev;
+
+reg [3:0] q_preset_expected_prev;
+reg [3:0] q_reset_expected_prev;
+
+reg [3:0] last_q_preset_exp;
+reg [3:0] last_q_reset_exp;
+
+reg trigger;
+
+integer i;
+integer nummismatches;
+
+reg [1:2] on_first_change ;
+
+
+initial
+begin
+trigger = 0;
+i = 0;
+nummismatches = 0;
+on_first_change = 2'b1;
+end
+
+// update real /o prevs
+
+always @(trigger)
+begin
+	q_preset_prev = q_preset;
+	q_reset_prev = q_reset;
+end
+
+// update expected /o prevs
+
+always @(trigger)
+begin
+	q_preset_expected_prev = q_preset_expected;
+	q_reset_expected_prev = q_reset_expected;
+end
+
+
+// expected q_preset[ 3 ]
+initial
+begin
+	q_preset_expected[3] = 1'bX;
+end 
+// expected q_preset[ 2 ]
+initial
+begin
+	q_preset_expected[2] = 1'bX;
+end 
+// expected q_preset[ 1 ]
+initial
+begin
+	q_preset_expected[1] = 1'bX;
+end 
+// expected q_preset[ 0 ]
+initial
+begin
+	q_preset_expected[0] = 1'bX;
+end 
+// expected q_reset[ 3 ]
+initial
+begin
+	q_reset_expected[3] = 1'bX;
+end 
+// expected q_reset[ 2 ]
+initial
+begin
+	q_reset_expected[2] = 1'bX;
+end 
+// expected q_reset[ 1 ]
+initial
+begin
+	q_reset_expected[1] = 1'bX;
+end 
+// expected q_reset[ 0 ]
+initial
+begin
+	q_reset_expected[0] = 1'bX;
+end 
+// generate trigger
+always @(q_preset_expected or q_preset or q_reset_expected or q_reset)
+begin
+	trigger <= ~trigger;
+end
+
+always @(posedge sampler_rx or negedge sampler_rx)
+begin
+`ifdef debug_tbench
+	$display("Scanning pattern %d @time = %t",i,$realtime );
+	i = i + 1;
+	$display("| expected q_preset = %b | expected q_reset = %b | ",q_preset_expected_prev,q_reset_expected_prev);
+	$display("| real q_preset = %b | real q_reset = %b | ",q_preset_prev,q_reset_prev);
+`endif
+	if (
+		( q_preset_expected_prev[0] !== 1'bx ) && ( q_preset_prev[0] !== q_preset_expected_prev[0] )
+		&& ((q_preset_expected_prev[0] !== last_q_preset_exp[0]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q_preset[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q_preset_expected_prev);
+		$display ("     Real value = %b", q_preset_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_q_preset_exp[0] = q_preset_expected_prev[0];
+	end
+	if (
+		( q_preset_expected_prev[1] !== 1'bx ) && ( q_preset_prev[1] !== q_preset_expected_prev[1] )
+		&& ((q_preset_expected_prev[1] !== last_q_preset_exp[1]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q_preset[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q_preset_expected_prev);
+		$display ("     Real value = %b", q_preset_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_q_preset_exp[1] = q_preset_expected_prev[1];
+	end
+	if (
+		( q_preset_expected_prev[2] !== 1'bx ) && ( q_preset_prev[2] !== q_preset_expected_prev[2] )
+		&& ((q_preset_expected_prev[2] !== last_q_preset_exp[2]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q_preset[2] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q_preset_expected_prev);
+		$display ("     Real value = %b", q_preset_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_q_preset_exp[2] = q_preset_expected_prev[2];
+	end
+	if (
+		( q_preset_expected_prev[3] !== 1'bx ) && ( q_preset_prev[3] !== q_preset_expected_prev[3] )
+		&& ((q_preset_expected_prev[3] !== last_q_preset_exp[3]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q_preset[3] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q_preset_expected_prev);
+		$display ("     Real value = %b", q_preset_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_q_preset_exp[3] = q_preset_expected_prev[3];
+	end
+	if (
+		( q_reset_expected_prev[0] !== 1'bx ) && ( q_reset_prev[0] !== q_reset_expected_prev[0] )
+		&& ((q_reset_expected_prev[0] !== last_q_reset_exp[0]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q_reset[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q_reset_expected_prev);
+		$display ("     Real value = %b", q_reset_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_q_reset_exp[0] = q_reset_expected_prev[0];
+	end
+	if (
+		( q_reset_expected_prev[1] !== 1'bx ) && ( q_reset_prev[1] !== q_reset_expected_prev[1] )
+		&& ((q_reset_expected_prev[1] !== last_q_reset_exp[1]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q_reset[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q_reset_expected_prev);
+		$display ("     Real value = %b", q_reset_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_q_reset_exp[1] = q_reset_expected_prev[1];
+	end
+	if (
+		( q_reset_expected_prev[2] !== 1'bx ) && ( q_reset_prev[2] !== q_reset_expected_prev[2] )
+		&& ((q_reset_expected_prev[2] !== last_q_reset_exp[2]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q_reset[2] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q_reset_expected_prev);
+		$display ("     Real value = %b", q_reset_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_q_reset_exp[2] = q_reset_expected_prev[2];
+	end
+	if (
+		( q_reset_expected_prev[3] !== 1'bx ) && ( q_reset_prev[3] !== q_reset_expected_prev[3] )
+		&& ((q_reset_expected_prev[3] !== last_q_reset_exp[3]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port q_reset[3] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", q_reset_expected_prev);
+		$display ("     Real value = %b", q_reset_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_q_reset_exp[3] = q_reset_expected_prev[3];
+	end
+
+	trigger <= ~trigger;
+end
+initial 
+
+begin 
+$timeformat(-12,3," ps",6);
+#1000000;
+if (nummismatches > 0)
+	$display ("%d mismatched vectors : Simulation failed !",nummismatches);
+else
+	$display ("Simulation passed !");
+$finish;
+end 
+endmodule
+
+module dff_logic_mix_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg clk_preset;
+reg clk_reset;
+reg [3:0] d_preset;
+reg [3:0] d_reset;
+reg preset;
+reg reset;
+// wires                                               
+wire [3:0] q_preset;
+wire [3:0] q_reset;
+
+wire sampler;                             
+
+// assign statements (if any)                          
+dff_logic_mix i1 (
+// port map - connection between master ports and signals/registers   
+	.clk_preset(clk_preset),
+	.clk_reset(clk_reset),
+	.d_preset(d_preset),
+	.d_reset(d_reset),
+	.preset(preset),
+	.q_preset(q_preset),
+	.q_reset(q_reset),
+	.reset(reset)
+);
+
+// clk_preset
+always
+begin
+	clk_preset = 1'b0;
+	clk_preset = #50000 1'b1;
+	#50000;
+end 
+// d_preset[ 3 ]
+initial
+begin
+	d_preset[3] = 1'b0;
+	d_preset[3] = #60000 1'b1;
+	d_preset[3] = #240000 1'b0;
+	d_preset[3] = #180000 1'b1;
+	d_preset[3] = #120000 1'b0;
+	d_preset[3] = #60000 1'b1;
+	d_preset[3] = #60000 1'b0;
+	d_preset[3] = #120000 1'b1;
+	d_preset[3] = #60000 1'b0;
+end 
+// d_preset[ 2 ]
+initial
+begin
+	d_preset[2] = 1'b1;
+	d_preset[2] = #60000 1'b0;
+	d_preset[2] = #60000 1'b1;
+	d_preset[2] = #60000 1'b0;
+	d_preset[2] = #60000 1'b1;
+	d_preset[2] = #60000 1'b0;
+	d_preset[2] = #60000 1'b1;
+	d_preset[2] = #300000 1'b0;
+	d_preset[2] = #120000 1'b1;
+	d_preset[2] = #120000 1'b0;
+end 
+// d_preset[ 1 ]
+initial
+begin
+	d_preset[1] = 1'b1;
+	d_preset[1] = #120000 1'b0;
+	d_preset[1] = #120000 1'b1;
+	d_preset[1] = #120000 1'b0;
+	d_preset[1] = #180000 1'b1;
+	d_preset[1] = #60000 1'b0;
+	d_preset[1] = #60000 1'b1;
+	d_preset[1] = #60000 1'b0;
+	d_preset[1] = #120000 1'b1;
+	d_preset[1] = #120000 1'b0;
+end 
+// d_preset[ 0 ]
+initial
+begin
+	d_preset[0] = 1'b0;
+	d_preset[0] = #120000 1'b1;
+	d_preset[0] = #120000 1'b0;
+	d_preset[0] = #240000 1'b1;
+	d_preset[0] = #60000 1'b0;
+	d_preset[0] = #60000 1'b1;
+	d_preset[0] = #60000 1'b0;
+	d_preset[0] = #240000 1'b1;
+end 
+
+// preset
+initial
+begin
+	preset = 1'b1;
+	# 100000;
+	repeat(3)
+	begin
+		preset = 1'b0;
+		preset = #125000 1'b1;
+		# 125000;
+	end
+	preset = 1'b0;
+	preset = #125000 1'b1;
+end 
+
+// clk_reset
+always
+begin
+	clk_reset = 1'b0;
+	clk_reset = #50000 1'b1;
+	#50000;
+end 
+// d_reset[ 3 ]
+initial
+begin
+	d_reset[3] = 1'b1;
+	d_reset[3] = #60000 1'b0;
+	d_reset[3] = #60000 1'b1;
+	d_reset[3] = #60000 1'b0;
+	d_reset[3] = #120000 1'b1;
+	d_reset[3] = #60000 1'b0;
+	d_reset[3] = #180000 1'b1;
+	d_reset[3] = #120000 1'b0;
+	d_reset[3] = #120000 1'b1;
+	d_reset[3] = #60000 1'b0;
+end 
+// d_reset[ 2 ]
+initial
+begin
+	d_reset[2] = 1'b1;
+	d_reset[2] = #60000 1'b0;
+	d_reset[2] = #240000 1'b1;
+	d_reset[2] = #60000 1'b0;
+	d_reset[2] = #180000 1'b1;
+	d_reset[2] = #60000 1'b0;
+	d_reset[2] = #60000 1'b1;
+	d_reset[2] = #300000 1'b0;
+end 
+// d_reset[ 1 ]
+initial
+begin
+	d_reset[1] = 1'b1;
+	d_reset[1] = #60000 1'b0;
+	d_reset[1] = #180000 1'b1;
+	d_reset[1] = #180000 1'b0;
+	d_reset[1] = #60000 1'b1;
+	d_reset[1] = #180000 1'b0;
+	d_reset[1] = #180000 1'b1;
+	d_reset[1] = #60000 1'b0;
+end 
+// d_reset[ 0 ]
+initial
+begin
+	d_reset[0] = 1'b1;
+	d_reset[0] = #60000 1'b0;
+	d_reset[0] = #180000 1'b1;
+	d_reset[0] = #60000 1'b0;
+	d_reset[0] = #60000 1'b1;
+	d_reset[0] = #60000 1'b0;
+	d_reset[0] = #60000 1'b1;
+	d_reset[0] = #120000 1'b0;
+	d_reset[0] = #60000 1'b1;
+	d_reset[0] = #120000 1'b0;
+end 
+
+// reset
+always
+begin
+	reset = 1'b0;
+	reset = #125000 1'b1;
+	#125000;
+end 
+
+dff_logic_mix_vlg_sample_tst tb_sample (
+	.clk_preset(clk_preset),
+	.clk_reset(clk_reset),
+	.d_preset(d_preset),
+	.d_reset(d_reset),
+	.preset(preset),
+	.reset(reset),
+	.sampler_tx(sampler)
+);
+
+dff_logic_mix_vlg_check_tst tb_out(
+	.q_preset(q_preset),
+	.q_reset(q_reset),
+	.sampler_rx(sampler)
+);
+endmodule
+

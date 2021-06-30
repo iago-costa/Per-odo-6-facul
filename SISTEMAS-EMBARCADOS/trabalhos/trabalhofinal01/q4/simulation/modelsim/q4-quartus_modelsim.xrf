@@ -1,0 +1,15 @@
+vendor_name = ModelSim
+source_file = 1, C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/flip-flop-d-reset.vhd
+source_file = 1, C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/flip-flop-d-preset.vhd
+source_file = 1, C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/flip-flop-d.vhd
+source_file = 1, C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/db/q4-quartus.cbx.xml
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/timing_p.vhd
+design_name = dff_logic_d
+instance = comp, \q~output\, q~output, dff_logic_d, 1
+instance = comp, \clk~input\, clk~input, dff_logic_d, 1
+instance = comp, \d~input\, d~input, dff_logic_d, 1
+instance = comp, \q~reg0feeder\, q~reg0feeder, dff_logic_d, 1
+instance = comp, \q~reg0\, q~reg0, dff_logic_d, 1
