@@ -1,5 +1,5 @@
 EDA Netlist Writer report for q4-quartus
-Wed Jun 30 14:42:40 2021
+Mon Jul 05 17:19:29 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Wed Jun 30 14:42:40 2021 ;
+; EDA Netlist Writer Status ; Successful - Mon Jul 05 17:19:29 2021 ;
 ; Revision Name             ; q4-quartus                            ;
 ; Top-level Entity Name     ; dff_logic_mix                         ;
 ; Family                    ; Cyclone IV GX                         ;
@@ -66,20 +66,20 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------------------+---------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------+
-; Simulation Generated Files                                                                                                                   ;
-+----------------------------------------------------------------------------------------------------------------------------------------------+
-; Generated Files                                                                                                                              ;
-+----------------------------------------------------------------------------------------------------------------------------------------------+
-; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//q4-quartus_8_1200mv_85c_slow.vo     ;
-; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//q4-quartus_8_1200mv_0c_slow.vo      ;
-; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//q4-quartus_min_1200mv_0c_fast.vo    ;
-; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//q4-quartus.vo                       ;
-; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//q4-quartus_8_1200mv_85c_v_slow.sdo  ;
-; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//q4-quartus_8_1200mv_0c_v_slow.sdo   ;
-; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//q4-quartus_min_1200mv_0c_v_fast.sdo ;
-; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//q4-quartus_v.sdo                    ;
-+----------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Simulation Generated Files                                                                                                                             ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Generated Files                                                                                                                                        ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//q4-quartus_8_1200mv_85c_slow.vo     ;
+; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//q4-quartus_8_1200mv_0c_slow.vo      ;
+; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//q4-quartus_min_1200mv_0c_fast.vo    ;
+; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//q4-quartus.vo                       ;
+; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//q4-quartus_8_1200mv_85c_v_slow.sdo  ;
+; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//q4-quartus_8_1200mv_0c_v_slow.sdo   ;
+; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//q4-quartus_min_1200mv_0c_v_fast.sdo ;
+; C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//q4-quartus_v.sdo                    ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------+
@@ -101,20 +101,20 @@ Info: Running Quartus II 64-Bit EDA Netlist Writer
     Info: programming logic devices manufactured by Altera and sold by 
     Info: Altera or its authorized distributors.  Please refer to the 
     Info: applicable agreement for further details.
-    Info: Processing started: Wed Jun 30 14:42:39 2021
-Info: Command: quartus_eda --functional=off --flatten_buses=off --timescale=1ps --simulation=on --tool=modelsim_oem --format=verilog --output_directory=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim/ flip-flop-d -c q4-quartus
-Info (204019): Generated file q4-quartus_8_1200mv_85c_slow.vo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
-Info (204019): Generated file q4-quartus_8_1200mv_0c_slow.vo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
-Info (204019): Generated file q4-quartus_min_1200mv_0c_fast.vo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
-Info (204019): Generated file q4-quartus.vo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
-Info (204019): Generated file q4-quartus_8_1200mv_85c_v_slow.sdo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
-Info (204019): Generated file q4-quartus_8_1200mv_0c_v_slow.sdo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
-Info (204019): Generated file q4-quartus_min_1200mv_0c_v_fast.sdo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
-Info (204019): Generated file q4-quartus_v.sdo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
+    Info: Processing started: Mon Jul 05 17:19:27 2021
+Info: Command: quartus_eda --functional=off --flatten_buses=off --timescale=1ps --simulation=on --tool=modelsim_oem --format=verilog --output_directory=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim/ flip-flop-d -c q4-quartus
+Info (204019): Generated file q4-quartus_8_1200mv_85c_slow.vo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file q4-quartus_8_1200mv_0c_slow.vo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file q4-quartus_min_1200mv_0c_fast.vo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file q4-quartus.vo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file q4-quartus_8_1200mv_85c_v_slow.sdo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file q4-quartus_8_1200mv_0c_v_slow.sdo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file q4-quartus_min_1200mv_0c_v_fast.sdo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file q4-quartus_v.sdo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal01/q4/simulation/qsim//" for EDA simulation tool
 Info: Quartus II 64-Bit EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4604 megabytes
-    Info: Processing ended: Wed Jun 30 14:42:40 2021
-    Info: Elapsed time: 00:00:01
+    Info: Peak virtual memory: 4603 megabytes
+    Info: Processing ended: Mon Jul 05 17:19:29 2021
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:01
 
 
