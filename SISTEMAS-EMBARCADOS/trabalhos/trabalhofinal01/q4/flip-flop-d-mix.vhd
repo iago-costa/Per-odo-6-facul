@@ -32,3 +32,4 @@ BEGIN -- inicio arquitetura
 -- finaliza reset ------------------------------
 	END PROCESS; -- finaliza verificacao
 END behavior_mix; -- finaliza arquitetura
+
