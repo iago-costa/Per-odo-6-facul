@@ -1,0 +1,14 @@
+AULA 11 - JAX-WS + JAX-RS (08/07/2021 - 08/07/2021)
+
+ASSISTIR & PRATICAR as Vídeo-Aulas
+
+    AULA 11 - JAX-WS Configuração do Ambiente
+    AULA 11 - JAX-WS Implementando um servidor
+    AULA 11 - JAX-WS Implementando um cliente
+    AULA 11 - JAX-RS Incorporando o Jersey
+    AULA 11 - JAX-RS Projeto Jersey Servidor
+    AULA 11 - JAX-RS Implementando um cliente
+
+Link do Quizizz: https://quizizz.com/join?gc=09315398
+PRAZO: 11-07-2021 às 23:45 DA NOITE
+

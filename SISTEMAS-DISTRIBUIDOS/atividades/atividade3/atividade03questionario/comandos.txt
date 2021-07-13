@@ -1,0 +1,8 @@
+javac *.java
+
+
+rmiregistry &
+
+
+java QuestionServer
+java QuestionClient localhost
