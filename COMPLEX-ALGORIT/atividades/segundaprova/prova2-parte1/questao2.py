@@ -14,12 +14,12 @@
 # Matricula: 201840601017
 # Professor: Manoel Ribeiro
 
-import random
+# import random
 
 A = []
 
 for item in range(10):
-    A.append(input("Digite o valor "+str(item)+" do vetor A: "))    
+    A.append(int(input("Digite o valor "+str(item)+" do vetor A: ")))    
     # A.append(random.randrange(1, 101))
 
 print("Vetor Completo A: ",A)
@@ -40,8 +40,6 @@ def intercala(A, p, q, r):
     for item in range(q, len(A)):
         R.append(A[item])
 
-    L = sorted(L)
-    R = sorted(R)
     print("Vetor L: ",L)
     print("Vetor R: ",R)
 
