@@ -1,67 +1,365 @@
+<!-- https://inside.contabilizei.com.br/criando-uma-lista-de-contados-simples-com-vuejs-12922fd53226 -->
+<!-- https://getbootstrap.com/docs/5.0/getting-started/introduction/ -->
+<!-- https://getbootstrap.com/docs/5.0/forms/overview/ -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta class="form-control" name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistemas Distribuídos Prova II</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
+
 <body>
-    <h1>Consulta de passagens</h1>
-    <form action="#" method="get">
-        <label for="ppassagem">Digite uma cidade</label>
-        <input type="text" name="ppassagem" id="ppassagem">
-        <input type="submit" value="Pesquisar passagem">
 
-    </form>
-    <h1>Compra de passagens</h1>
-    <form action="#" method="get">
-        
-        <label for="ida_passagem">Ida</label>
-        <input type="checkbox" name="ida_passagem" id="ida_passagem">
-        
-        <label for="idaevolta_passagem">Ida e Volta</label>
-        <input type="checkbox" name="idaevolta_passagem" id="idaevolta_passagem">
-        
-        <label for="origem_passagem">Lugar de partida</label>
-        <input type="text" name="origem_passagem" id="origem_passagem">
-        
-        <label for="destino_passagem">Lugar de destino</label>
-        <input type="text" name="destino_passagem" id="destino_passagem">
-        
-        <label for="dataida_passagem">Data da ida</label>
-        <input type="datetime" name="dataida_passagem" id="dataida_passagem">
-        
-        <label for="datavolta">Data da volta</label>
-        <input type="datetime" name="datavolta" id="datavolta">
-        
-        <label for="numero">Número</label>
-        <input type="text" name="numero" id="numero">
-        
-        <label for="idade">Idade</label>
-        <input type="text" name="idade" id="idade">
-        
-        <input type="submit" value="Comprar passagem">
-    </form>
-    <h1>Consulta de hospedagem</h1>
-    <form action="#" method="get">
+    <main class="bd-main order-1">
+        <div class="bd-content ps-lg-4">
+            <div class="row">
+                <div class="col-lg-6">
 
-        <label for="pesquisar_hospedagem">Digite uma cidade</label>
-        <input type="text" name="pesquisar_hospedagem" id="pesquisar_hospedagem">
+                    <h1>Consulta de passagens</h1>
+                    <form action="consulta_passagem.php" method="get">
+                        <div class="row">
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="pesquisar_passagem">Digite uma cidade</label>
+                                <input type="text" class="form-control" name="pesquisar_passagem"
+                                    id="pesquisar_passagem">
+                            </div>
+                            <div class="mb-3 col-lg-4">
+                                <button type="submit" class="btn btn-primary">Pesquisar</button>
 
-        
+                            </div>
 
-        <input type="submit" value="Pesquisar hospedagem">
-    </form>
-    
-    <h1>Compra de hospedagem</h1>
-    <form action="#" method="post">
-        <label for="destino_hospedagem">Lugar de destino</label>
-        <input type="text" name="destino_hospedagem" id="destino_hospedagem">
+                        </div>
 
-        <label for="data_entrada_hospedagem"></label>
+                    </form>
 
-        <input type="submit" value="Comprar hospedagem">
-    </form>
+                    <h1>Compra de passagens</h1>
+                    <form action="comprar_passagem.php" method="post">
+
+                        <div class="row">
+
+                            <div class="mb-3 col-lg-6 form-check">
+                                <input type="checkbox" class="form-check-input" name="ida_passagem" id="ida_passagem">
+                                <label class="form-check-label" for="ida_passagem">Ida</label>
+
+                            </div>
+
+                            <div class="mb-3 col-lg-6 form-check">
+                                <input type="checkbox" class="form-check-input" name="idaevolta_passagem"
+                                    id="idaevolta_passagem">
+                                <label class="form-check-label" for="idaevolta_passagem">Ida e Volta</label>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="origem_passagem">Lugar de partida</label>
+                                <input type="text" class="form-control" name="origem_passagem" id="origem_passagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="destino_passagem">Lugar de destino</label>
+                                <input type="text" class="form-control" name="destino_passagem" id="destino_passagem">
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="data_ida_passagem">Data da ida</label>
+                                <input type="datetime" class="form-control" name="data_ida_passagem"
+                                    id="data_ida_passagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="data_volta_passagem">Data da volta</label>
+                                <input type="datetime" class="form-control" name="data_volta_passagem"
+                                    id="data_volta_passagem">
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <!-- 
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="numero_passagem">Número de pessoas</label>
+                                <input type="text" class="form-control" name="numero_passagem" id="numero_passagem">
+                            </div> 
+                            -->
+
+                            <!-- 
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="idade_passagem">Idade</label>
+                                <input type="text" class="form-control" name="idade_passagem" id="idade_passagem">
+                            </div> 
+                            -->
+
+
+                            <!-- Local onde o Vue irá controlar -->
+                            <div id="app">
+                                <h1 class="jumbotron">{{ message }}</h1>
+                                <div class="col-2">
+                                    <label>Nome</label>
+                                    <input v-model="people.name">
+                                    <label>Idade</label>
+                                    <input type="number" v-model="people.age">
+
+                                    <button class="mt-3 mb-3 btn btn-info" @click="add()">Adicionar</button>
+                                </div>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col">Idade</th>
+                                            <th scope="col">Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item in list">
+                                            <th scope="row">{{ item.id }}</th>
+                                            <td>{{ item.name }}</td>
+                                            <td>{{ item.age }}</td>
+                                            <td>
+                                                <button @click="edit(item)" class="btn btn-info">Editar</button>
+                                                <button @click="remove(item)" class="btn btn-danger">Excluir</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Local onde o Vue irá controlar -->
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="nome_completo_passagem">Nome Completo
+                                    comprador</label>
+                                <input type="text" class="form-control" name="nome_completo_passagem"
+                                    id="nome_completo_passagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="cpf_passagem">CPF comprador</label>
+                                <input type="text" class="form-control" name="cpf_passagem" id="cpf_passagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-4">
+                                <label class="form-label" for="numero_cartao_passagem">Número do cartão</label>
+                                <input type="text" class="form-control" name="numero_cartao_passagem"
+                                    id="numero_cartao_passagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-4">
+                                <label class="form-label" for="cvv_cartao_passagem">Código CVV do cartão</label>
+                                <input type="text" class="form-control" name="cvv_cartao_passagem"
+                                    id="cvv_cartao_passagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-4">
+                                <label class="form-label" for="mes_ano_passagem">Mes e Ano de Vencimento</label>
+                                <input type="text" class="form-control" name="mes_ano_passagem" id="mes_ano_passagem">
+                            </div>
+                        </div>
+
+                        <!-- Nome completo;
+                        CPF ou RG;
+                        E-mail;
+                        Números do cartão de crédito;
+                        Código CVV (código de segurança normalmente no verso do cartão);
+                        Mês e ano de vencimento. -->
+                        <button type="submit" class="btn btn-primary">Comprar passagem</button>
+                    </form>
+                </div>
+
+                <div class="col-lg-6">
+
+                    <h1>Consulta de hospedagem</h1>
+                    <form action="consulta_hospedagem.php" method="post">
+                        <div class="row">
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="pesquisar_hospedagem">Digite uma cidade</label>
+                                <input type="text" class="form-control" name="pesquisar_hospedagem"
+                                    id="pesquisar_hospedagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-4">
+                                <button type="submit" class="btn btn-primary">Pesquisar</button>
+
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <h1>Compra de hospedagem</h1>
+                    <form action="comprar_hospedagem.php" method="post">
+                        <div class="mb-3 col-lg-6">
+                            <label class="form-label" for="destino_hospedagem">Lugar de destino</label>
+                            <input type="text" class="form-control" name="destino_hospedagem" id="destino_hospedagem">
+                        </div>
+
+
+                        <div class="row">
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="data_entrada_hospedagem">Data de início da
+                                    hospedagem</label>
+                                <input type="text" class="form-control" name="data_entrada_hospedagem"
+                                    id="data_entrada_hospedagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="data_saida_hospedagem">Data de saída da
+                                    hospedagem</label>
+                                <input type="text" class="form-control" name="data_saida_hospedagem"
+                                    id="data_saida_hospedagem">
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="quarto_hospedagem">Número de quartos</label>
+                                <input type="text" class="form-control" name="quarto_hospedagem" id="quarto_hospedagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="numero_hospedagem">Número de pessoas</label>
+                                <input type="text" class="form-control" name="numero_hospedagem" id="numero_hospedagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="idade_hospedagem">Idade das pessoas</label>
+                                <input type="text" class="form-control" name="idade_hospedagem" id="idade_hospedagem">
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="nome_completo_hospedagem">Nome Completo comprador</label>
+                                <input type="text" class="form-control" name="nome_completo_hospedagem"
+                                    id="nome_completo_hospedagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="cpf_hospedagem">CPF comprador</label>
+                                <input type="text" class="form-control" name="cpf_hospedagem" id="cpf_hospedagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-4">
+                                <label class="form-label" for="numero_cartao_hospedagem">Número do cartão</label>
+                                <input type="text" class="form-control" name="numero_cartao_hospedagem"
+                                    id="numero_cartao_hospedagem">
+                            </div>
+
+                            <div class="mb-3 col-lg-4">
+                                <label class="form-label" for="cvv_cartao_hospedagem">Código CVV do cartão</label>
+                                <input type="text" class="form-control" name="cvv_cartao_hospedagem"
+                                    id="cvv_cartao_hospedagem">
+
+                            </div>
+
+                            <div class="mb-3 col-lg-4">
+                                <label class="form-label" for="mes_ano_hospedagem">Mes e Ano de Vencimento</label>
+                                <input type="text" class="form-control" name="mes_ano_hospedagem"
+                                    id="mes_ano_hospedagem">
+
+                            </div>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary">Comprar Hospedagem</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+
+    <script>
+        //Novo instância do Vue
+        new Vue({ //Local onde o Vue irá controlar com base no ID de uma tag do HTML
+            el: '#app', //Nossos dados da aplicação
+            data: {
+                message: 'Lista de pessoas',
+                people: {
+                    id: 0,
+                    name: null,
+                    age: null
+                },
+                index: null,
+                list: []
+            }, //Âncora do ciclo de vida do Vue
+            mounted() {
+                const people = JSON.parse(localStorage.getItem('people'))
+                this.list = people ? people : []
+            }, //Espaço para criação dos métodos
+            methods: {
+                add() {
+                    if (this.people.id === 0) {
+                        this.people.id = this.list.length + 1
+                        this.list.push(this.people)
+
+                    } else {
+                        this.list[this.index] = this.people
+                    }
+                    localStorage.setItem('people', JSON.stringify(this.list))
+                    this.people = {
+                        id: 0,
+                        name: null,
+                        age: null
+                    }
+                },
+
+                remove(item) {
+                    const idx = this.list.indexOf(item)
+                    this.list.splice(idx, 1)
+                    localStorage.setItem('people', JSON.stringify(this.list))
+                },
+
+                edit(item) {
+                    this.index = this.list.indexOf(item)
+                    this.people = Object.assign({}, item);
+                    localStorage.setItem('people', JSON.stringify(this.list))
+                }
+            }
+
+        })
+    </script>
+
 </body>
+
 </html>
