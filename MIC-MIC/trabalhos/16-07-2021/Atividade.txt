@@ -1,0 +1,11 @@
+
+Faculdade de Computação e Engenharia Elétrica
+Microprocessadores e Microcontroladores 
+Atividade
+
+
+
+
+
+* Implemente e simule três botões e 3 LEDs no PIC16F628A, totalmente independentes. Utilize chamadas de sub-rotinas e os LEDs devem estar conectados na PORTA e os botões na PORTB.
+* Anexe seu código aqui, e envie no Class Room, junto com seu arquivo de simulação. (OBS: Não esqueça do arquivo .HEX).

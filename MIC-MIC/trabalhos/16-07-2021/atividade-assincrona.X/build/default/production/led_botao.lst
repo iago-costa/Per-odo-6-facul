@@ -1,0 +1,403 @@
+MPASM 5.83                     LED_BOTAO.ASM   7-16-2021  11:21:16         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; Microcontroladores e Microprocessadores
+                      00002 ; Aula 02
+                      00003 ; Prof. Elton Alves
+                      00004 ; programa 3 botao e 3led em Assembly (Exemplo de Sub-rotina)
+                      00005 
+                      00006 ;list p=16f628A ; microcrontrolador utilizado
+                      00007 ;---Arquivos incluidos no projeto---    
+                      00008 #include <P16f628a.inc> ; inclui o arquivo do 16f628a (registradores)
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Jan 21 2019
+                      00005 ;  MPASM PIC16F628A processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2019 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      00386         LIST
+                      00009 
+                      00010 ;---FUSE bits---    
+                      00011 ;Cristal oscilador externo 4MHZ
+                      00012 ;Sem watchdog time
+                      00013 ;Com powe up time
+Warning[205]: Found directive in column 1. (__config)
+2007   3FE1           00014 __config _XT_OSC & _WDT_OFF & _PWRTE_ON & _CP_OFF 
+                      00015     
+                      00016 ;---Pagina??o de Mem?ria
+                      00017 #define bank0 bcf STATUS, RP0 ;cria um mnemonico para o banco 0 de memoria
+                      00018 #define bank1 bsf STATUS, RP0 ; cria um mnemonico para o banco 1 de memoria
+                      00019   
+                      00020 ;---Entradas---
+                      00021 #define botao1 PORTB, RB0 ; bot?o 1 ligado em RB0
+                      00022 #define botao2 PORTB, RB1 ; bot?o 2 ligado em RB1
+                      00023 #define botao3 PORTB, RB2 ; bot?o 3 ligado em RB2
+                      00024 
+                      00025 ;---Sa?das---
+                      00026 #define led1 PORTA, RA0 ; led1 ligado em RA0
+                      00027 #define led2 PORTA, RA1 ;led2 ligado em RA1
+                      00028 #define led3 PORTA, RA2 ;led2 ligado em RA2
+                      00029  
+                      00030 ;---Vetor de RESET---
+Warning[205]: Found directive in column 1. (org)
+                      00031 org H'000' ; origem no endereco 000h de memoria
+Warning[203]: Found opcode in column 1. (goto)
+0000   2???           00032 goto inicio ; desvia do vetor de interrupcao
+                      00033 
+                      00034 ;---Vetor de Interrup??o----
+Warning[205]: Found directive in column 1. (org)
+                      00035 org H'0004'  ; todas as interrupcoes apontam para este endereco
+Warning[203]: Found opcode in column 1. (retfie)
+0004   0009           00036 retfie ; retorna a interrupcao
+                      00037      
+                      00038 ;---Programa Principal----
+MPASM 5.83                     LED_BOTAO.ASM   7-16-2021  11:21:16         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0005                  00039 inicio
+0005   0185           00040     CLRF PORTA ; Limpa PORTA
+0006   0186           00041     CLRF PORTB ; Limpa PORTB
+                      00042 
+Warning[203]: Found opcode in column 1. (bsf)
+0007   1683           00043 bank1 ; seleciona o banco 1 de mem?ria
+0008   30A0           00044     movlw H'A0' ; w=B'0000 0000
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0009   0085           00045     movwf TRISA ; TRISA=H'A0' (todos bits sao saidas)
+000A   30FF           00046     movlw H'FF' ; w=B'1111 1111'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000B   0086           00047     movwf TRISB ;TRISB=H'FF' todos sao entradas
+                      00048 
+Warning[203]: Found opcode in column 1. (bcf)
+000C   1283           00049 bank0 ; seleciona o banco 0 de mem?ria (padr?o RESET)
+000D   30A0           00050     movlw H'A0' ; w=B'0000 0000'
+000E   0085           00051     movwf PORTA; (Leds iniciam desligados-escrevo no PORTB)
+                      00052 
+                      00053 ; goto $ ; segura o c?digo - $ indica a posicial atual do c?digo (loop infinito)
+                      00054 
+                      00055  
+000F                  00056 loop ; loop infinito
+                      00057     
+000F   2???           00058     call trata_but1 ; chama sub-rotina-trata_but1       
+0010   2???           00059     call trata_but2 ; chama sub-rotina_trata_but2
+0011   2???           00060     call trata_but3 ; chama sub-rotina_trata_but3
+                      00061 
+0012   2???           00062     goto loop ;volta para o label loop
+                      00063 
+                      00064 ;---Desenvolvimento das Sub-rotinas----
+                      00065     
+0013                  00066 trata_but1 ; sub-rotina para tratar bot?o 1
+0013   1806           00067     btfsc botao1 ; botao foi pressionado?
+0014   2???           00068     goto  apaga_led1; Nao pressiona, devia para label apaga_led1
+0015   1405           00069     bsf   led1; Sim, liga led1
+0016   0008           00070     return ; retorno da subrotina
+                      00071     
+0017                  00072 apaga_led1
+0017   1005           00073     bcf led1; apaga led1
+0018   0008           00074     return ;retorna da sub-rotina
+                      00075     
+0019                  00076 trata_but2 ; sub-rotina para tratar bot?o 2
+0019   1886           00077     btfsc botao2 ; botao foi pressionado?
+001A   2???           00078     goto  apaga_led2; Nao pressiona, devia para label apaga_led2
+001B   1485           00079     bsf   led2; Sim, liga led2
+001C   0008           00080     return ; retorno da subrotina
+                      00081     
+001D                  00082 apaga_led2
+001D   1085           00083     bcf led2; apaga led2
+001E   0008           00084     return ;retorna da sub-rotina
+                      00085 
+001F                  00086 trata_but3 ; sub-rotina para tratar botao 3
+001F   1906           00087     btfsc botao3 ; botao foi pressionado?
+MPASM 5.83                     LED_BOTAO.ASM   7-16-2021  11:21:16         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0020   2???           00088     goto  apaga_led3; Nao pressiona, devia para label apaga_led2
+0021   1505           00089     bsf   led3; Sim, liga led3
+0022   0008           00090     return ; retorno da subrotina
+                      00091     
+0023                  00092 apaga_led3
+0023   1105           00093     bcf led3; apaga led3
+0024   0008           00094     return ;retorna da sub-rotina
+                      00095     
+Warning[205]: Found directive in column 1. (end)
+3FE1                  00096 end 
+MPASM 5.83                     LED_BOTAO.ASM   7-16-2021  11:21:16         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADDEN                             00000003
+ADEN                              00000003
+BRGH                              00000002
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CIS                               00000003
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000001F
+CMIE                              00000006
+CMIF                              00000006
+CREN                              00000004
+CSRC                              00000007
+DATA_CP_OFF                       00003FFF
+DATA_CP_ON                        00003EFF
+DC                                00000001
+EEADR                             0000009B
+EECON1                            0000009C
+EECON2                            0000009D
+EEDATA                            0000009A
+EEIE                              00000007
+EEIF                              00000007
+F                                 00000001
+FERR                              00000002
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+NOT_BO                            00000000
+NOT_BOD                           00000000
+NOT_BOR                           00000000
+NOT_PD                            00000003
+NOT_POR                           00000001
+MPASM 5.83                     LED_BOTAO.ASM   7-16-2021  11:21:16         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_RBPU                          00000007
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+OERR                              00000001
+OPTION_REG                        00000081
+OSCF                              00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PIE1                              0000008C
+PIR1                              0000000C
+PORTA                             00000005
+PORTB                             00000006
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RA6                               00000006
+RA7                               00000007
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+RX9                               00000006
+RX9D                              00000000
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+STATUS                            00000003
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+MPASM 5.83                     LED_BOTAO.ASM   7-16-2021  11:21:16         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1OSCEN                           00000003
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISA6                            00000006
+TRISA7                            00000007
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRMT                              00000001
+TX9                               00000006
+TX9D                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+MPASM 5.83                     LED_BOTAO.ASM   7-16-2021  11:21:16         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+VR0                               00000000
+VR1                               00000001
+VR2                               00000002
+VR3                               00000003
+VRCON                             0000009F
+VREN                              00000007
+VROE                              00000006
+VRR                               00000005
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_BOREN_OFF                        00003FBF
+_BOREN_ON                         00003FFF
+_CONFIG                           00002007
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_OFF                           00003FFF
+_CP_ON                            00001FFF
+_DEVID1                           00002006
+_ER_OSC_CLKOUT                    00003FFF
+_ER_OSC_NOCLKOUT                  00003FFE
+_EXTCLK_OSC                       00003FEF
+_FOSC_ECIO                        00003FEF
+_FOSC_EXTRCCLK                    00003FFF
+_FOSC_EXTRCIO                     00003FFE
+_FOSC_HS                          00003FEE
+_FOSC_INTOSCCLK                   00003FFD
+_FOSC_INTOSCIO                    00003FFC
+_FOSC_LP                          00003FEC
+_FOSC_XT                          00003FED
+_HS_OSC                           00003FEE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_INTOSC_OSC_CLKOUT                00003FFD
+_INTOSC_OSC_NOCLKOUT              00003FFC
+_INTRC_OSC_CLKOUT                 00003FFD
+_INTRC_OSC_NOCLKOUT               00003FFC
+_LP_OSC                           00003FEC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_MCLRE_OFF                        00003FDF
+_MCLRE_ON                         00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC_CLKOUT                    00003FFF
+_RC_OSC_NOCLKOUT                  00003FFE
+_WDTE_OFF                         00003FFB
+MPASM 5.83                     LED_BOTAO.ASM   7-16-2021  11:21:16         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FED
+__16F628A                         00000001
+apaga_led1                        00000017
+apaga_led2                        0000001D
+apaga_led3                        00000023
+bank0                             bcf STATUS, RP0
+bank1                             bsf STATUS, RP0
+botao1                            PORTB, RB0
+botao2                            PORTB, RB1
+botao3                            PORTB, RB2
+inicio                            00000005
+led1                              PORTA, RA0
+led2                              PORTA, RA1
+led3                              PORTA, RA2
+loop                              0000000F
+trata_but1                        00000013
+trata_but2                        00000019
+trata_but3                        0000001F
+
+Errors   :     0
+Warnings :     8 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+
