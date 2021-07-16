@@ -25,8 +25,8 @@
             <div class="row">
                 <div class="col-lg-6">
 
-                    <h1>Consulta de passagens</h1>
-                    <form action="consulta_passagem.php" method="get">
+                    <h2>Consulta de passagens</h2>
+                    <form action="consulta_passagem.php" method="post">
                         <div class="row">
                             <div class="mb-3 col-lg-6">
                                 <label class="form-label" for="pesquisar_passagem">Digite uma cidade</label>
@@ -42,9 +42,25 @@
 
                     </form>
 
-                    <h1>Compra de passagens</h1>
-                    <form action="comprar_passagem.php" method="post">
+                    <h2>Compra de passagens</h2>
 
+                    <form action="comprar_passagem.php" method="post">
+                        <div class="row">
+
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="numero_passagem">Número de pessoas</label>
+                                <input type="text" class="form-control" name="numero_passagem" id="numero_passagem">
+                            </div>
+    
+    
+                            <!-- 
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="idade_passagem">Idade</label>
+                                <input type="text" class="form-control" name="idade_passagem" id="idade_passagem">
+                            </div> 
+                            -->
+                            <a class="mt-3 mb-3 col-lg-3 btn btn-info" onClick="addHtmlPassageiro()">ok</a>
+                        </div>
                         <div class="row">
 
                             <div class="mb-3 col-lg-6 form-check">
@@ -81,19 +97,34 @@
 
                             <div class="mb-3 col-lg-6">
                                 <label class="form-label" for="data_ida_passagem">Data da ida</label>
-                                <input type="datetime" class="form-control" name="data_ida_passagem"
-                                    id="data_ida_passagem">
+                                <input type="date" class="form-control" name="data_ida_passagem" id="data_ida_passagem">
                             </div>
 
                             <div class="mb-3 col-lg-6">
                                 <label class="form-label" for="data_volta_passagem">Data da volta</label>
-                                <input type="datetime" class="form-control" name="data_volta_passagem"
+                                <input type="date" class="form-control" name="data_volta_passagem"
                                     id="data_volta_passagem">
                             </div>
 
                         </div>
 
+                        <div id="addHtmlPassageiro" class="row">
 
+                            <!-- 
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="numero_passagem">Número de pessoas</label>
+                                <input type="text" class="form-control" name="numero_passagem" id="numero_passagem">
+                            </div> 
+                            -->
+
+
+                            <!-- <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="idade_passagem">Idade</label>
+                                <input type="text" class="form-control" name="idade_passagem" id="idade_passagem">
+                            </div>  -->
+
+
+                        </div>
 
                         <div class="row">
                             <div class="mb-3 col-lg-6">
@@ -108,50 +139,37 @@
                                 <input type="text" class="form-control" name="cpf_passagem" id="cpf_passagem">
                             </div>
 
-                            <div class="mb-3 col-lg-4">
+                            <div class="mb-3 col-lg-3">
                                 <label class="form-label" for="numero_cartao_passagem">Número do cartão</label>
                                 <input type="text" class="form-control" name="numero_cartao_passagem"
                                     id="numero_cartao_passagem">
                             </div>
 
-                            <div class="mb-3 col-lg-4">
+                            <div class="mb-3 col-lg-3">
                                 <label class="form-label" for="cvv_cartao_passagem">Código CVV do cartão</label>
                                 <input type="text" class="form-control" name="cvv_cartao_passagem"
                                     id="cvv_cartao_passagem">
                             </div>
 
-                            <div class="mb-3 col-lg-4">
+                            <div class="mb-3 col-lg-3">
                                 <label class="form-label" for="mes_ano_passagem">Mes e Ano de Vencimento</label>
                                 <input type="text" class="form-control" name="mes_ano_passagem" id="mes_ano_passagem">
                             </div>
                         </div>
 
-                        <!-- Nome completo;
-                        CPF ou RG;
-                        E-mail;
-                        Números do cartão de crédito;
-                        Código CVV (código de segurança normalmente no verso do cartão);
-                        Mês e ano de vencimento. -->
+                        <!-- 
+                            Nome completo;
+                            CPF ou RG;
+                            E-mail;
+                            Números do cartão de crédito;
+                            Código CVV (código de segurança normalmente no verso do cartão);
+                            Mês e ano de vencimento. 
+                        -->
                         <button type="submit" class="btn btn-primary">Comprar passagem</button>
                     </form>
-                    <div class="row">
 
-                        <!-- 
-                        <div class="mb-3 col-lg-6">
-                            <label class="form-label" for="numero_passagem">Número de pessoas</label>
-                            <input type="text" class="form-control" name="numero_passagem" id="numero_passagem">
-                        </div> 
-                        -->
-
-                        <!-- 
-                        <div class="mb-3 col-lg-6">
-                            <label class="form-label" for="idade_passagem">Idade</label>
-                            <input type="text" class="form-control" name="idade_passagem" id="idade_passagem">
-                        </div> 
-                        -->
-
-
-                        <!-- Local onde o Vue irá controlar -->
+                    <!-- Local onde o Vue irá controlar -->
+                    <!-- <div class="row">    
                         <div id="app">
                             <h3 class="jumbotron">{{ message }}</h3>
                             <div class="col-2">
@@ -185,13 +203,16 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- Local onde o Vue irá controlar -->
-                    </div>
+                    </div> -->
+                    <!-- Local onde o Vue irá controlar -->
                 </div>
 
+
+
+                <!-- Início parte da hospedagem -->
                 <div class="col-lg-6">
 
-                    <h1>Consulta de hospedagem</h1>
+                    <h2>Consulta de hospedagem</h2>
                     <form action="consulta_hospedagem.php" method="post">
                         <div class="row">
                             <div class="mb-3 col-lg-6">
@@ -208,8 +229,23 @@
 
                     </form>
 
-                    <h1>Compra de hospedagem</h1>
+                    <h2>Compra de hospedagem</h2>
+
                     <form action="comprar_hospedagem.php" method="post">
+
+                        <div class="row">
+                            <!-- <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="quarto_hospedagem">Número de quartos</label>
+                                <input type="text" class="form-control" name="quarto_hospedagem" id="quarto_hospedagem">
+                            </div> -->
+    
+                            <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="numero_hospedagem">Número de pessoas</label>
+                                <input type="text" class="form-control" name="numero_hospedagem" id="numero_hospedagem">
+                            </div>
+                            <button class="mt-3 mb-3 col-lg-3 btn btn-info" onClick="addHtmlHospede()">ok</button>
+                        </div>
+
                         <div class="mb-3 col-lg-6">
                             <label class="form-label" for="destino_hospedagem">Lugar de destino</label>
                             <input type="text" class="form-control" name="destino_hospedagem" id="destino_hospedagem">
@@ -220,35 +256,43 @@
                             <div class="mb-3 col-lg-6">
                                 <label class="form-label" for="data_entrada_hospedagem">Data de início da
                                     hospedagem</label>
-                                <input type="text" class="form-control" name="data_entrada_hospedagem"
+                                <input type="date" class="form-control" name="data_entrada_hospedagem"
                                     id="data_entrada_hospedagem">
                             </div>
 
                             <div class="mb-3 col-lg-6">
                                 <label class="form-label" for="data_saida_hospedagem">Data de saída da
                                     hospedagem</label>
-                                <input type="text" class="form-control" name="data_saida_hospedagem"
+                                <input type="date" class="form-control" name="data_saida_hospedagem"
                                     id="data_saida_hospedagem">
                             </div>
-
                         </div>
 
 
-                        
+
                         <div class="row">
                             <div class="mb-3 col-lg-6">
                                 <label class="form-label" for="quarto_hospedagem">Número de quartos</label>
                                 <input type="text" class="form-control" name="quarto_hospedagem" id="quarto_hospedagem">
                             </div>
 
-                            <div class="mb-3 col-lg-6">
+                            <!-- <div class="mb-3 col-lg-6">
                                 <label class="form-label" for="numero_hospedagem">Número de pessoas</label>
                                 <input type="text" class="form-control" name="numero_hospedagem" id="numero_hospedagem">
-                            </div>
+                            </div> -->
+                        </div>
 
-                        </div> 
-                       
+                        <div id="addHtmlHospede" class="row">
+                            <!-- <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="quarto_hospedagem">Número de quartos</label>
+                                <input type="text" class="form-control" name="quarto_hospedagem" id="quarto_hospedagem">
+                            </div> -->
 
+                            <!-- <div class="mb-3 col-lg-6">
+                                <label class="form-label" for="numero_hospedagem">Número de pessoas</label>
+                                <input type="text" class="form-control" name="numero_hospedagem" id="numero_hospedagem">
+                            </div> -->
+                        </div>
 
                         <div class="row">
 
@@ -263,20 +307,20 @@
                                 <input type="text" class="form-control" name="cpf_hospedagem" id="cpf_hospedagem">
                             </div>
 
-                            <div class="mb-3 col-lg-4">
+                            <div class="mb-3 col-lg-3">
                                 <label class="form-label" for="numero_cartao_hospedagem">Número do cartão</label>
                                 <input type="text" class="form-control" name="numero_cartao_hospedagem"
                                     id="numero_cartao_hospedagem">
                             </div>
 
-                            <div class="mb-3 col-lg-4">
+                            <div class="mb-3 col-lg-3">
                                 <label class="form-label" for="cvv_cartao_hospedagem">Código CVV do cartão</label>
                                 <input type="text" class="form-control" name="cvv_cartao_hospedagem"
                                     id="cvv_cartao_hospedagem">
 
                             </div>
 
-                            <div class="mb-3 col-lg-4">
+                            <div class="mb-3 col-lg-3">
                                 <label class="form-label" for="mes_ano_hospedagem">Mes e Ano de Vencimento</label>
                                 <input type="text" class="form-control" name="mes_ano_hospedagem"
                                     id="mes_ano_hospedagem">
@@ -289,9 +333,9 @@
                         <button type="submit" class="btn btn-primary">Comprar Hospedagem</button>
                     </form>
 
-                    <div class="row">
+                    <!-- Local onde o Vue irá controlar -->
+                    <!-- <div class="row">
 
-                        <!-- Local onde o Vue irá controlar -->
                         <div id="app_guest">
                             <h3 class="jumbotron">{{ message }}</h3>
                             <div class="col-2">
@@ -325,8 +369,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- Local onde o Vue irá controlar -->
-                    </div>
+                        
+                    </div> -->
+                    <!-- Local onde o Vue irá controlar -->
 
 
                 </div>
@@ -445,6 +490,36 @@
             }
 
         })
+
+        function addHtmlPassageiro() {
+            var valor = document.getElementById("numero_passagem").value
+            document.getElementById("addHtmlPassageiro")
+            for (let index = 0; index < parseInt(valor); index++) {
+                // const element = array[index];
+                document.getElementById("addHtmlPassageiro").insertAdjacentHTML("afterend",
+                    // '<div class="mb-3 col-lg-3"><label class="form-label" for="nome_passagem">Idade</label><input type="text" class="form-control" name="idade_passagem' +
+                    //     index + '" id="idade_passagem"></div>'+
+                    '<div class="mb-3 col-lg-4"><label class="form-label" for="idade_passagem_' + (index+1) +
+                    '">Idade pessoa ' + (index+1) +
+                    '</label><input type="text" class="form-control" name="idade_passagem_' +
+                    (index+1) + '" id="idade_passagem_' + (index+1) + '"></div>');
+            }
+        }
+
+        function addHtmlHospede() {
+            var valor = document.getElementById("numero_hospedagem").value
+            for (let index = 0; index < parseInt(valor); index++) {
+                // const element = array[index];
+                document.getElementById("addHtmlHospede").insertAdjacentHTML("afterend",
+                    // '<div class="mb-3 col-lg-3"><label class="form-label" for="nome_hospedagem">Idade</label><input type="text" class="form-control" name="idade_hospedagem' +
+                    //     index + '" id="idade_hospedagem"></div>'+
+                    '<div class="mb-3 col-lg-4"><label class="form-label" for="idade_hospedagem_' + index+1 +
+                    '">Idade pessoa ' + index+1 +
+                    '</label><input type="text" class="form-control" name="idade_hospedagem_' +
+                    index+1 + '" id="idade_hospedagem_' + index+1 + '"></div>');
+            }
+        }
+
     </script>
 
 </body>
