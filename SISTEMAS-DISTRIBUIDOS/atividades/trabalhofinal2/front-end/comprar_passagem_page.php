@@ -197,7 +197,16 @@
                         </div>
 
                     </form>
-
+                    <div class="row">
+                        <?php
+                            echo ' Cidade pesquisada: ',$_POST['pesquisar_passagem'];
+                            echo'<br>';
+                            echo 'resultado: ';
+                            $pesquisar_passagem = $_POST['pesquisar_passagem'];
+                            $data = file_get_contents('http://localhost:3000/usuario/',$pesquisar_passagem);
+                            echo $data;
+                        ?>
+                    </div>
                 </div>
 
             </div>

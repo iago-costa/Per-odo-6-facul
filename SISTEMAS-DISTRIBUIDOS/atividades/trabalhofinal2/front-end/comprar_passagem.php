@@ -1,16 +1,27 @@
 <?php
 
-// echo $_POST['ida_passagem'];
-// echo $_POST['idaevolta_passagem'];
-// echo $_POST['origem_passagem'];
-// echo $_POST['destino_passagem'];
-// echo $_POST['data_ida_passagem'];
-// echo $_POST['data_volta_passagem'];
-// echo $_POST['nome_completo_passagem'];
-// echo $_POST['cpf_passagem'];
-// echo $_POST['numero_cartao_passagem'];
-// echo $_POST['cvv_cartao_passagem'];
-// echo $_POST['mes_ano_passagem'];
+echo 'ida_passagem: ', $_POST['ida_passagem'];
+echo "<br />";
+echo 'idaevolta_passagem', $_POST['idaevolta_passagem'];
+echo "<br />";
+echo 'origem_passagem: ', $_POST['origem_passagem'];
+echo "<br />";
+echo 'destino_passagem: ', $_POST['destino_passagem'];
+echo "<br />";
+echo 'data_ida_passagem: ',$_POST['data_ida_passagem'];
+echo "<br />";
+echo 'data_volta_passagem: ', $_POST['data_volta_passagem'];
+echo "<br />";
+echo 'nome_completo_passagem: ', $_POST['nome_completo_passagem'];
+echo "<br />";
+echo 'cpf_passagem: ', $_POST['cpf_passagem'];
+echo "<br />";
+echo 'numero_cartao_passagem: ', $_POST['numero_cartao_passagem'];
+echo "<br />";
+echo 'cvv_cartao_passagem: ', $_POST['cvv_cartao_passagem'];
+echo "<br />";
+echo 'mes_ano_passagem: ',$_POST['mes_ano_passagem'];
+echo "<br />";
 
 // echo "<br />";
 // echo $_POST['idade_passagem_1'];
@@ -26,21 +37,21 @@
 // echo $_POST['idade_passagem_6'];
 // echo "<br />";
 
-// $ida_passagem = $_POST['ida_passagem'];
-// $idaevolta_passagem = $_POST['idaevolta_passagem'];
-// $origem_passagem = $_POST['origem_passagem'];
-// $destino_passagem = $_POST['destino_passagem'];
-// $data_ida_passagem = $_POST['data_ida_passagem'];
-// $data_volta_passagem = $_POST['data_volta_passagem'];
-// $nome_completo_passagem = $_POST['nome_completo_passagem'];
-// $cpf_passagem = $_POST['cpf_passagem'];
-// $numero_cartao_passagem = $_POST['numero_cartao_passagem'];
-// $cvv_cartao_passagem = $_POST['cvv_cartao_passagem'];
-// $mes_ano_passagem = $_POST['mes_ano_passagem'];
+$ida_passagem = $_POST['ida_passagem'];
+$idaevolta_passagem = $_POST['idaevolta_passagem'];
+$origem_passagem = $_POST['origem_passagem'];
+$destino_passagem = $_POST['destino_passagem'];
+$data_ida_passagem = $_POST['data_ida_passagem'];
+$data_volta_passagem = $_POST['data_volta_passagem'];
+$nome_completo_passagem = $_POST['nome_completo_passagem'];
+$cpf_passagem = $_POST['cpf_passagem'];
+$numero_cartao_passagem = $_POST['numero_cartao_passagem'];
+$cvv_cartao_passagem = $_POST['cvv_cartao_passagem'];
+$mes_ano_passagem = $_POST['mes_ano_passagem'];
 
-// $parcela_x12_passagem = $_POST['parcela_x12_passagem'];
-// $parcela_x6_passagem = $_POST['parcela_x6_passagem'];
-// $parcela_x1_passagem = $_POST['parcela_x1_passagem'];
+$parcela_x12_passagem = $_POST['parcela_x12_passagem'];
+$parcela_x6_passagem = $_POST['parcela_x6_passagem'];
+$parcela_x1_passagem = $_POST['parcela_x1_passagem'];
 
 $idade_passagem_1 = $_POST['idade_passagem_1'];
 $idade_passagem_2 = $_POST['idade_passagem_2'];
@@ -64,8 +75,20 @@ for ($i=1; $i <= (int)$numero_passagem; $i++) {
     // echo $idade_hopedagem_+($i);
     // echo "<br />";
 }
-// echo "<br />";
-// echo $idades_passagem;
+echo "<br />";
+echo 'idades_passagem: ',$idades_passagem;
+
+$parcela_passagem = '';
+
+if ($parcela_x12_passagem == 'on') {
+    $parcela_passagem = 'x12';
+} elseif ($parcela_x6_passagem == 'on'){
+    $parcela_passagem = 'x6';
+}elseif ($parcela_x1_passagem = 'on'){
+    $parcela_passagem = 'x1';
+}
+
+echo 'parcela_passagem: ', $parcela_passagem;
 
 // $array = array(
 // 	"ida_passagem"=> $ida_passagem,
@@ -79,10 +102,8 @@ for ($i=1; $i <= (int)$numero_passagem; $i++) {
 // 	"numero_cartao_passagem"=> $numero_cartao_passagem,
 // 	"cvv_cartao_passagem"=> $cvv_cartao_passagem,
 // 	"mes_ano_passagem"=> $mes_ano_passagem,
-//     "idade_passagem"=> $idades_passagem,
-//     "parcela_x12_passagem"=> $parcela_x12_passagem,
-//     "parcela_x6_passagem"=> $parcela_x6_passagem,
-//     "parcela_x1_passagem"=> $parcela_x1_passagem
+//  "idade_passagem"=> $idades_passagem,
+//  "parcela_passagem"=> $parcela_passagem
 // );
 
 // $json = json_encode($array);

@@ -59,7 +59,16 @@
                         </div>
 
                     </form>
-
+                    <div class="row">
+                        <?php
+                            echo ' Cidade pesquisada: ',$_POST['pesquisar_hospedagem'];
+                            echo'<br>';
+                            echo 'resultado: ';
+                            $pesquisar_hospedagem = $_POST['pesquisar_hospedagem'];
+                            $data = file_get_contents('http://localhost:3000/usuario/',$pesquisar_hospedagem);
+                            echo $data;
+                        ?>
+                    </div>
                 </div>
             </div>
 

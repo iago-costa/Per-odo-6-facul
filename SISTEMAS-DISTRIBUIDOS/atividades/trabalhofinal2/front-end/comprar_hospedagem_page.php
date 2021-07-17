@@ -179,7 +179,7 @@
                         </div>
                     </div>
                     <h3>Consulta de hospedagens compradas</h3>
-                    <form action="consulta_hospedagem_comprada.php" method="post">
+                    <form action="#" method="post">
                         <div class="row">
                             <div class="mb-3 col-lg-6">
                                 <label class="form-label" for="pesquisar_hospedagem">Digite uma cidade</label>
@@ -192,7 +192,16 @@
 
                         </div>
                     </form>
-
+                    <div class="row">
+                        <?php
+                            echo ' Cidade pesquisada: ',$_POST['pesquisar_hospedagem'];
+                            echo'<br>';
+                            echo ' resultado: ';
+                            $pesquisar_hospedagem = $_POST['pesquisar_hospedagem'];
+                            $data = file_get_contents('http://localhost:3000/usuario/',$pesquisar_hospedagem);
+                            echo $data;
+                        ?>
+                    </div>
                 </div>
 
             </div>
@@ -225,7 +234,7 @@
                 (index + 1) + '" id="idade_hospedagem_' + (index + 1) + '"></div>');
         }
     }
-    </script>
+    </>
 
 </body>
 
