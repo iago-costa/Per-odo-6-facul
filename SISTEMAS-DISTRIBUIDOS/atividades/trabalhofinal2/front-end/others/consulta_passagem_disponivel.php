@@ -7,7 +7,7 @@ echo $_POST['pesquisar_passagem'];
 // $array = array("destino_passagem" => $pesquisar_passagem);
 
 // $json = json_encode($array);
-// $ch = curl_init('http://localhost:3000/usuario');
+// $ch = curl_init('http://05a57ce23b4a.ngrok.io/usuario');
 
 // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 

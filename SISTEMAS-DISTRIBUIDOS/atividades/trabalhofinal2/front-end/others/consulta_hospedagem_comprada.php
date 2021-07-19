@@ -1,5 +1,6 @@
 <?php
 
+
 echo $_POST['pesquisar_hospedagem'];
 
 // $pesquisar_hospedagem = $_POST['pesquisar_hospedagem'];
@@ -8,7 +9,7 @@ echo $_POST['pesquisar_hospedagem'];
 $array = array("destino_hospedagem" => $pesquisar_hospedagem);
 
 $json = json_encode($array);
-$ch = curl_init('http://localhost:3000/usuario');
+$ch = curl_init('http://05a57ce23b4a.ngrok.io/usuario');
 
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 

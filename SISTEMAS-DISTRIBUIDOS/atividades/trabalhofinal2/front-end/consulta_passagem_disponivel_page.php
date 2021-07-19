@@ -15,7 +15,17 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
+
+
 </head>
 
 <body>
@@ -40,13 +50,13 @@
                 </div>
                 <div class="col-lg-6">
                     <h3>Consulta de passagens disponíveis</h3>
-                    <form action="consulta_passagem_disponivel.php" method="post">
+                    <form action="#" method="post">
                         <div class="row">
-                            <div class="mb-3 col-lg-6">
+                            <!-- <div class="mb-3 col-lg-6">
                                 <label class="form-label" for="pesquisar_passagem">Digite uma cidade</label>
                                 <input type="text" class="form-control" name="pesquisar_passagem"
                                     id="pesquisar_passagem">
-                            </div>
+                            </div> -->
                             <div class="mb-3 col-lg-4">
                                 <button type="submit" class="btn btn-primary">Pesquisar</button>
 
@@ -56,14 +66,9 @@
 
                     </form>
                     <div class="row">
-                        <?php
-                            echo ' Cidade pesquisada: ',$_POST['pesquisar_passagem'];
-                            echo'<br>';
-                            echo 'resultado: ';
-                            $pesquisar_passagem = $_POST['pesquisar_passagem'];
-                            $data = file_get_contents('http://localhost:3000/usuario/',$pesquisar_passagem);
-                            echo $data;
-                        ?>
+                        <table id="example" class="display" width="100%"></table>
+
+
                     </div>
                 </div>
             </div>
@@ -81,6 +86,91 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script> -->
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script> -->
+    <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
+
+
+    <script>
+    var data = JSON.parse('<?php
+        // echo ' Cidade pesquisada: ';
+        // echo'<br>';
+        // echo 'resultado: ', $_POST['pesquisar_passagem'];
+        // $pesquisar_passagem = $_POST['pesquisar_passagem'];
+        $data = file_get_contents('http://05a57ce23b4a.ngrok.io/todas_passagens_disponiveis');
+        echo $data;
+    ?>')
+
+    var datafinal = []
+
+    for (i = 0; i < data.length; i++) {
+
+        var barray = [];
+
+        if (data[i]["destino_passagem"] === undefined) {
+            barray.push('null');
+
+        } else {
+            barray.push(data[i]["destino_passagem"]);
+
+        }
+
+        if (data[i]["quantidade_passagem"] === undefined) {
+            barray.push('null');
+
+        } else {
+            barray.push(data[i]["quantidade_passagem"]);
+
+        }
+        // barray.push(data[i]["destino_passagem"]);
+        // barray.push(data[i]["quantidade_passagem"]);
+
+        datafinal.push(barray);
+
+    }
+
+    $(document).ready(function() {
+        $("#example").DataTable({
+            data: datafinal,
+            scrollX: true,
+            scrollY: 500,
+            columns: [{
+                    title: "Destino",
+                },
+                {
+                    title: "Quantidade",
+                }
+            ],
+            dom: "Bfrtip",
+            buttons: [{
+                    extend: "colvis",
+                    columns: ":not(.noVis)",
+                },
+
+                "copy",
+                "csv",
+                "excel",
+                "pdf",
+                "print",
+            ],
+            select: true
+            // paging: false,
+            // searching: false
+        });
+    });
+    </script>
 
 </body>
 

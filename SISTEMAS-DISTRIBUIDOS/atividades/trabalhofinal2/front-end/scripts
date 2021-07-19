@@ -1,7 +1,7 @@
 $array = array("name" => "Julia", "nick" => "julinha", "email" => "juli@gmail.com", "about" => "qualquer coisa ai", "profile_picture" => "uma foto rsrs", "password" => "12345");
 
 $json = json_encode($array);
-$ch = curl_init('http://localhost:3000/usuario');
+$ch = curl_init('http://05a57ce23b4a.ngrok.io/usuario');
 
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 
@@ -20,5 +20,5 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 $jsonRet = json_decode(curl_exec($ch));
 
 
-$data = file_get_contents('http://localhost:3000/usuario/2');
+$data = file_get_contents('http://05a57ce23b4a.ngrok.io/usuario/2');
 echo $data;
