@@ -1,0 +1,20 @@
+AULA 12 - Sincronização (Relógios Físicos & Lógicos) (22/07/2021 - 22/07/2021)
+
+AULA ASSÍNCRONA 12:
+
+PASSO 1:
+
+Leitura do Capítulo 14 do livro "Sistemas Distribuídos: Conceitos e Projeto"
+
+    Seção 14.2 (Relógios, eventos e estados de processo), 14.3 (Sincronização de relógios físicos), 14.3.3 (O algoritmo Berkeley), 14.3.4 (O Network Time Protocol).
+
+PASSO 2:
+
+  Asssitir as Vídeo-Aulas
+
+    AULA 12 - SINCRONIZAÇÃO (RELÓGIOS FÍSICOS)
+    AULA 12 SINCRONIZAÇÃO (RELÓGIOS LÓGICOS)
+
+Link do Quizizz: https://quizizz.com/join?gc=63412166
+PRAZO: 25-07-2021 às 23:45 DA NOITE
+
