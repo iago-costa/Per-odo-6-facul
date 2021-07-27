@@ -1,0 +1,40 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Tue Jul 27 11:38:12 2021
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000001    program   0x000004
+                   .org_1       code   0x000004    program   0x00003a
+.config_2007_BUILD/DEFAULT/PRODUCTION/LED-TIM       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000002      
+                            0x000004    0x000020      
+                            0x002007    0x002007      
+            33 out of 2182 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+             _.org_1_0020   0x000020    program     static C:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\MIC-MIC\trabalhos\relatorio08\led-timer0.X\led-timer0.asm
+                 exit_ISR   0x00000d    program     static C:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\MIC-MIC\trabalhos\relatorio08\led-timer0.X\led-timer0.asm
+                   inicio   0x000012    program     static C:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\MIC-MIC\trabalhos\relatorio08\led-timer0.X\led-timer0.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                 exit_ISR   0x00000d    program     static C:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\MIC-MIC\trabalhos\relatorio08\led-timer0.X\led-timer0.asm
+                   inicio   0x000012    program     static C:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\MIC-MIC\trabalhos\relatorio08\led-timer0.X\led-timer0.asm
+             _.org_1_0020   0x000020    program     static C:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\MIC-MIC\trabalhos\relatorio08\led-timer0.X\led-timer0.asm
+
+
