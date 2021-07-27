@@ -1,5 +1,5 @@
-; Temporização com TIMER0
-; Interrupção com TIMER0
+; Temporização com TIMER0 e led
+; Interrupção com TIMER0 e led
 ; Clock: 4MHz e Ciclo de Máquina = 1us
 ;---Listagem do Processador Utilizado--list p=16F628A
 #include <P16f628a.inc>
@@ -11,16 +11,14 @@
 ; - Habilitamos o Power Up Timer
 ; - Brown Out desabilitado
 ; - Sem programação em baixa tensão, sem proteção de código, sem proteção da memória EEPROM
-	__config _XT_OSC & _WDT_OFF & _PWRTE_ON & _BOREN_OFF & _LVP_OFF & _CP_OFF & _CPD_OFF & _MCLRE_ON
+__config _XT_OSC & _WDT_OFF & _PWRTE_ON & _BOREN_OFF & _LVP_OFF & _CP_OFF & _CPD_OFF & _MCLRE_ON
 
 ;---Paginação de Memória---
 #define bank0 bcf STATUS, RP0
 #define bank1 bsf STATUS, RP0
 
-    
 ;---Saidas---
 #define led1 PORTA,0 ;led1 ligado em RA0
-
     
 ;---Registradores de uso geral---
 cblock H'20'
@@ -59,10 +57,8 @@ SWAPF W_TEMP,W ; recupera conteúdo de w
 retfie ; retorna da interrupção
 
 inicio
-;    CLRF PORTA ; Limpa PORTA
-;    CLRF PORTB ; Limpa PORTB
     bank1 ; seleciona o banco 0 de memória
-	movlw H'86' ;w=80h (inicia o registrador em 0)
+	movlw H'80' ;w=80h (inicia o registrador em 0)
 	movwf OPTION_REG ; configurar o OPTION_REG (Interrupções)
 	;PULL ups internos desabilitzados
 	;Timer0 incrimenta com ciclo de máquima
