@@ -1,0 +1,497 @@
+MPASM 5.83                       PROJETO.ASM   8-1-2021  14:04:40         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;
+                      00002 ; Curso de Assembly para PIC WR Kits Aula 35
+                      00003 ;
+                      00004 ;
+                      00005 ; Temporizador utilizando Timer0
+                      00006 ;
+                      00007 ; =============================
+                      00008 ;
+                      00009 ; Estouro = Contagem Timer0 x prescaler x ciclo de mï¿½quina
+                      00010 ;
+                      00011 ; Contagem Timer0 = (256 - TMR0)
+                      00012 ;
+                      00013 ; Temporizador = Contagem Timer0 x prescaler x ciclo de mï¿½quina x counter1
+                      00014 ;
+                      00015 ; Temporizador =     256         x   128     x      1E-6        x   128
+                      00016 ;
+                      00017 ; Temporizador = 4,19 segundos aproximadamente
+                      00018 ;
+                      00019 ; =============================
+                      00020 ;
+                      00021 ; Sistema Embarcado Sugerido: PARADOXUS PEPTO
+                      00022 ;
+                      00023 ; Disponï¿½vel em https://wrkits.com.br/catalog/show/141 
+                      00024 ;
+                      00025 ; Clock: 4MHz    Ciclo de mï¿½quina = 1ï¿½s
+                      00026 ;
+                      00027 ; Autor: Eng. Wagner Rambo   Data: Junho de 2016
+                      00028 ;
+                      00029 ;
+                      00030 
+                      00031 ; --- Listagem do Processador Utilizado ---
+                      00032         list    p=16F628A                                               ;Utilizado PIC16F628A
+                      00033         
+                      00034         
+                      00035 ; --- Arquivos Inclusos no Projeto ---
+                      00036         #include <p16F628a.inc>                                 ;inclui o arquivo do PIC 16F628A
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Jan 21 2019
+                      00005 ;  MPASM PIC16F628A processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2019 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      00386         LIST
+                      00037         
+                      00038         
+                      00039 ; --- FUSE Bits ---
+                      00040 ; - Cristal de 4MHz
+                      00041 ; - Desabilitamos o Watch Dog Timer
+                      00042 ; - Habilitamos o Power Up Timer
+                      00043 ; - Brown Out desabilitado
+MPASM 5.83                       PROJETO.ASM   8-1-2021  14:04:40         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00044 ; - Sem programaï¿½ï¿½o em baixa tensï¿½o, sem proteï¿½ï¿½o de cï¿½digo, sem proteï¿½ï¿½o da memï¿½ria E
+                            EPROM
+2007   3F21           00045         __config _XT_OSC & _WDT_OFF & _PWRTE_ON & _BOREN_OFF & _LVP_OFF & _CP_OFF & _CPD_OFF & _MCLRE_ON
+                      00046         
+                      00047         
+                      00048 ; --- Paginaï¿½ï¿½o de Memï¿½ria ---
+                      00049         #define         bank0   bcf     STATUS,RP0              ;Cria um mnemï¿½nico para selecionar o b
+                            anco 0 de memï¿½ria
+                      00050         #define         bank1   bsf     STATUS,RP0              ;Cria um mnemï¿½nico para selecionar o b
+                            anco 1 de memï¿½ria
+                      00051         
+                      00052         
+                      00053 ; --- Mapeamento de Hardware (PARADOXUS PEPTO) ---
+                      00054         #define         LED1    PORTA,3                         ;LED1 ligado ao pino RA3
+                      00055         #define         LED2    PORTA,2                         ;LED2 ligado ao pino RA2
+                      00056         #define         S1              PORTB,0                         ;S1 ligado ao pino RB0
+                      00057         #define         S2              PORTA,5                         ;S2 ligado ao pino RA5/MCLRE (se
+                            rï¿½ usado como entrada)
+                      00058 
+                      00059 ; --- Registradores de Uso Geral ---
+                      00060         cblock          H'20'                                           ;Inï¿½cio da memï¿½ria disponï¿½
+                            vel para o usuï¿½rio
+                      00061         
+  00000020            00062         W_TEMP                                                                  ;Registrador para armaze
+                            nar o conteï¿½do temporï¿½rio de work
+  00000021            00063         STATUS_TEMP                                                             ;Registrador para armaze
+                            nar o conteï¿½do temporï¿½rio de STATUS
+  00000022            00064         counter1                                                                ;Registrador auxiliar pa
+                            ra contagem
+                      00065          
+                      00066  
+                      00067         endc                                                                    ;Final da memï¿½ria do u
+                            suï¿½rio
+                      00068         
+                      00069 
+                      00070 ; --- Vetor de RESET ---
+                      00071         org                     H'0000'                                         ;Origem no endereï¿½o 00
+                            h de memï¿½ria
+0000   2???           00072         goto            inicio                                          ;Desvia para a label inï¿½cio
+                      00073         
+                      00074 
+                      00075 ; --- Vetor de Interrupï¿½ï¿½o ---
+                      00076         org                     H'0004'                                         ;As interrupï¿½ï¿½es des
+                            te processador apontam para este endereï¿½o
+                      00077         
+                      00078 ; -- Salva Contexto --
+0004   00A0           00079         movwf           W_TEMP                                          ;Copia o conteï¿½do de Work para
+                             W_TEMP
+0005   0E03           00080         swapf           STATUS,W                                        ;Move o conteï¿½do de STATUS com
+                             os nibbles invertidos para Work
+0006   1283           00081         bank0                                                                   ;Seleciona o banco 0 de 
+                            memï¿½ria (padrï¿½o do RESET) 
+0007   00A1           00082         movwf           STATUS_TEMP                                     ;Copia o conteï¿½do de STATUS co
+MPASM 5.83                       PROJETO.ASM   8-1-2021  14:04:40         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                            m os nibbles invertidos para STATUS_TEMP
+                      00083 ; -- Final do Salvamento de Contexto --
+                      00084 
+                      00085 
+                      00086         ; Trata ISR...
+                      00087         
+0008   1D0B           00088         btfss           INTCON,T0IF                                     ;Ocorreu um overflow no Timer0?
+0009   2???           00089         goto            exit_ISR                                        ;Nï¿½o, desvia para saï¿½da da i
+                            nterrupï¿½ï¿½o
+000A   110B           00090         bcf                     INTCON,T0IF                                     ;Sim, limpa a flag
+000B   3000           00091         movlw           D'0'                                            ;Sim, move a literal 10d para wo
+                            rk
+000C   0081           00092         movwf           TMR0                                            ;reinicializa TMR0 em 10d. Timer
+                            0 = 256 - 10 = 246
+                      00093         
+000D   0BA2           00094         decfsz          counter1,F                                      ;Decrementa counter1. Chegou em 
+                            zero?
+000E   2???           00095         goto            exit_ISR                                        ;Nï¿½o, desvia para saï¿½da da i
+                            nterrupï¿½ï¿½o
+                      00096 
+000F   3080           00097         movlw           D'128'                                          ;move a literal 128d para work
+0010   00A2           00098         movwf           counter1                                        ;reinicializa counter 1 em 18d
+                      00099         
+0011   1185           00100         bcf                     LED1                                            ;desligaLED1
+0012   128B           00101         bcf                     INTCON,T0IE                                     ;desabilita interrupï¿½ï
+                            ¿½o do Timer0
+0013   1505           00102         bsf                     LED2
+                      00103 
+                      00104 
+                      00105 
+                      00106 ; -- Recupera Contexto (Saï¿½da da Interrupï¿½ï¿½o) --
+0014                  00107 exit_ISR:
+                      00108 
+0014   0E21           00109         swapf           STATUS_TEMP,W                           ;Copia em Work o conteï¿½do de STATUS_TE
+                            MP com os nibbles invertidos
+0015   0083           00110         movwf           STATUS                                          ;Recupera o conteï¿½do de STATUS
+0016   0EA0           00111         swapf           W_TEMP,F                                        ;W_TEMP = W_TEMP com os nibbles 
+                            invertidos 
+0017   0E20           00112         swapf           W_TEMP,W                                        ;Recupera o conteï¿½do de Work
+                      00113         
+0018   0009           00114         retfie                                                                  ;Retorna da interrupï¿½ï
+                            ¿½o
+                      00115         
+                      00116         
+0019                  00117 inicio:
+                      00118 
+0019   1683           00119         bank1                                                                   ;Seleciona o banco 1 de 
+                            memï¿½ria
+001A   3006           00120         movlw           H'06'                                           ;w = 06h
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+001B   0081           00121         movwf           OPTION_REG                                      ;CONFIGURA OPTION_REG...
+                      00122                                                                                         ;-> Pull Ups int
+                            ernos habilitados
+MPASM 5.83                       PROJETO.ASM   8-1-2021  14:04:40         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00123                                                                                         ;-> Timer0 incre
+                            menta com ciclo de mï¿½quina
+                      00124                                                                                         ;-> Prescaler 1:
+                            128 associado ao Timer0
+001C   30F3           00125         movlw           H'F3'                                           ;w = F3h
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+001D   0085           00126         movwf           TRISA                                           ;Configura saï¿½da para os LEDs 
+                            em RA3 e RA2
+001E   1283           00127         bank0                                                                   ;Seleciona o banco 0 de 
+                            memï¿½ria
+001F   3007           00128         movlw           H'07'                                           ;w = 7h
+0020   009F           00129         movwf           CMCON                                           ;CMCON = 7h desabilita os compar
+                            adores internos
+0021   3080           00130         movlw           H'80'                                           ;w = 80h
+0022   008B           00131         movwf           INTCON                                          ;CONFIGURA INTCON...
+                      00132                                                                                         ;-> Habilita Int
+                            errupï¿½ï¿½o Global
+                      00133                                                                                         ;-> Interrupï¿½ï
+                            ¿½o do Timer0 inicia desligada
+0023   3000           00134         movlw           D'0'                                            ;move a literal 0d para work
+0024   0081           00135         movwf           TMR0                                            ;inicializa TMR0 em 10d. Timer0 
+                            = 256 - 10 = 246
+                      00136         
+0025   3080           00137         movlw           D'128'                                          ;move a literal 128d para work
+0026   00A2           00138         movwf           counter1                                        ;inicializa counter1 em 18d
+                      00139         
+0027   1185           00140         bcf                     LED1                                            ;desliga LED1
+0028   1105           00141         bcf                     LED2                                            ;desliga LED2
+                      00142  
+                      00143         
+                      00144         
+0029                  00145 loop:
+                      00146 
+0029   1C06           00147         btfss           S1                                                      ;S1 pressionado?
+002A   2???           00148         goto            timerOn                                         ;Sim, desvia para timerOn
+002B   2???           00149         goto            loop                                            ;Nï¿½o, continua testando botï¿½
+                            o
+                      00150         
+002C                  00151 timerOn:
+                      00152 
+002C   1585           00153         bsf                     LED1                                            ;Liga LED1
+002D   168B           00154         bsf                     INTCON,T0IE                                     ;Habilita interrupï¿½ï¿½
+                            o do Timer0
+002E   2???           00155         goto            loop                                            ;Desvia de volta para loop
+                      00156          
+                      00157          
+3F21                  00158         end                                                                             ;Final do Progra
+                            ma
+MPASM 5.83                       PROJETO.ASM   8-1-2021  14:04:40         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADDEN                             00000003
+ADEN                              00000003
+BRGH                              00000002
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CIS                               00000003
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000001F
+CMIE                              00000006
+CMIF                              00000006
+CREN                              00000004
+CSRC                              00000007
+DATA_CP_OFF                       00003FFF
+DATA_CP_ON                        00003EFF
+DC                                00000001
+EEADR                             0000009B
+EECON1                            0000009C
+EECON2                            0000009D
+EEDATA                            0000009A
+EEIE                              00000007
+EEIF                              00000007
+F                                 00000001
+FERR                              00000002
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+LED1                              PORTA,3
+LED2                              PORTA,2
+NOT_BO                            00000000
+NOT_BOD                           00000000
+NOT_BOR                           00000000
+MPASM 5.83                       PROJETO.ASM   8-1-2021  14:04:40         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+OERR                              00000001
+OPTION_REG                        00000081
+OSCF                              00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PIE1                              0000008C
+PIR1                              0000000C
+PORTA                             00000005
+PORTB                             00000006
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RA6                               00000006
+RA7                               00000007
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+RX9                               00000006
+RX9D                              00000000
+S1                                PORTB,0
+S2                                PORTA,5
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+MPASM 5.83                       PROJETO.ASM   8-1-2021  14:04:40         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+STATUS                            00000003
+STATUS_TEMP                       00000021
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1OSCEN                           00000003
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISA6                            00000006
+TRISA7                            00000007
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRMT                              00000001
+TX9                               00000006
+TX9D                              00000000
+MPASM 5.83                       PROJETO.ASM   8-1-2021  14:04:40         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+VR0                               00000000
+VR1                               00000001
+VR2                               00000002
+VR3                               00000003
+VRCON                             0000009F
+VREN                              00000007
+VROE                              00000006
+VRR                               00000005
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+W_TEMP                            00000020
+Z                                 00000002
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_BOREN_OFF                        00003FBF
+_BOREN_ON                         00003FFF
+_CONFIG                           00002007
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_OFF                           00003FFF
+_CP_ON                            00001FFF
+_DEVID1                           00002006
+_ER_OSC_CLKOUT                    00003FFF
+_ER_OSC_NOCLKOUT                  00003FFE
+_EXTCLK_OSC                       00003FEF
+_FOSC_ECIO                        00003FEF
+_FOSC_EXTRCCLK                    00003FFF
+_FOSC_EXTRCIO                     00003FFE
+_FOSC_HS                          00003FEE
+_FOSC_INTOSCCLK                   00003FFD
+_FOSC_INTOSCIO                    00003FFC
+_FOSC_LP                          00003FEC
+_FOSC_XT                          00003FED
+_HS_OSC                           00003FEE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_INTOSC_OSC_CLKOUT                00003FFD
+_INTOSC_OSC_NOCLKOUT              00003FFC
+_INTRC_OSC_CLKOUT                 00003FFD
+_INTRC_OSC_NOCLKOUT               00003FFC
+_LP_OSC                           00003FEC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_MCLRE_OFF                        00003FDF
+MPASM 5.83                       PROJETO.ASM   8-1-2021  14:04:40         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_MCLRE_ON                         00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC_CLKOUT                    00003FFF
+_RC_OSC_NOCLKOUT                  00003FFE
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FED
+__16F628A                         00000001
+bank0                             bcf     STATUS,RP0
+bank1                             bsf     STATUS,RP0
+counter1                          00000022
+exit_ISR                          00000014
+inicio                            00000019
+loop                              00000029
+timerOn                           0000002C
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+
