@@ -1,31 +1,27 @@
-# saved as greeting-server.py
+
 import threading
 import Pyro5.api
 import time
-import Pyro5.server
-import Pyro5.core
 
-# faça uma classe barbeiro
-# metodo cortarCabelo com sleep de 5 segundos
-# metodo cortarBarba com sleep de 4 segundos
-# metodo cortarBigode com sleep de 3 segundos
-
-lista = [] 
+lista = []
+lista_ordenada = [] 
 barbeiro_ocupado = []
 
 @Pyro5.server.expose
 class Exclusao(object):
     def __init__(self):
         self.nome = 'Exclusao'
-        # criar metodo cortarCabelo com sleep de 5 segundos
+      
           
     def concorrer(self, id, rc, cont, uri):
         message = id + " " + rc + " " + cont + " " + uri
         # if not lista:
+        
         lista.append(message.split())
-        print(message)
-        return "Mensagem enviada: "+"\n"+message
-
+        lista_ordenada = sorted(lista, key = lambda x: int(x[2]))
+        print("lista_ordenada"+str(lista_ordenada))
+        return "Mensagem enviada: "+message
+        
     def lista(self):
         return lista
 
@@ -33,14 +29,13 @@ class Exclusao(object):
 def enviar_mensagem():
     time.sleep(15)
     
-    print(lista)
-
     while True:
         try:
-            if lista:
+            if lista_ordenada:
+                print(lista_ordenada)
                 barbeiro = Pyro5.api.Proxy(uri_barbeiro)
-                resposta = barbeiro.trabalhar(lista[0][0], lista[0][1], lista[0][2], lista[0][3])
-                lista.pop(0)
+                resposta = barbeiro.trabalhar(lista_ordenada[0][0], lista_ordenada[0][1], lista_ordenada[0][2], lista_ordenada[0][3])
+                lista_ordenada.pop(0)
                 print(resposta)
         except Exception as e:
             print(e)
@@ -54,7 +49,6 @@ print("Ready. Object uri Exclusao = ", uri)  # print the uri so we can use it in
 uri_barbeiro = input("What is the Pyro uri = ").strip()
 barbeiro = Pyro5.api.Proxy(uri_barbeiro)     # get a Pyro proxy to the greeting object
 
-# criar duas threads
 thread1 = threading.Thread(target=daemon.requestLoop, args=())
 thread2 = threading.Thread(target=enviar_mensagem, args=())
 
