@@ -23,7 +23,7 @@ class Exclusao(object):
         return "Mensagem enviada: "+message
         
     def lista(self):
-        return lista
+        return lista_ordenada
 
 
 def enviar_mensagem():

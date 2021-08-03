@@ -45,17 +45,6 @@ class Barbeiro(object):
 
         return 'Barbeiro livre novamente!!!'    
 
-    def concorrer(self, id, rc, cont, uri):
-        message = id + " " + rc + " " + cont + " " + uri
-        if not lista:
-            lista.append(message.split())
-            print(message)
-
-
-    def lista(self):
-        return lista
-
-
 daemon = Pyro5.api.Daemon()  # make a Pyro daemon
 uri = daemon.register(Barbeiro)  # register as a Pyro object
 
