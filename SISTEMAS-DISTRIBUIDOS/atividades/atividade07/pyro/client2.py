@@ -16,7 +16,7 @@ class Cliente:
 
     def concorrer(self, id, rc, cont, uri):
         message = id+' '+rc+' '+cont+' '+uri
-        print(message)
+        print("Chamada de função por: "+str(uri))
         return message
 
 
@@ -29,26 +29,45 @@ print("Ready. Object uri Cliente =", uri_cliente)       # print the uri so we ca
 
 def requisicoes():
     # while True:
-    uri_barbeiro = input("What is the Pyro uri = ").strip()
-    barbeiro = Pyro5.api.Proxy(uri_barbeiro)     # get a Pyro proxy to the greeting object
+    uri_exclusao = input("What is the Pyro uri = ").strip()
+    exclusao = Pyro5.api.Proxy(uri_exclusao)     # get a Pyro proxy to the greeting object
+    time.sleep(10)
 # while True:
-    print(barbeiro.concorrer("Cliente2", 'Barba', '2', str(uri_cliente)))
-    lista_grupo_cliente = barbeiro.lista()
-    print("Lista grupo cliente: "+str(lista_grupo_cliente))   # call method normally
+    for item in range(0, 20):
+        time.sleep(6)    
+        print(exclusao.concorrer("Cliente2", 'Barba', str(item), str(uri_cliente)))
+        lista_grupo_cliente = exclusao.lista()
+        # print("Lista grupo cliente: "+str(lista_grupo_cliente))   # call method normally
 
-    for i in range(0, len(lista_grupo_cliente)):
-        if lista_grupo_cliente[i][3] == uri_cliente:
-            break
-        else:
-            outros_clientes = Pyro5.api.Proxy(lista_grupo_cliente[i][3])     # get a Pyro proxy to the greeting object
-            print(outros_clientes.concorrer("Cliente2", 'Barba', '2', str(uri_cliente)))   # call method normally
-        print(lista_grupo_cliente[i][3])
+        # for i in range(0, len(lista_grupo_cliente)):
+        #     if lista_grupo_cliente[i][3] == uri_cliente:
+        #         break
+        #     else:
+        #         exclusao = Pyro5.api.Proxy(lista_grupo_cliente[i][3])     # get a Pyro proxy to the greeting object
+        #         print(exclusao.concorrer("Cliente2", 'Barba', str(item), str(uri_cliente)))   # call method normally
+        #     # print(lista_grupo_cliente[i][3])
 
-    time.sleep(6)
-    print(barbeiro.concorrer("Cliente2", 'Bigode', '2', str(uri_cliente)))   # call method normally
-    time.sleep(6)
-    print(barbeiro.concorrer("Cliente2", 'Cabelo', '2', str(uri_cliente)))   # call method normally
+        time.sleep(6)
+        print(exclusao.concorrer("Cliente2", 'Bigode', str(item), str(uri_cliente)))   # call method normally
 
+        # for i in range(0, len(lista_grupo_cliente)):
+        #     if lista_grupo_cliente[i][3] == uri_cliente:
+        #         break
+        #     else:
+        #         exclusao = Pyro5.api.Proxy(lista_grupo_cliente[i][3])     # get a Pyro proxy to the greeting object
+        #         print(exclusao.concorrer("Cliente2", 'Bigode', str(item), str(uri_cliente)))   # call method normally
+        #     # print(lista_grupo_cliente[i][3])
+
+        time.sleep(6)
+        print(exclusao.concorrer("Cliente2", 'Cabelo', str(item), str(uri_cliente)))   # call method normally
+
+        # for i in range(0, len(lista_grupo_cliente)):
+        #     if lista_grupo_cliente[i][3] == uri_cliente:
+        #         break
+        #     else:
+        #         exclusao = Pyro5.api.Proxy(lista_grupo_cliente[i][3])     # get a Pyro proxy to the greeting object
+        #         print(exclusao.concorrer("Cliente2", 'Cabelo', str(item), str(uri_cliente)))   # call method normally
+        #     # print(lista_grupo_cliente[i][3])
 
 # criar duas threads
 thread1 = threading.Thread(target=daemon.requestLoop, args=())
