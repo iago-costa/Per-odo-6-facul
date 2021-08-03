@@ -23,22 +23,28 @@ def lista_ordenada(lista):
 
 def enviar_mensagem():
     time.sleep(15)
-    
+    barbeiro = Pyro5.api.Proxy(uri_barbeiro)
     while True:
         try:
-            lista_ordered = lista_ordenada(lista)
-            if lista_ordered:
-                print("==================")
-                print("lista_ordenada = "+str(lista_ordered))
-                print("==================")
-                barbeiro = Pyro5.api.Proxy(uri_barbeiro)
+            time.sleep(1)
+            if lista:
+                lista_ordered = lista_ordenada(lista)
+
+                # print("==================")
+                # print("lista_ordenada = "+str(lista_ordered))
+                # print("==================")
                 resposta = barbeiro.trabalhar(lista_ordered[0][0], lista_ordered[0][1], lista_ordered[0][2], lista_ordered[0][3])
-                lista = lista.pop(0)
-                print("==================")
-                print("lista = "+str(lista))
-                print("==================")
-                # lista_ordered.pop(0)
+
+                lista.remove(lista_ordered[0])
+                print("Tamanho da lista "+str(len(lista)))
+                # print("==================")
+                # print("lista = "+str(lista))
+                # print("==================")
+               
                 print(resposta)
+            else:
+                print("Lista vazia \n Barbeiro aguardando clientes!!!")
+                time.sleep(5)
         except Exception as e:
             print(e)
         
