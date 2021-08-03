@@ -43,8 +43,9 @@ class Barbeiro(object):
             else:
                 print("Metodo nao existente")
 
-        return 'Barbeiro livre novamente!!!'    
-
+            return "\n"+"Cliente atendido com sucesso: "+message+"\n"+'Barbeiro livre novamente!!!'    
+        else:
+            return "Barbeiro aguardando novos clientes!!!"
 daemon = Pyro5.api.Daemon()  # make a Pyro daemon
 uri = daemon.register(Barbeiro)  # register as a Pyro object
 
@@ -55,5 +56,4 @@ thread1 = threading.Thread(target=daemon.requestLoop, args=())
 # ligar threads
 thread1.start()
 thread1.join()
-
 

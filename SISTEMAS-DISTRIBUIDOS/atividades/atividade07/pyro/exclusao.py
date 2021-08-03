@@ -5,7 +5,7 @@ import time
 
 lista = []
 lista_ordenada = [] 
-barbeiro_ocupado = []
+
 
 @Pyro5.server.expose
 class Exclusao(object):
@@ -14,28 +14,30 @@ class Exclusao(object):
       
           
     def concorrer(self, id, rc, cont, uri):
-        message = id + " " + rc + " " + cont + " " + uri
-        # if not lista:
-        
+        message = id + " " + rc + " " + cont + " " + uri        
         lista.append(message.split())
-        lista_ordenada = sorted(lista, key = lambda x: int(x[2]))
-        print("lista_ordenada"+str(lista_ordenada))
         return "Mensagem enviada: "+message
         
-    def lista(self):
-        return lista_ordenada
-
+def lista_ordenada(lista):
+    return sorted(lista, key = lambda x: int(x[2]))
 
 def enviar_mensagem():
     time.sleep(15)
     
     while True:
         try:
-            if lista_ordenada:
-                print(lista_ordenada)
+            lista_ordered = lista_ordenada(lista)
+            if lista_ordered:
+                print("==================")
+                print("lista_ordenada = "+str(lista_ordered))
+                print("==================")
                 barbeiro = Pyro5.api.Proxy(uri_barbeiro)
-                resposta = barbeiro.trabalhar(lista_ordenada[0][0], lista_ordenada[0][1], lista_ordenada[0][2], lista_ordenada[0][3])
-                lista_ordenada.pop(0)
+                resposta = barbeiro.trabalhar(lista_ordered[0][0], lista_ordered[0][1], lista_ordered[0][2], lista_ordered[0][3])
+                lista = lista.pop(0)
+                print("==================")
+                print("lista = "+str(lista))
+                print("==================")
+                # lista_ordered.pop(0)
                 print(resposta)
         except Exception as e:
             print(e)
