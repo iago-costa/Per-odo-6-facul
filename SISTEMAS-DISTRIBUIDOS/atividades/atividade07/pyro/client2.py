@@ -18,7 +18,7 @@ class Cliente:
 
 daemon = Pyro5.api.Daemon()        # make a Pyro daemon
 uri_cliente = daemon.register(Cliente)    # register the greeting maker as a Pyro object
-print("Ready. Object uri Cliente =", uri_cliente)       # print the uri so we can use it in the client later
+print("Ready. Object uri Exclusao =", uri_cliente)       # print the uri so we can use it in the client later
 
 def requisicoes():
     uri_exclusao = input("What is the Pyro uri = ").strip()
