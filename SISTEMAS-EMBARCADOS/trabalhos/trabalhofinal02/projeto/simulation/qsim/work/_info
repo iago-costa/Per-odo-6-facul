@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\SISTEMAS-EMBARCADOS\trabalhos\trabalhofinal02\projeto\simulation\qsim
+vNanoControlador
+Z1 !s100 j:PS2MX^kM7`aWkSz`_:U3
+Z2 IzHUJbAjfTWX]]Rd@WfV_`2
+Z3 VkDC<<z>PlFFKmejWLM8c_0
+Z4 dC:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\SISTEMAS-EMBARCADOS\trabalhos\trabalhofinal02\projeto\simulation\qsim
+Z5 w1627918876
+Z6 8nanocontrolador.vo
+Z7 Fnanocontrolador.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|nanocontrolador.vo|
+Z10 o-work work -O0
+Z11 n@nano@controlador
+!i10b 1
+!s85 0
+Z12 !s108 1627918877.621000
+Z13 !s107 nanocontrolador.vo|
+!s101 -O0
+vNanoControlador_vlg_check_tst
+!i10b 1
+Z14 !s100 24W<ALA`R5AJLL_Ab^V6G3
+Z15 I`i`?EPS;GBm7A^6ONDe2J0
+Z16 VYMfnTHi5f2Nh?C?;14@N?3
+R4
+Z17 w1627918874
+Z18 8subtracao.vwf.vt
+Z19 Fsubtracao.vwf.vt
+L0 61
+R8
+r1
+!s85 0
+31
+Z20 !s108 1627918877.839000
+Z21 !s107 subtracao.vwf.vt|
+Z22 !s90 -work|work|subtracao.vwf.vt|
+!s101 -O0
+R10
+Z23 n@nano@controlador_vlg_check_tst
+vNanoControlador_vlg_sample_tst
+!i10b 1
+Z24 !s100 bO_3LRVWV_?7mR3PM`QPO3
+Z25 IJ7cm9bnkTUZbK:iJbOOe<1
+Z26 VbBbekAfH=kfk@2@>;dc042
+R4
+R17
+R18
+R19
+L0 29
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z27 n@nano@controlador_vlg_sample_tst
+vNanoControlador_vlg_vec_tst
+!i10b 1
+Z28 !s100 2U=[QEBP=6D::eg9[iEMB0
+Z29 IOkbJDb=VFSkS3[gS8h;J>0
+Z30 ViDS4e;FG>KPnJeQlMDh3K3
+R4
+R17
+R18
+R19
+Z31 L0 389
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z32 n@nano@controlador_vlg_vec_tst
