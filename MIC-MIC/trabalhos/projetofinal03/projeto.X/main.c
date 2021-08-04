@@ -10,29 +10,29 @@
 #pragma config CPD = OFF       // Data EE Memory Code Protection bit (Data memory code protection off)
 #pragma config CP = OFF
 #define _XTAL_FREQ 4000000 //Define a utilizacao do clock interno de 4 Mhz
-#define MOTOR1 RA1
-#define MOTOR2 RA3
-#define bot1 RB0
-#define bot2 RB1
+#define MOTOR1 RB0
+#define MOTOR2 RB1
+#define bot1 RA0
+#define bot2 RA1
 int main() {
+    TRISA = 0x03; // Define portas RA0 e RA1 como entrada
     TRISB = 0x00; //Define todas as portas B como saida
     PORTB = 0x00;
     PORTA = 0x00;
-    TRISA = 0x00;
     while (1) //Loop infinito
     {
-        if (bot1 == 0) { //botao 1 acionado
-            MOTOR1 = 1;
-            __delay_ms(500);
-            MOTOR1 = 0;
-            bot1 = 1;
+        if (bot1 == 0) { //botao 1 sem corrente
+            MOTOR1 = 1; // motor 1 acionado
+            __delay_ms(4000); // delay 4 segundos
+            MOTOR1 = 0; // motor 1 desligado
+            bot1 = 1; // botao 1 com corrente
         }
-        if (bot2 == 0) { //botao 2 acionado
-            MOTOR2 = 1;
-            __delay_ms(500);
-            MOTOR2 = 0;
-            bot2 = 1;        
-        }        
+        if (bot2 == 0) { //botao 2 sem corrente
+            MOTOR2 = 1; // motor 2 acionado
+            __delay_ms(4000); // delay 4 segundos
+            MOTOR2 = 0; // motor 2 desligado
+            bot2 = 1; // botao 2 com corrente
+        }
     }
     return 0;
 }
