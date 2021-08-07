@@ -29,13 +29,13 @@ int main(int argc, char const *argv[])
     int tanque_km = 9;
     int percurso_km = 50;
     int tamanho_vetor = (sizeof(vetor) / sizeof(vetor[0]));
-    
+
     printf("Inicio do percurso \n");
-        // int consumo_litro_por_km,  // Consumo de combustível por quilômetro
-        // int tanque_km, // Capacidade do tanque
-        // int percurso_km, // Percurso a percorrer
-        // int *postos_combustiveis_km, // Posições dos postos de combustível
-        // int postos_combustiveis_km_quantidade // Quantidade de postos de combustível
+    // int consumo_litro_por_km,  // Consumo de combustível por quilômetro
+    // int tanque_km, // Capacidade do tanque
+    // int percurso_km, // Percurso a percorrer
+    // int *postos_combustiveis_km, // Posições dos postos de combustível
+    // int postos_combustiveis_km_quantidade // Quantidade de postos de combustível
     int abastecimentos = minimo_abastecimentos(consumo_litro_por_km, tanque_km, percurso_km, vetor, tamanho_vetor);
     printf("\nFim do percurso!!! \n \n");
     printf("Consumo litro/km foi %d, Capacidade do tanque era %d litros\ne o tamanho do percurso era %d Kms", consumo_litro_por_km, tanque_km, percurso_km);
