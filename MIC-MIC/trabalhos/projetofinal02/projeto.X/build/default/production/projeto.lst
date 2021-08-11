@@ -1,46 +1,15 @@
-MPASM 5.83                       PROJETO.ASM   8-2-2021  12:12:41         PAGE  1
+MPASM 5.83                       PROJETO.ASM   8-11-2021  10:20:36         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00001 ;
-                      00002 ; Curso de Assembly para PIC WR Kits Aula 35
-                      00003 ;
-                      00004 ;
-                      00005 ; Temporizador utilizando Timer0
-                      00006 ;
-                      00007 ; =============================
-                      00008 ;
-                      00009 ; Estouro = Contagem Timer0 x prescaler x ciclo de m�quina
-                      00010 ;
-                      00011 ; Contagem Timer0 = (256 - TMR0)
-                      00012 ;
-                      00013 ; Temporizador = Contagem Timer0 x prescaler x ciclo de m�quina x counter1
-                      00014 ;
-                      00015 ; Temporizador =     256         x   128     x      1E-6        x   128
-                      00016 ;
-                      00017 ; Temporizador = 4,19 segundos aproximadamente
-                      00018 ;
-                      00019 ; =============================
-                      00020 ;
-                      00021 ; Sistema Embarcado Sugerido: PARADOXUS PEPTO
-                      00022 ;
-                      00023 ; Disponivel em https://wrkits.com.br/catalog/show/141 
-                      00024 ;
-                      00025 ; Clock: 4MHz    Ciclo de maquina = ms
-                      00026 ;
-                      00027 ; Autor: Eng. Wagner Rambo   Data: Junho de 2016
-                      00028 ;
-                      00029 ;
-                      00030 
-                      00031 ; --- Listagem do Processador Utilizado ---
+                      00001 ; --- Listagem do Processador Utilizado ---
 Warning[205]: Found directive in column 1. (list)
-                      00032 list    p=16F628A                   ; Utilizado PIC16F628A
-                      00033         
-                      00034         
-                      00035 ; --- Arquivos Inclusos no Projeto ---
-                      00036 #include    <p16F628a.inc>          ; inclui o arquivo do PIC 16F628A
+                      00002 list    p=16F628A                   ; Utilizado PIC16F628A      
+                      00003 
+                      00004 ; --- Arquivos Inclusos no Projeto ---
+                      00005 #include    <p16F628a.inc>          ; inclui o arquivo do PIC 16F628A
                       00001         LIST
                       00002 
                       00003 ;==========================================================================
@@ -51,174 +20,142 @@ Warning[205]: Found directive in column 1. (list)
                       00008 ;==========================================================================
                       00009 
                       00386         LIST
-                      00037                 
-                      00038 ; --- FUSE Bits ---
-                      00039 ; - Cristal de 4MHz
-                      00040 ; - Desabilitamos o Watch Dog Timer
-                      00041 ; - Habilitamos o Power Up Timer
-                      00042 ; - Brown Out desabilitado
-MPASM 5.83                       PROJETO.ASM   8-2-2021  12:12:41         PAGE  2
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-                      00043 ; - Sem programacao em baixa tensao, sem protecao de codigo, sem protecao da memoria EEPROM
+                      00006 ; --- FUSE Bits ---
+                      00007 ; - Cristal de 4MHz ; - Desabilitamos o Watch Dog Timer ; - Habilitamos o Power Up Timer ; - Brown Out d
+                            esabilitado
+                      00008 ; - Sem programacao em baixa tensao, sem protecao de codigo, sem protecao da memoria EEPROM
 Warning[205]: Found directive in column 1. (__config)
-2007   3F21           00044 __config _XT_OSC & _WDT_OFF & _PWRTE_ON & _BOREN_OFF & _LVP_OFF & _CP_OFF & _CPD_OFF & _MCLRE_ON
-                      00045                 
-                      00046 ; --- Paginacao de Memoria ---
-                      00047 #define bank0 bcf STATUS, RP0   ; Cria um mnemonico para selecionar o banco 0 de memoria
-                      00048 #define bank1 bsf STATUS, RP0   ; Cria um mnemonico para selecionar o banco 1 de memoria
-                      00049 
-                      00050 ; --- Mapeamento de Hardware (PARADOXUS PEPTO) ---
-                      00051 #define MOTOR1 PORTA, 1                 ; MOTOR1 ligado ao pino RA1
-                      00052 #define MOTOR2 PORTA, 3                 ; MOTOR2 ligado ao pino RA3
-                      00053 
-                      00054 #define BOTAO1 PORTB, 0                 ; BOTAO1 ligado ao pino RB0
-                      00055 #define BOTAO2 PORTB, 1                 ; BOTAO2 ligado ao pino RB1
-                      00056 
-                      00057 #define S3 PORTA, 5                     ; S3 ligado ao pino RA5/MCLRE (sera usado como entrada)
-                      00058 
-                      00059 ; --- Registradores de Uso Geral ---
+2007   3F21           00009 __config _XT_OSC & _WDT_OFF & _PWRTE_ON & _BOREN_OFF & _LVP_OFF & _CP_OFF & _CPD_OFF & _MCLRE_ON
+                      00010 
+                      00011 ; --- Paginacao de Memoria ---
+                      00012 #define bank0 bcf STATUS, RP0   ; Cria um mnemonico para selecionar o banco 0 de memoria
+                      00013 #define bank1 bsf STATUS, RP0   ; Cria um mnemonico para selecionar o banco 1 de memoria
+                      00014 
+                      00015 ; --- Mapeamento de Hardware ---
+                      00016 #define MOTOR1 PORTA, 1                 ; MOTOR1 ligado ao pino RA1
+                      00017 #define MOTOR2 PORTA, 3                 ; MOTOR2 ligado ao pino RA3
+                      00018 #define BOTAO1 PORTB, 0                 ; BOTAO1 ligado ao pino RB0
+                      00019 #define BOTAO2 PORTB, 1                 ; BOTAO2 ligado ao pino RB1
+                      00020 #define S3 PORTA, 5                     ; S3 ligado ao pino RA5/MCLRE (sera usado como entrada)
+                      00021     
+                      00022 ; --- Registradores de Uso Geral ---
 Warning[205]: Found directive in column 1. (cblock)
-                      00060 cblock  H'20'   ; Inicio da memoria disponivel para o usuario
-  00000020            00061 W_TEMP          ; Registrador para armazenar o conteudo temporario de work
-  00000021            00062 STATUS_TEMP     ; Registrador para armazenar o conteudo temporario de STATUS
-  00000022            00063 counter1        ; Registrador auxiliar para contagem
+                      00023 cblock  H'20'   ; Inicio da memoria disponivel para o usuario
+  00000020            00024 W_TEMP          ; Registrador para armazenar o conteudo temporario de work
+  00000021            00025 STATUS_TEMP     ; Registrador para armazenar o conteudo temporario de STATUS
+  00000022            00026 counter1        ; Registrador auxiliar para contagem
 Warning[205]: Found directive in column 1. (ENDC)
-                      00064 endc            ; Final da memoria do usuario
-                      00065 
-                      00066 ; --- Vetor de RESET ---
+                      00027 endc            ; Final da memoria do usuario
+                      00028 
+                      00029 ; --- Vetor de RESET ---
 Warning[205]: Found directive in column 1. (org)
-                      00067 org     H'0000'         ; Origem no endereco 00h de memoria
+                      00030 org     H'0000'         ; Origem no endereco 00h de memoria
 Warning[203]: Found opcode in column 1. (goto)
-0000   2???           00068 goto    inicio  ; Desvia para a label inicio
-                      00069         
-                      00070 ; --- Vetor de Interrupcao ---
+0000   2???           00031 goto    inicio  ; Desvia para a label inicio
+                      00032 
+                      00033 ; --- Vetor de Interrupcao ---
 Warning[205]: Found directive in column 1. (org)
-                      00071 org     H'0004'         ; As interrupcoes deste processador apontam para este endereco
-                      00072         
-                      00073 ; -- Salva Contexto --
+                      00034 org     H'0004'         ; As interrupcoes deste processador apontam para este endereco
+                      00035 
+MPASM 5.83                       PROJETO.ASM   8-11-2021  10:20:36         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00036 ; -- Salva Contexto --
 Warning[203]: Found opcode in column 1. (movwf)
-0004   00A0           00074 movwf   W_TEMP          ; Copia o conteudo de Work para W_TEMP
+0004   00A0           00037 movwf   W_TEMP          ; Copia o conteudo de Work para W_TEMP
 Warning[203]: Found opcode in column 1. (swapf)
-0005   0E03           00075 swapf   STATUS,W                ; Move o conteudo de STATUS com os nibbles invertidos para Work
+0005   0E03           00038 swapf   STATUS,W                ; Move o conteudo de STATUS com os nibbles invertidos para Work
 Warning[203]: Found opcode in column 1. (bcf)
-0006   1283           00076 bank0                           ; Seleciona o banco 0 de memoria (padrao do RESET) 
+0006   1283           00039 bank0                           ; Seleciona o banco 0 de memoria (padrao do RESET) 
 Warning[203]: Found opcode in column 1. (movwf)
-0007   00A1           00077 movwf   STATUS_TEMP     ; Copia o conteudo de STATUS com os nibbles invertidos para STATUS_TEMP
-                      00078 ; -- Final do Salvamento de Contexto --
-                      00079 
-                      00080 ; Trata ISR...  
+0007   00A1           00040 movwf   STATUS_TEMP     ; Copia o conteudo de STATUS com os nibbles invertidos para STATUS_TEMP
+                      00041 ; -- Final do Salvamento de Contexto --
+                      00042 
+                      00043 ; Trata ISR...  
 Warning[203]: Found opcode in column 1. (btfss)
-0008   1D0B           00081 btfss   INTCON, T0IF    ; Ocorreu um overflow no Timer0?
+0008   1D0B           00044 btfss   INTCON, T0IF    ; Ocorreu um overflow no Timer0?
 Warning[203]: Found opcode in column 1. (goto)
-0009   2???           00082 goto    exit_ISR        ; Nao, desvia para saida da interrupcao
+0009   2???           00045 goto    exit_ISR        ; Nao, desvia para saida da interrupcao
 Warning[203]: Found opcode in column 1. (bcf)
-MPASM 5.83                       PROJETO.ASM   8-2-2021  12:12:41         PAGE  3
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-000A   110B           00083 bcf     INTCON,T0IF     ; Sim, limpa a flag
+000A   110B           00046 bcf     INTCON,T0IF     ; Sim, limpa a flag
 Warning[203]: Found opcode in column 1. (movlw)
-000B   3000           00084 movlw   D'0'            ; Sim, move a literal 10d para work
+000B   3000           00047 movlw   D'0'            ; Sim, move a literal 10d para work
 Warning[203]: Found opcode in column 1. (movwf)
-000C   0081           00085 movwf   TMR0            ; reinicializa TMR0 em 10d. Timer0 = 256 - 10 = 246
-                      00086         
+000C   0081           00048 movwf   TMR0            ; reinicializa TMR0 em 10d. Timer0 = 256 - 10 = 246
 Warning[203]: Found opcode in column 1. (decfsz)
-000D   0BA2           00087 decfsz  counter1, F     ; Decrementa counter1. Chegou em zero?
+000D   0BA2           00049 decfsz  counter1, F     ; Decrementa counter1. Chegou em zero?
 Warning[203]: Found opcode in column 1. (goto)
-000E   2???           00088 goto    exit_ISR        ; Nao, desvia para saida da interrupcao
-                      00089 
+000E   2???           00050 goto    exit_ISR        ; Nao, desvia para saida da interrupcao
 Warning[203]: Found opcode in column 1. (movlw)
-000F   3080           00090 movlw   D'128'          ; move a literal 128d para work
+000F   3080           00051 movlw   D'128'          ; move a literal 128d para work
 Warning[203]: Found opcode in column 1. (movwf)
-0010   00A2           00091 movwf   counter1        ; reinicializa counter 1 em 18d
-                      00092         
+0010   00A2           00052 movwf   counter1        ; reinicializa counter 1 em 18d
 Warning[203]: Found opcode in column 1. (bcf)
-0011   1085           00093 bcf     MOTOR1          ; desliga MOTOR1
+0011   1085           00053 bcf     MOTOR1          ; desliga MOTOR1
 Warning[203]: Found opcode in column 1. (bcf)
-0012   1185           00094 bcf     MOTOR2          ; desliga MOTOR2
-                      00095 
+0012   1185           00054 bcf     MOTOR2          ; desliga MOTOR2
 Warning[203]: Found opcode in column 1. (bcf)
-0013   128B           00096 bcf     INTCON, T0IE    ; desabilita interrupcao do Timer0
-                      00097 
-                      00098 ; -- Recupera Contexto (Saida da Interrupcao) --
-0014                  00099 exit_ISR:
-0014   0E21           00100     swapf   STATUS_TEMP, W      ; Copia em Work o conteudo de STATUS_TEMP com os nibbles invertidos
-0015   0083           00101     movwf   STATUS              ; Recupera o conteudo de STATUS
-0016   0EA0           00102     swapf   W_TEMP, F           ; W_TEMP = W_TEMP com os nibbles invertidos 
-0017   0E20           00103     swapf   W_TEMP, W           ; Recupera o conteudo de Work   
-0018   0009           00104     retfie                      ; Retorna da interrupcao
-                      00105         
-0019                  00106 inicio:
-                      00107 
-0019   1683           00108     bank1               ; Seleciona o banco 1 de mem�ria
-001A   3006           00109     movlw H'06'         ; w = 06h
+0013   128B           00055 bcf     INTCON, T0IE    ; desabilita interrupcao do Timer0
+                      00056     
+                      00057 ; -- Recupera Contexto (Saida da Interrupcao) --
+0014                  00058 exit_ISR:
+0014   0E21           00059     swapf   STATUS_TEMP, W      ; Copia em Work o conteudo de STATUS_TEMP com os nibbles invertidos
+0015   0083           00060     movwf   STATUS              ; Recupera o conteudo de STATUS
+0016   0EA0           00061     swapf   W_TEMP, F           ; W_TEMP = W_TEMP com os nibbles invertidos 
+0017   0E20           00062     swapf   W_TEMP, W           ; Recupera o conteudo de Work   
+0018   0009           00063     retfie                      ; Retorna da interrupcao
+                      00064 
+0019                  00065 inicio:
+0019   1683           00066     bank1               ; Seleciona o banco 1 de memoria
+001A   3006           00067     movlw H'06'         ; w = 06h
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001B   0081           00110     movwf OPTION_REG    ; CONFIGURA OPTION_REG...
-                      00111 
-                      00112 ; -> Pull Ups internos habilitados
-                      00113 ; -> Timer0 incrementa com ciclo de m�quina
-                      00114 ; -> Prescaler 1:128 associado ao Timer0
-                      00115 
-001C   30A0           00116     movlw H'A0'     ; w=B'0000 0000
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001D   0085           00117     movwf TRISA     ; TRISA=H'A0' (todos bits sao saidas)
-                      00118 
-001E   1283           00119     bank0           ; Seleciona o banco 0 de memoria
-001F   3007           00120     movlw H'07'     ; w = 7h
-0020   009F           00121     movwf CMCON     ; CMCON = 7h desabilita os comparadores internos
-0021   3080           00122     movlw H'80'     ; w = 80h
-0022   008B           00123     movwf INTCON    ; CONFIGURA INTCON...
-                      00124 
-MPASM 5.83                       PROJETO.ASM   8-2-2021  12:12:41         PAGE  4
+001B   0081           00068     movwf OPTION_REG    ; CONFIGURA OPTION_REG...
+                      00069 ; -> Pull Ups internos habilitados
+                      00070 ; -> Timer0 incrementa com ciclo de maquina
+                      00071 ; -> Prescaler 1:128 associado ao Timer0
+MPASM 5.83                       PROJETO.ASM   8-11-2021  10:20:36         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00125 ; -> Habilita Interrupcao Global
-                      00126 ; -> Interrupcao do Timer0 inicia desligada
-                      00127 
-0023   3000           00128     movlw D'0'      ; move a literal 0d para work
-0024   0081           00129     movwf TMR0      ; inicializa TMR0 em 10d. Timer0 = 256 - 10 = 246
-                      00130                 
-0025   3080           00131     movlw D'128'            ; move a literal 128d para work
-0026   00A2           00132     movwf counter1          ; inicializa counter1 em 18d
-                      00133                 
-                      00134 ;       bcf     MOTOR1      ; desliga MOTOR1
-                      00135 ;       bcf     MOTORLED1   ; desliga MOTORLED1
-                      00136 
-                      00137 ;       bcf     MOTOR2      ; desliga MOTOR2
-                      00138 ;       bcf     MOTORLED2   ; desliga MOTORLED2
-                      00139  
-0027                  00140 loop:
-0027   1C06           00141         btfss BOTAO1            ; BOTAO1 pressionado?
-0028   2???           00142         goto timerOn1           ; Sim, desvia para timerOn1
-                      00143 
-0029   1C86           00144         btfss BOTAO2            ; BOTAO2 pressionado?
-002A   2???           00145         goto timerOn2           ; Sim, desvia para timerOn2
-                      00146 
-002B   2???           00147         goto loop               ; Nao, continua testando botao
-                      00148 
-002C                  00149 timerOn1:
-002C   1485           00150         bsf     MOTOR1                  ; Liga MOTOR1   
-002D   168B           00151         bsf     INTCON,T0IE             ; Habilita interrupcao do Timer0
-002E   2???           00152         goto loop                       ; Desvia de volta para loop
-                      00153 
-002F                  00154 timerOn2:
-002F   1585           00155         bsf     MOTOR2                  ; Liga MOTOR2
-0030   168B           00156         bsf     INTCON,T0IE             ; Habilita interrupcao do Timer0
-0031   2???           00157         goto loop                       ; Desvia de volta para loop
-                      00158 
-                      00159 
+001C   30A0           00072     movlw H'A0'     ; w=B'0000 0000
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+001D   0085           00073     movwf TRISA     ; TRISA=H'A0' (todos bits sao saidas)
+001E   1283           00074     bank0           ; Seleciona o banco 0 de memoria
+001F   3007           00075     movlw H'07'     ; w = 7h
+0020   009F           00076     movwf CMCON     ; CMCON = 7h desabilita os comparadores internos
+0021   3080           00077     movlw H'80'     ; w = 80h
+0022   008B           00078     movwf INTCON    ; CONFIGURA INTCON...
+                      00079 ; -> Habilita Interrupcao Global
+                      00080 ; -> Interrupcao do Timer0 inicia desligada
+0023   3000           00081     movlw D'0'      ; move a literal 0d para work
+0024   0081           00082     movwf TMR0      ; inicializa TMR0 em 10d. Timer0 = 256 - 10 = 246
+0025   3080           00083     movlw D'128'            ; move a literal 128d para work
+0026   00A2           00084     movwf counter1          ; inicializa counter1 em 18d
+                      00085 
+0027                  00086 loop:
+0027   1C06           00087         btfss BOTAO1            ; BOTAO1 pressionado?
+0028   2???           00088         goto timerOn1           ; Sim, desvia para timerOn1
+0029   1C86           00089         btfss BOTAO2            ; BOTAO2 pressionado?
+002A   2???           00090         goto timerOn2           ; Sim, desvia para timerOn2
+002B   2???           00091         goto loop               ; Nao, continua testando botao
+                      00092 
+002C                  00093 timerOn1:
+002C   1485           00094         bsf     MOTOR1                  ; Liga MOTOR1   
+002D   168B           00095         bsf     INTCON,T0IE             ; Habilita interrupcao do Timer0
+002E   2???           00096         goto loop                       ; Desvia de volta para loop
+                      00097 
+002F                  00098 timerOn2:
+002F   1585           00099         bsf     MOTOR2                  ; Liga MOTOR2
+0030   168B           00100         bsf     INTCON,T0IE             ; Habilita interrupcao do Timer0
+0031   2???           00101         goto loop                       ; Desvia de volta para loop
 Warning[205]: Found directive in column 1. (end)
-3F21                  00160 end                             ; Final do Programa
-MPASM 5.83                       PROJETO.ASM   8-2-2021  12:12:41         PAGE  5
+3F21                  00102 end                             ; Final do Programa
+MPASM 5.83                       PROJETO.ASM   8-11-2021  10:20:36         PAGE  4
 
 
 SYMBOL TABLE
@@ -277,7 +214,7 @@ IRP                               00000007
 MOTOR1                            PORTA, 1
 MOTOR2                            PORTA, 3
 NOT_BO                            00000000
-MPASM 5.83                       PROJETO.ASM   8-2-2021  12:12:41         PAGE  6
+MPASM 5.83                       PROJETO.ASM   8-11-2021  10:20:36         PAGE  5
 
 
 SYMBOL TABLE
@@ -336,7 +273,7 @@ RX9D                              00000000
 S3                                PORTA, 5
 SPBRG                             00000099
 SPEN                              00000007
-MPASM 5.83                       PROJETO.ASM   8-2-2021  12:12:41         PAGE  7
+MPASM 5.83                       PROJETO.ASM   8-11-2021  10:20:36         PAGE  6
 
 
 SYMBOL TABLE
@@ -395,7 +332,7 @@ TRISB6                            00000006
 TRISB7                            00000007
 TRMT                              00000001
 TX9                               00000006
-MPASM 5.83                       PROJETO.ASM   8-2-2021  12:12:41         PAGE  8
+MPASM 5.83                       PROJETO.ASM   8-11-2021  10:20:36         PAGE  7
 
 
 SYMBOL TABLE
@@ -454,7 +391,7 @@ _INTRC_OSC_NOCLKOUT               00003FFC
 _LP_OSC                           00003FEC
 _LVP_OFF                          00003F7F
 _LVP_ON                           00003FFF
-MPASM 5.83                       PROJETO.ASM   8-2-2021  12:12:41         PAGE  9
+MPASM 5.83                       PROJETO.ASM   8-11-2021  10:20:36         PAGE  8
 
 
 SYMBOL TABLE
