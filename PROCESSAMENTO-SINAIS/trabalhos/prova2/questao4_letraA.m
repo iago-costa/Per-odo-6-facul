@@ -12,7 +12,7 @@ fft_x_n = fft(x_n,4)
 
 subplot(312)
 stem(n_1,fft_x_n)
-xlabel (sprintf ("n"));
+xlabel (sprintf ("m"));
 ylabel (sprintf ("valores fft-x[n]"));
 title (sprintf ("gráfico fft-x[n]"));
 
