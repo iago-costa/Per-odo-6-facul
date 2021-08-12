@@ -82,14 +82,14 @@ int minimo_abastecimentos // função que calcula o número mínimo de abastecim
                     consumo_entre_postos_atual = consumo_entre_postos(postos_combustiveis_km[i + 1], postos_combustiveis_km[i], consumo_litro_por_km);
                     if (tanque_restante_km > consumo_entre_postos_atual) // Se o tanque do motorista está suficiente para o consumo
                     {
-                        printf("Motorista não abasteceu no posto %d \n", i); // Não abasteceu
+                        printf("Motorista não abasteceu no posto %d \n", i+1); // Não abasteceu
                         posto_combustivel_atual_km = i;                      // reinicia o posto de combustível
                     }
                     if (tanque_restante_km < consumo_entre_postos_atual) // Se o tanque do motorista não está suficiente para o consumo
                     {
                         tanque_restante_km = tanque_km;                  // Reinicia o tanque
                         posto_combustivel_atual_km = i;                  // reinicia o posto de combustível
-                        printf("Motorista abasteceu no posto %d \n", i); // Abastece no posto de combustível
+                        printf("Motorista abasteceu no posto %d \n", i+1); // Abastece no posto de combustível
                         contador_abastecimentos += 1;                    // Incrementa o contador de abastecimentos
                     }
                 }
@@ -99,14 +99,14 @@ int minimo_abastecimentos // função que calcula o número mínimo de abastecim
 
                     if (tanque_restante_km > consumo_entre_postos_atual) // Se o tanque do motorista está suficiente para o consumo
                     {
-                        printf("Motorista não abasteceu no posto %d \n", i); // Não abasteceu
+                        printf("Motorista não abasteceu no posto %d \n", i+1); // Não abasteceu
                         posto_combustivel_atual_km = i;                      // reinicia o posto de combustível
                     }
                     if (tanque_restante_km < consumo_entre_postos_atual) // Se o tanque do motorista não está suficiente para o consumo
                     {
                         tanque_restante_km = tanque_km;                  // Reinicia o tanque
                         posto_combustivel_atual_km = i;                  // seta posto de combustível
-                        printf("Motorista abasteceu no posto %d \n", i); // Abastece no posto de combustível
+                        printf("Motorista abasteceu no posto %d \n", i+1); // Abastece no posto de combustível
                         contador_abastecimentos += 1;                    // Incrementa o contador de abastecimentos
                     }
                 }
