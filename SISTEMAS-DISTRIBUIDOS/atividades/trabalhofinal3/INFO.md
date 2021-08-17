@@ -26,6 +26,9 @@ expo install react-native-gesture-handler react-native-reanimated react-native-s
 
 npm install @react-navigation/bottom-tabs
 
+expo install @react-native-community/async-storage
+
+sudo npm install ngrok -g
 
 # Back
 
