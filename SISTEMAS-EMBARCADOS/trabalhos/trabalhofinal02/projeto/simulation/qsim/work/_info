@@ -8,7 +8,7 @@ Z1 !s100 j:PS2MX^kM7`aWkSz`_:U3
 Z2 IzHUJbAjfTWX]]Rd@WfV_`2
 Z3 VkDC<<z>PlFFKmejWLM8c_0
 Z4 dC:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\SISTEMAS-EMBARCADOS\trabalhos\trabalhofinal02\projeto\simulation\qsim
-Z5 w1627918876
+Z5 w1629415500
 Z6 8nanocontrolador.vo
 Z7 Fnanocontrolador.vo
 L0 31
@@ -20,7 +20,7 @@ Z10 o-work work -O0
 Z11 n@nano@controlador
 !i10b 1
 !s85 0
-Z12 !s108 1627918877.621000
+Z12 !s108 1629415510.637000
 Z13 !s107 nanocontrolador.vo|
 !s101 -O0
 vNanoControlador_vlg_check_tst
@@ -29,7 +29,7 @@ Z14 !s100 24W<ALA`R5AJLL_Ab^V6G3
 Z15 I`i`?EPS;GBm7A^6ONDe2J0
 Z16 VYMfnTHi5f2Nh?C?;14@N?3
 R4
-Z17 w1627918874
+Z17 w1629415498
 Z18 8subtracao.vwf.vt
 Z19 Fsubtracao.vwf.vt
 L0 61
@@ -37,7 +37,7 @@ R8
 r1
 !s85 0
 31
-Z20 !s108 1627918877.839000
+Z20 !s108 1629415512.899000
 Z21 !s107 subtracao.vwf.vt|
 Z22 !s90 -work|work|subtracao.vwf.vt|
 !s101 -O0

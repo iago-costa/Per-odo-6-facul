@@ -7,7 +7,8 @@ entity NanoControlador is
 	port(A, B: in std_logic_vector(7 downto 0); -- barramento A e B de 8 bits de entrada
 		ula_op: in std_logic_vector(2 downto 0); -- barramento de 4 bits de flag ula_op pra definir a escolha da operaçao
 	     	  C: out std_logic_vector(7 downto 0); -- barrramento de saida C de 8 bits
-		n_inst, z_inst, c_inst, v_inst: out std_logic);
+		n_inst, z_inst, c_inst, v_inst: out std_logic
+		);
 		
 end NanoControlador;
 
@@ -35,14 +36,14 @@ architecture ULA of NanoControlador is
 			end case;
 		end process;
 
-		n_inst <= C_int(7);
+		--n_inst <= C_int(7);
 
-		z_inst <= '1' when (C_int(7 downto 0) = "00000000") else '0';
+		--z_inst <= '1' when (C_int(7 downto 0) = "00000000") else '0';
 		
-		c_inst <= C_int(8);
+		--c_inst <= C_int(8);
 		
-		v_inst <= '1' when (A_int(7)=B_int(7) and
+		--v_inst <= '1' when (A_int(7)=B_int(7) and
 		
-		A_int(7)/=C_int(7)) else '0';
+		--A_int(7)/=C_int(7)) else '0';
 
 end ULA;

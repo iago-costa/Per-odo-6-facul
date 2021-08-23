@@ -1,5 +1,5 @@
 Assembler report for nanocontrolador
-Mon Aug 02 12:36:04 2021
+Thu Aug 19 20:39:54 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Mon Aug 02 12:36:04 2021 ;
+; Assembler Status      ; Successful - Thu Aug 19 20:39:54 2021 ;
 ; Revision Name         ; nanocontrolador                       ;
 ; Top-level Entity Name ; NanoControlador                       ;
 ; Family                ; Cyclone IV GX                         ;
@@ -92,8 +92,8 @@ applicable agreement for further details.
 ; Option         ; Setting                                                                                                                                          ;
 +----------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Device         ; EP4CGX15BF14C6                                                                                                                                   ;
-; JTAG usercode  ; 0x000C3CFE                                                                                                                                       ;
-; Checksum       ; 0x000C3CFE                                                                                                                                       ;
+; JTAG usercode  ; 0x000C3E55                                                                                                                                       ;
+; Checksum       ; 0x000C3E55                                                                                                                                       ;
 +----------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -103,13 +103,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Mon Aug 02 12:36:02 2021
+    Info: Processing started: Thu Aug 19 20:39:52 2021
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off nanocontrolador -c nanocontrolador
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 4624 megabytes
-    Info: Processing ended: Mon Aug 02 12:36:04 2021
+    Info: Processing ended: Thu Aug 19 20:39:54 2021
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

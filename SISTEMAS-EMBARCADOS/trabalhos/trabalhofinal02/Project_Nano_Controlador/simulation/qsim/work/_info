@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\LEYRISVAN\Desktop\Project_Nano_Controlador\simulation\qsim
+vNanoControlador
+Z1 IQ1:GjT49<E`Kl?lITgUXD3
+Z2 VkDC<<z>PlFFKmejWLM8c_0
+Z3 dC:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\SISTEMAS-EMBARCADOS\trabalhos\trabalhofinal02\Project_Nano_Controlador\simulation\qsim
+Z4 w1629479526
+Z5 8NanoControlador.vo
+Z6 FNanoControlador.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 !s90 -work|work|NanoControlador.vo|
+Z9 o-work work -O0
+Z10 n@nano@controlador
+!i10b 1
+Z11 !s100 MZ^;n7aW130b;NbCg9MI90
+!s85 0
+Z12 !s108 1629479596.184000
+Z13 !s107 NanoControlador.vo|
+!s101 -O0
+vNanoControlador_vlg_check_tst
+!i10b 1
+Z14 !s100 g83i8lKfjZ@?2NAane@hn0
+Z15 IRKb>AJ3T>>96h2KlidR>S2
+Z16 VYMfnTHi5f2Nh?C?;14@N?3
+R3
+Z17 w1629479523
+Z18 8Waveform13.vwf.vt
+Z19 FWaveform13.vwf.vt
+L0 61
+R7
+r1
+!s85 0
+31
+Z20 !s108 1629479597.083000
+Z21 !s107 Waveform13.vwf.vt|
+Z22 !s90 -work|work|Waveform13.vwf.vt|
+!s101 -O0
+R9
+Z23 n@nano@controlador_vlg_check_tst
+vNanoControlador_vlg_sample_tst
+!i10b 1
+Z24 !s100 jGH>LcnnA>E6PdfFemmE;3
+Z25 IR0Xmn;Hbjb4>Q;GR7lIA42
+Z26 VbBbekAfH=kfk@2@>;dc042
+R3
+R17
+R18
+R19
+L0 29
+R7
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R9
+Z27 n@nano@controlador_vlg_sample_tst
+vNanoControlador_vlg_vec_tst
+!i10b 1
+Z28 !s100 jdNEn1<97@W`Fib1oT6RT0
+Z29 IzdW_A<ZJbkRJ^og2cQgO62
+Z30 ViDS4e;FG>KPnJeQlMDh3K3
+R3
+R17
+R18
+R19
+Z31 L0 389
+R7
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R9
+Z32 n@nano@controlador_vlg_vec_tst

@@ -18,7 +18,7 @@
 // the top level entity of the current Quartus project .The user can use this   
 // testbench to simulate his design using a third-party simulation tool .       
 // *****************************************************************************
-// Generated on "08/02/2021 12:41:14"
+// Generated on "08/19/2021 20:24:58"
                                                                         
 // Verilog Self-Checking Test Bench (with test vectors) for design :    NanoControlador
 // 
