@@ -1,5 +1,5 @@
 Flow report for NanoControlador
-Sun Aug 22 22:27:15 2021
+Mon Aug 23 20:53:12 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -40,7 +40,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +------------------------------------+--------------------------------------------+
-; Flow Status                        ; Successful - Sun Aug 22 22:27:15 2021      ;
+; Flow Status                        ; Successful - Mon Aug 23 20:53:12 2021      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; NanoControlador                            ;
 ; Top-level Entity Name              ; NanoControlador                            ;
@@ -125,7 +125,13 @@ applicable agreement for further details.
 ; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4599 MB             ; 00:00:01                           ;
 ; EDA Netlist Writer        ; 00:00:00     ; 1.0                     ; 4585 MB             ; 00:00:01                           ;
 ; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 4603 MB             ; 00:00:01                           ;
-; Total                     ; 00:00:46     ; --                      ; --                  ; 00:00:41                           ;
+; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 4585 MB             ; 00:00:01                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4603 MB             ; 00:00:02                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4587 MB             ; 00:00:01                           ;
+; EDA Netlist Writer        ; 00:00:00     ; 1.0                     ; 4587 MB             ; 00:00:01                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4587 MB             ; 00:00:01                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4599 MB             ; 00:00:01                           ;
+; Total                     ; 00:00:52     ; --                      ; --                  ; 00:00:48                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -138,6 +144,12 @@ applicable agreement for further details.
 ; Fitter                    ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
 ; Assembler                 ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
 ; TimeQuest Timing Analyzer ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
+; EDA Netlist Writer        ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
+; EDA Netlist Writer        ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
+; EDA Netlist Writer        ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
+; EDA Netlist Writer        ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
+; EDA Netlist Writer        ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
+; EDA Netlist Writer        ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
 ; EDA Netlist Writer        ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
 ; EDA Netlist Writer        ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
 ; EDA Netlist Writer        ; DESKTOP-JMQV3QG  ; Windows 7 ; 6.2        ; x86_64         ;
@@ -202,6 +214,12 @@ quartus_eda --gen_testbench --check_outputs=on --tool=modelsim_oem --format=veri
 quartus_eda --functional=off --flatten_buses=off --timescale=1ps --simulation=on --tool=modelsim_oem --format=verilog --output_directory=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/simulation/qsim/ NanoControlador -c NanoControlador
 quartus_eda --gen_testbench --check_outputs=on --tool=modelsim_oem --format=verilog NanoControlador -c NanoControlador --vector_source=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/Waveform.vwf --testbench_file=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/simulation/qsim/Waveform.vwf.vt
 quartus_eda --functional=off --flatten_buses=off --timescale=1ps --simulation=on --tool=modelsim_oem --format=verilog --output_directory=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/simulation/qsim/ NanoControlador -c NanoControlador
+quartus_eda --gen_testbench --check_outputs=on --tool=modelsim_oem --format=verilog NanoControlador -c NanoControlador --vector_source=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/Waveform.vwf --testbench_file=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/simulation/qsim/Waveform.vwf.vt
+quartus_eda --functional=off --flatten_buses=off --timescale=1ps --simulation=on --tool=modelsim_oem --format=verilog --output_directory=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/simulation/qsim/ NanoControlador -c NanoControlador
+quartus_eda --gen_testbench --check_outputs=on --tool=modelsim_oem --format=verilog NanoControlador -c NanoControlador --vector_source=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/Waveform.vwf --testbench_file=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/simulation/qsim/Waveform.vwf.vt
+quartus_eda --functional=on --flatten_buses=off --simulation=on --tool=modelsim_oem --format=verilog --output_directory=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/simulation/qsim/ NanoControlador -c NanoControlador
+quartus_eda --gen_testbench --check_outputs=on --tool=modelsim_oem --format=verilog NanoControlador -c NanoControlador --vector_source=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/Waveform.vwf --testbench_file=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/simulation/qsim/Waveform.vwf.vt
+quartus_eda --functional=on --flatten_buses=off --simulation=on --tool=modelsim_oem --format=verilog --output_directory=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/simulation/qsim/ NanoControlador -c NanoControlador
 
 
 

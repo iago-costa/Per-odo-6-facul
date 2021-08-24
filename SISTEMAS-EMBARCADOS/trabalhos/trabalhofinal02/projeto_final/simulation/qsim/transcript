@@ -25,13 +25,7 @@
 # Loading cycloneiv_ver.cycloneiv_lcell_comb
 # Loading work.NanoControlador_vlg_sample_tst
 # Loading work.NanoControlador_vlg_check_tst
-# SDF 10.1d Compiler 2012.11 Nov  2 2012
-# 
-# Loading instances from NanoControlador_v.sdo
 # Loading altera_ver.PRIM_GDFF_LOW
-# Loading timing data from NanoControlador_v.sdo
-# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
-#    Time: 0 ps  Iteration: 0  Instance: /NanoControlador_vlg_vec_tst File: Waveform.vwf.vt
 # Simulation passed !
 # ** Note: $finish    : Waveform.vwf.vt(283)
 #    Time: 1 us  Iteration: 0  Instance: /NanoControlador_vlg_vec_tst/tb_out

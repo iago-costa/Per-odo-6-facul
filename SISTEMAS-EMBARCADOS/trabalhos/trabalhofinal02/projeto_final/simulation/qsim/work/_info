@@ -4,11 +4,11 @@ K3
 cModel Technology
 Z0 dC:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\SISTEMAS-EMBARCADOS\trabalhos\trabalhofinal02\projeto_final\simulation\qsim
 vNanoControlador
-Z1 !s100 Zzd03h2g81aD`B@[dgdj50
-Z2 I?Hkz:9;SWMIJz70KoB8bd2
+Z1 !s100 Tc?JRcDO`PE3_TD98:n`Y1
+Z2 IcPhe1n2RWGkoLm:G:597V2
 Z3 V4QZ?2BR0=YPQC1D0oO7_L0
 Z4 dC:\Users\Iagof\Documents\Estudos\Per-odo-6-facul\SISTEMAS-EMBARCADOS\trabalhos\trabalhofinal02\projeto_final\simulation\qsim
-Z5 w1629682034
+Z5 w1629762792
 Z6 8NanoControlador.vo
 Z7 FNanoControlador.vo
 L0 31
@@ -20,7 +20,7 @@ Z10 o-work work -O0
 Z11 n@nano@controlador
 !i10b 1
 !s85 0
-Z12 !s108 1629682036.130000
+Z12 !s108 1629762793.550000
 Z13 !s107 NanoControlador.vo|
 !s101 -O0
 vNanoControlador_vlg_check_tst
@@ -29,7 +29,7 @@ Z14 !s100 KQ<C78S]j?`Wb[IIBLaY?2
 Z15 I0Nh4TVc8ZccgaQX<IncKV2
 Z16 V1;CXBff>?VWcYenX;hjEV2
 R4
-Z17 w1629682033
+Z17 w1629762790
 Z18 8Waveform.vwf.vt
 Z19 FWaveform.vwf.vt
 L0 67
@@ -37,7 +37,7 @@ R8
 r1
 !s85 0
 31
-Z20 !s108 1629682036.380000
+Z20 !s108 1629762794.215000
 Z21 !s107 Waveform.vwf.vt|
 Z22 !s90 -work|work|Waveform.vwf.vt|
 !s101 -O0
@@ -65,8 +65,8 @@ R10
 Z27 n@nano@controlador_vlg_sample_tst
 vNanoControlador_vlg_vec_tst
 !i10b 1
-!s100 W=L;Bghme0KmQQ48ZLi>T2
-IJD8LoKXo2H94Vc^GL7CVB2
+!s100 0dO:nzaWJ4IR6lA?8TobZ3
+IjjJCS6f94?;S@VScRR;Dn0
 Z28 ViDS4e;FG>KPnJeQlMDh3K3
 R4
 R17
