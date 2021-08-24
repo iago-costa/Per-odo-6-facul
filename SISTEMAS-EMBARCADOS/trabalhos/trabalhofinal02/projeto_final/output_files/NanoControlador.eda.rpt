@@ -1,5 +1,5 @@
 EDA Netlist Writer report for NanoControlador
-Mon Aug 23 20:53:12 2021
+Tue Aug 24 09:22:57 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Mon Aug 23 20:53:12 2021 ;
+; EDA Netlist Writer Status ; Successful - Tue Aug 24 09:22:57 2021 ;
 ; Revision Name             ; NanoControlador                       ;
 ; Top-level Entity Name     ; NanoControlador                       ;
 ; Family                    ; Cyclone IV GX                         ;
@@ -80,25 +80,12 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit EDA Netlist Writer
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Copyright (C) 1991-2013 Altera Corporation. All rights reserved.
-    Info: Your use of Altera Corporation's design tools, logic functions 
-    Info: and other software and tools, and its AMPP partner logic 
-    Info: functions, and any output files from any of the foregoing 
-    Info: (including device programming or simulation files), and any 
-    Info: associated documentation or information are expressly subject 
-    Info: to the terms and conditions of the Altera Program License 
-    Info: Subscription Agreement, Altera MegaCore Function License 
-    Info: Agreement, or other applicable license agreement, including, 
-    Info: without limitation, that your use is for the sole purpose of 
-    Info: programming logic devices manufactured by Altera and sold by 
-    Info: Altera or its authorized distributors.  Please refer to the 
-    Info: applicable agreement for further details.
-    Info: Processing started: Mon Aug 23 20:53:11 2021
-Info: Command: quartus_eda --functional=on --flatten_buses=off --simulation=on --tool=modelsim_oem --format=verilog --output_directory=C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/simulation/qsim/ NanoControlador -c NanoControlador
+    Info: Processing started: Tue Aug 24 09:22:56 2021
+Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off NanoControlador -c NanoControlador
 Info (204019): Generated file NanoControlador.vo in folder "C:/Users/Iagof/Documents/Estudos/Per-odo-6-facul/SISTEMAS-EMBARCADOS/trabalhos/trabalhofinal02/projeto_final/simulation/qsim//" for EDA simulation tool
 Info: Quartus II 64-Bit EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4599 megabytes
-    Info: Processing ended: Mon Aug 23 20:53:12 2021
+    Info: Peak virtual memory: 4587 megabytes
+    Info: Processing ended: Tue Aug 24 09:22:57 2021
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
